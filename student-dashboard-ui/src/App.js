@@ -1,13 +1,19 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './HomePage/Home';
+<<<<<<< Updated upstream
 import SideNav from './Side-Nav-Bar/SideNav';
 import DashboardHome from './DashboardHome/DashboardHome';
 
+=======
+import { BrowserRouter,Route,Routes} from 'react-router-dom';
+import Login from './LoginPage/Login';
+>>>>>>> Stashed changes
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+<<<<<<< Updated upstream
         <Route path="/" element={<Home />} />
         <Route
           path="/dashboard/*"
@@ -31,6 +37,11 @@ function App() {
             </div>
           }
         />
+=======
+        <Route path='/' element={<Home/>}/>
+        {/* Add your component routes here for navigation */}
+        <Route path='/login' element={<Login/>}/>
+>>>>>>> Stashed changes
       </Routes>
     </BrowserRouter>
   );
