@@ -2,7 +2,6 @@ import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './HomePage/Home';
 import Signup from './Signup Page/Signup';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import SideNav from './Side-Nav-Bar/SideNav';
 import DashboardHome from './DashboardHome/DashboardHome';
 import Login from './LoginPage/Login';

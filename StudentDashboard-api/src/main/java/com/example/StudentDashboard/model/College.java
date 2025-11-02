@@ -16,5 +16,11 @@ public class College {
 	       this.location = location;
 	       this.worldRank = worldRank;
 	   }
+	   public int getId() { return id; }
+	    public String getName() { return name; }
+	    public List<String> getCourses() { return courses; }
+	    public String getLocation() { return location; }
+	    public int getWorldRank() { return worldRank; }
+
 }
 
