@@ -7,6 +7,7 @@ function DashboardHome() {
   useEffect(() => {
     getCollegesList().then((data) => {
       setColleges(data);
+      console.log("Fetched 123:", data);
     }).catch((error) => {
       console.error("Error fetching colleges:", error);
     });
