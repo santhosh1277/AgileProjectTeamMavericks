@@ -1,6 +1,8 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './HomePage/Home';
+import Signup from './Signup Page/Signup';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import SideNav from './Side-Nav-Bar/SideNav';
 import DashboardHome from './DashboardHome/DashboardHome';
 import Login from './LoginPage/Login';
@@ -8,6 +10,12 @@ import Login from './LoginPage/Login';
 function App() {
   return (
     <BrowserRouter>
+      <div className="App">
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/signup' element={<Signup />} />
+        </Routes>
+      </div>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
