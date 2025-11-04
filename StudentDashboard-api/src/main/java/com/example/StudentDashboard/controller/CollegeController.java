@@ -22,7 +22,7 @@ public class CollegeController {
 
 
 	    @GetMapping
-	    public List<College> getAllColleges() {
+	    public List<com.example.StudentDashboard.Entity.College> getAllColleges() {
 	        return collegeService.getAllColleges();
 	    }
 }
