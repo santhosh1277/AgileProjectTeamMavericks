@@ -114,17 +114,7 @@ const Login = () => {
  
           <div className="text-center mt-3">
 <span>Don't have an account? </span>
-<button
-
-              type="button"
-
-              className="btn btn-link p-0"
-
-              onClick={handleSignUp}
->
-
-              Sign Up
-</button>
+<a href="/signup" onClick={handleSignUp}>Sign Up</a>
 </div>
 </form>
 </div>
