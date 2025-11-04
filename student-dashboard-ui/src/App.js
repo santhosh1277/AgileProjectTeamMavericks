@@ -1,24 +1,29 @@
 import './App.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import Home from './HomePage/Home';
 import Signup from './Signup Page/Signup';
 import SideNav from './Side-Nav-Bar/SideNav';
 import DashboardHome from './DashboardHome/DashboardHome';
 import Login from './LoginPage/Login';
 
-function App() {
+function AppWrapper() {
+  const location = useLocation();
+
+  // Add a page-specific class to the root div
+  const pageClass = location.pathname.startsWith('/dashboard')
+    ? 'dashboard-page'
+    : location.pathname === '/login' || location.pathname === '/signup'
+    ? 'auth-page'
+    : 'home-page';
+
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/signup' element={<Signup />} />
-        </Routes>
-      </div>
+    <div className={pageClass}>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path='/' element={<Home />} />
+        <Route path='/signup' element={<Signup />} />
+        <Route path='/login' element={<Login />} />
         <Route
-          path="/dashboard/*"
+          path='/dashboard/*'
           element={
             <div className="container-fluid p-0">
               <div className="row min-vh-100">
@@ -28,19 +33,21 @@ function App() {
                 <div className="col-10 bg-light p-4">
                   <Routes>
                     <Route path="home" element={<DashboardHome />} />
-                    {/* Add more routes below as needed */}
-                    {/* <Route path="profile" element={<Profile />} /> */}
-                    {/* <Route path="academicprofile" element={<AcademicProfile />} /> */}
-                    {/* <Route path="settings" element={<Settings />} /> */}
-                    {/* <Route path="logout" element={<Logout />} /> */}
                   </Routes>
                 </div>
               </div>
             </div>
           }
         />
-        <Route path="/login" element={<Login />} />
       </Routes>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AppWrapper />
     </BrowserRouter>
   );
 }

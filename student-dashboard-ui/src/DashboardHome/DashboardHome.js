@@ -4,21 +4,25 @@ import { getCollegesList } from "../api/Service.js/SignupService";
 
 function DashboardHome() {
   const [colleges, setColleges] = useState([]);
-  useEffect(() => {
-    getCollegesList().then((data) => {
-      setColleges(data);
-      console.log("Fetched 123:", data);
-    }).catch((error) => {
-      console.error("Error fetching colleges:", error);
-    });
-  }, []);
-  return (
-    <div className="dashboard-home" style={{ width: "100%", height: "100%" }}>
 
-      <div className="bg-dark text-light py-3 text-center rounded-bottom">
+  useEffect(() => {
+    getCollegesList()
+      .then((data) => {
+        setColleges(data);
+        console.log("Fetched colleges:", data);
+      })
+      .catch((error) => {
+        console.error("Error fetching colleges:", error);
+      });
+  }, []);
+
+  return (
+    <div className="dashboard-home" style={{ width: "100%", minHeight: "100vh", backgroundColor: "#f8f9fa" }}>
+      <header className="bg-dark text-light py-3 text-center rounded-bottom">
         <h2>Student Dashboard</h2>
-      </div>
-      <div className="container-fluid mt-4">
+      </header>
+
+      <main className="container-fluid mt-4">
         <h4 className="mb-3">Upcoming College Admissions</h4>
         <div className="row">
           {colleges?.map((college, index) => (
@@ -43,7 +47,7 @@ function DashboardHome() {
             </div>
           ))}
         </div>
-      </div>
+      </main>
     </div>
   );
 }

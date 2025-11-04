@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./Signup.css";
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -34,9 +33,52 @@ function Signup() {
     });
   };
 
+  // CSS-in-JS style objects
+  const containerStyle = {
+    minHeight: "100vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#1e1e2f",
+    padding: "1rem",
+  };
+
+  const formStyle = {
+    backgroundColor: "#fff",
+    padding: "2rem",
+    borderRadius: "10px",
+    boxShadow: "0 4px 15px rgba(0,0,0,0.2)",
+    width: "100%",
+    maxWidth: "400px",
+  };
+
+  const inputStyle = {
+    width: "100%",
+    padding: "0.5rem",
+    margin: "0.5rem 0 1rem",
+    borderRadius: "5px",
+    border: "1px solid #ccc",
+  };
+
+  const buttonStyle = {
+    width: "100%",
+    padding: "0.75rem",
+    borderRadius: "5px",
+    border: "none",
+    backgroundColor: "#007bff",
+    color: "#fff",
+    fontWeight: "bold",
+    cursor: "pointer",
+  };
+
+  const linkStyle = {
+    color: "#007bff",
+    textDecoration: "none",
+  };
+
   return (
-    <div className="signup-container">
-      <form className="signup-form" onSubmit={handleSubmit}>
+    <div style={containerStyle}>
+      <form style={formStyle} onSubmit={handleSubmit}>
         <h2>🎓 Student Signup</h2>
 
         <label htmlFor="name">Full Name</label>
@@ -48,6 +90,7 @@ function Signup() {
           value={formData.name}
           onChange={handleChange}
           required
+          style={inputStyle}
         />
 
         <label htmlFor="dob">Date of Birth</label>
@@ -58,6 +101,7 @@ function Signup() {
           value={formData.dob}
           onChange={handleChange}
           required
+          style={inputStyle}
         />
 
         <label htmlFor="email">Email Address</label>
@@ -69,6 +113,7 @@ function Signup() {
           value={formData.email}
           onChange={handleChange}
           required
+          style={inputStyle}
         />
 
         <label htmlFor="password">Password</label>
@@ -80,6 +125,7 @@ function Signup() {
           value={formData.password}
           onChange={handleChange}
           required
+          style={inputStyle}
         />
 
         <label htmlFor="confirmPassword">Confirm Password</label>
@@ -91,12 +137,15 @@ function Signup() {
           value={formData.confirmPassword}
           onChange={handleChange}
           required
+          style={inputStyle}
         />
 
-        <button type="submit">Create Account</button>
+        <button type="submit" style={buttonStyle}>
+          Create Account
+        </button>
 
-        <p className="login-text">
-          Already have an account? <a href="/">Login here</a>
+        <p style={{ marginTop: "1rem", textAlign: "center" }}>
+          Already have an account? <a href="/" style={linkStyle}>Login here</a>
         </p>
       </form>
     </div>
