@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ added
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -10,6 +11,7 @@ function Signup() {
   });
 
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate(); // ✅ added
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -39,15 +41,8 @@ function Signup() {
         throw new Error("Failed to register student");
       }
 
-      const data = await response.json();
-      alert("Signup successful!");
-      setFormData({
-        name: "",
-        dob: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-      });
+      alert("Signup successful! Redirecting to login...");
+      navigate("/login"); // ✅ redirect to login page
     } catch (error) {
       console.error(error);
       alert("Error: Could not register student");
@@ -167,7 +162,10 @@ function Signup() {
         </button>
 
         <p style={{ marginTop: "1rem", textAlign: "center" }}>
-          Already have an account? <a href="/Login" style={linkStyle}>Login here</a>
+          Already have an account?{" "}
+          <a href="/login" style={linkStyle}>
+            Login here
+          </a>
         </p>
       </form>
     </div>
@@ -175,4 +173,3 @@ function Signup() {
 }
 
 export default Signup;
- 
