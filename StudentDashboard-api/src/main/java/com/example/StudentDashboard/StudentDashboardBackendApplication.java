@@ -8,7 +8,7 @@ public class StudentDashboardBackendApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(StudentDashboardBackendApplication.class, args);
-		System.out.println("Hello Studnet");
+		System.out.println("Hello Student");
 	}
 
 }

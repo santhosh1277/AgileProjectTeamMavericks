@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ added
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -9,11 +10,14 @@ function Signup() {
     confirmPassword: "",
   });
 
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate(); // ✅ added
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const { name, dob, email, password, confirmPassword } = formData;
 
@@ -22,18 +26,31 @@ function Signup() {
       return;
     }
 
-    console.log("Student registered:", { name, dob, email, password });
-    alert("Signup successful!");
-    setFormData({
-      name: "",
-      dob: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-    });
+    setLoading(true);
+
+    try {
+      const response = await fetch("http://localhost:8080/api/students", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, dob, email, password }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to register student");
+      }
+
+      alert("Signup successful! Redirecting to login...");
+      navigate("/login"); // ✅ redirect to login page
+    } catch (error) {
+      console.error(error);
+      alert("Error: Could not register student");
+    } finally {
+      setLoading(false);
+    }
   };
 
-  // CSS-in-JS style objects
   const containerStyle = {
     minHeight: "100vh",
     display: "flex",
@@ -68,7 +85,7 @@ function Signup() {
     backgroundColor: "#007bff",
     color: "#fff",
     fontWeight: "bold",
-    cursor: "pointer",
+    cursor: loading ? "not-allowed" : "pointer",
   };
 
   const linkStyle = {
@@ -140,12 +157,15 @@ function Signup() {
           style={inputStyle}
         />
 
-        <button type="submit" style={buttonStyle}>
-          Create Account
+        <button type="submit" style={buttonStyle} disabled={loading}>
+          {loading ? "Saving..." : "Create Account"}
         </button>
 
         <p style={{ marginTop: "1rem", textAlign: "center" }}>
-          Already have an account? <a href="/" style={linkStyle}>Login here</a>
+          Already have an account?{" "}
+          <a href="/login" style={linkStyle}>
+            Login here
+          </a>
         </p>
       </form>
     </div>

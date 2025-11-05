@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/santhosh1277/AgileProjectTeamMavericks#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^5.1.0"
   }
 }
