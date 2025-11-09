@@ -26,14 +26,14 @@ jobs:
         run: mvn clean install
         working-directory: ./StudentDashboard-api
 
-      # SonarCloud scan using official action
+      # SonarCloud scan for API
       - name: SonarCloud Scan API
         uses: SonarSource/sonarcloud-github-action@v2
         with:
           organization: santhosh1277
           projectKey: StudentDashboard-API
           projectName: "StudentDashboard API"
-        working-directory: ./StudentDashboard-api
+          projectBaseDir: StudentDashboard-api
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
@@ -51,13 +51,13 @@ jobs:
         run: npm run build
         working-directory: ./StudentDashboard-ui
 
-      # SonarCloud scan for UI using official action
+      # SonarCloud scan for UI
       - name: SonarCloud Scan UI
         uses: SonarSource/sonarcloud-github-action@v2
         with:
           organization: santhosh1277
           projectKey: StudentDashboard-UI
           projectName: "StudentDashboard UI"
-        working-directory: ./StudentDashboard-ui
+          projectBaseDir: StudentDashboard-ui
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
