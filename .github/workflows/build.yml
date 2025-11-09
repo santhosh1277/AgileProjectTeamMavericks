@@ -26,7 +26,7 @@ jobs:
 
       - name: SonarCloud Scan API
         working-directory: ./api
-        uses: SonarSource/sonarcloud-github-action@master
+        uses: SonarSource/sonarcloud-github-action@v1
         with:
           organization: santhosh1277
           projectKey: StudentDashboard-API
@@ -49,7 +49,7 @@ jobs:
 
       - name: SonarCloud Scan UI
         working-directory: ./ui
-        uses: SonarSource/sonarcloud-github-action@master
+        uses: SonarSource/sonarcloud-github-action@v1
         with:
           organization: santhosh1277
           projectKey: StudentDashboard-UI
