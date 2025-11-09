@@ -26,6 +26,13 @@ jobs:
         run: mvn clean install
         working-directory: ./StudentDashboard-api
 
+      # Install SonarScanner CLI for API
+      - name: Install SonarScanner
+        run: |
+          curl -sSLo sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.9.3.68786-linux.zip
+          unzip sonar-scanner.zip
+          echo "${PWD}/sonar-scanner-4.9.3.68786-linux/bin" >> $GITHUB_PATH
+
       - name: SonarCloud Scan API
         run: |
           sonar-scanner \
@@ -51,6 +58,7 @@ jobs:
         run: npm run build
         working-directory: ./StudentDashboard-ui
 
+      # SonarScanner for UI
       - name: SonarCloud Scan UI
         run: |
           sonar-scanner \
