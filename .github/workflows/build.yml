@@ -13,6 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # --- API setup ---
       - name: Set up JDK 21
         uses: actions/setup-java@v3
         with:
@@ -32,6 +33,7 @@ jobs:
           projectName: "StudentDashboard API"
           token: ${{ secrets.SONAR_TOKEN }}
 
+      # --- UI setup ---
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
