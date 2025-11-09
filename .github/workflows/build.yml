@@ -1,8 +1,17 @@
+name: Build and Scan
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Set up JDK 21
         uses: actions/setup-java@v3
@@ -23,9 +32,18 @@ jobs:
           projectName: "StudentDashboard API"
           token: ${{ secrets.SONAR_TOKEN }}
 
-      - name: Build UI
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install UI dependencies
         working-directory: ./ui
-        run: mvn clean install   # if ui is Maven-based
+        run: npm install
+
+      - name: Build React UI
+        working-directory: ./ui
+        run: npm run build
 
       - name: SonarCloud Scan UI
         working-directory: ./ui
