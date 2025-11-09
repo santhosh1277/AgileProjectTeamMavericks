@@ -22,15 +22,20 @@ jobs:
           distribution: temurin
           java-version: 21
 
+      # Ensure JAVA_HOME is available for SonarScanner
+      - name: Export JAVA_HOME
+        run: echo "JAVA_HOME=${JAVA_HOME}" >> $GITHUB_ENV
+
       - name: Build API
         run: mvn clean install
         working-directory: ./StudentDashboard-api
 
-      # Install SonarScanner CLI for API
+      # Install SonarScanner CLI
       - name: Install SonarScanner
         run: |
           curl -sSLo sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.9.3.68786-linux.zip
           unzip sonar-scanner.zip
+          chmod +x sonar-scanner-4.9.3.68786-linux/bin/sonar-scanner
           echo "${PWD}/sonar-scanner-4.9.3.68786-linux/bin" >> $GITHUB_PATH
 
       - name: SonarCloud Scan API
@@ -43,6 +48,7 @@ jobs:
         working-directory: ./StudentDashboard-api
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          JAVA_HOME: ${{ env.JAVA_HOME }}
 
       # --- UI Build ---
       - name: Set up Node.js 20
@@ -58,7 +64,6 @@ jobs:
         run: npm run build
         working-directory: ./StudentDashboard-ui
 
-      # SonarScanner for UI
       - name: SonarCloud Scan UI
         run: |
           sonar-scanner \
@@ -69,3 +74,4 @@ jobs:
         working-directory: ./StudentDashboard-ui
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          JAVA_HOME: ${{ env.JAVA_HOME }}
