@@ -15,7 +15,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # --- API ---
+      # --- API Build ---
       - name: Set up JDK 21
         uses: actions/setup-java@v3
         with:
@@ -24,7 +24,7 @@ jobs:
 
       - name: Build API
         run: mvn clean install
-        working-directory: ./api
+        working-directory: ./StudentDashboard-api
 
       - name: SonarCloud Scan API
         run: |
@@ -33,11 +33,11 @@ jobs:
             -Dsonar.projectKey=StudentDashboard-API \
             -Dsonar.projectName="StudentDashboard API" \
             -Dsonar.sources=src
-        working-directory: ./api
+        working-directory: ./StudentDashboard-api
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-      # --- UI ---
+      # --- UI Build ---
       - name: Set up Node.js 20
         uses: actions/setup-node@v3
         with:
@@ -45,11 +45,11 @@ jobs:
 
       - name: Install UI dependencies
         run: npm install
-        working-directory: ./ui
+        working-directory: ./StudentDashboard-ui
 
       - name: Build React UI
         run: npm run build
-        working-directory: ./ui
+        working-directory: ./StudentDashboard-ui
 
       - name: SonarCloud Scan UI
         run: |
@@ -58,6 +58,6 @@ jobs:
             -Dsonar.projectKey=StudentDashboard-UI \
             -Dsonar.projectName="StudentDashboard UI" \
             -Dsonar.sources=src
-        working-directory: ./ui
+        working-directory: ./StudentDashboard-ui
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
