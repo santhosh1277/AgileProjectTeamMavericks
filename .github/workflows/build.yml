@@ -11,11 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout repository
-      - name: Checkout code
+      # Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      # --- API Build ---
+      # --- API ---
       - name: Set up JDK 21
         uses: actions/setup-java@v3
         with:
@@ -26,18 +26,18 @@ jobs:
         run: mvn clean install
         working-directory: ./StudentDashboard-api
 
-      # SonarCloud scan for API
       - name: SonarCloud Scan API
         uses: SonarSource/sonarcloud-github-action@v2
         with:
-          organization: santhosh1277
-          projectKey: StudentDashboard-API
-          projectName: "StudentDashboard API"
           projectBaseDir: StudentDashboard-api
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          args: >
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+            -Dsonar.organization=santhosh1277
+            -Dsonar.projectKey=StudentDashboard-API
+            -Dsonar.projectName="StudentDashboard API"
+            -Dsonar.sources=src
 
-      # --- UI Build ---
+      # --- UI ---
       - name: Set up Node.js 20
         uses: actions/setup-node@v3
         with:
@@ -51,13 +51,13 @@ jobs:
         run: npm run build
         working-directory: ./StudentDashboard-ui
 
-      # SonarCloud scan for UI
       - name: SonarCloud Scan UI
         uses: SonarSource/sonarcloud-github-action@v2
         with:
-          organization: santhosh1277
-          projectKey: StudentDashboard-UI
-          projectName: "StudentDashboard UI"
           projectBaseDir: StudentDashboard-ui
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          args: >
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+            -Dsonar.organization=santhosh1277
+            -Dsonar.projectKey=StudentDashboard-UI
+            -Dsonar.projectName="StudentDashboard UI"
+            -Dsonar.sources=src
