@@ -1,48 +1,37 @@
-name: SonarQube CI
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-
 jobs:
-  backend-sonar:
-    name: SonarQube Analysis - Backend (Maven)
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
-      - name: Set up JDK
+      - name: Set up JDK 21
         uses: actions/setup-java@v3
         with:
-          distribution: 'temurin'
-          java-version: '17'
+          distribution: temurin
+          java-version: 21
 
-      - name: Build and run SonarQube
-        working-directory: StudentDashboard-api
-        run: mvn clean verify sonar:sonar -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+      - name: Build API
+        working-directory: ./api
+        run: mvn clean install
 
-  frontend-sonar:
-    name: SonarQube Analysis - Frontend (React)
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: SonarCloud Scan API
+        working-directory: ./api
+        uses: SonarSource/sonarcloud-github-action@master
         with:
-          node-version: '20'
+          organization: santhosh1277
+          projectKey: StudentDashboard-API
+          projectName: "StudentDashboard API"
+          token: ${{ secrets.SONAR_TOKEN }}
 
-      - name: Install dependencies
-        working-directory: student-dashboard-ui
-        run: npm install
+      - name: Build UI
+        working-directory: ./ui
+        run: mvn clean install   # if ui is Maven-based
 
-      - name: Run SonarQube scan
-        run: |
-          sonar-scanner \
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
-            -Dsonar.projectKey=StudentDashboard-UI \
-            -Dsonar.projectName="StudentDashboard UI" \
-            -Dsonar.projectBaseDir=student-dashboard-ui \
-            -Dsonar.sources=src
+      - name: SonarCloud Scan UI
+        working-directory: ./ui
+        uses: SonarSource/sonarcloud-github-action@master
+        with:
+          organization: santhosh1277
+          projectKey: StudentDashboard-UI
+          projectName: "StudentDashboard UI"
+          token: ${{ secrets.SONAR_TOKEN }}
