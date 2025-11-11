@@ -35,7 +35,7 @@ jobs:
           args: >
             -Dsonar.organization=santhosh1277
             -Dsonar.projectKey=StudentDashboard-API
-            -Dsonar.projectName="StudentDashboard API"
+            -Dsonar.projectName=" StudentDashboard-api"
             -Dsonar.sources=src
 
       # --- UI ---
