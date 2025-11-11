@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout code
+      # --- Checkout code ---
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -28,10 +28,11 @@ jobs:
 
       - name: SonarCloud Scan API
         uses: SonarSource/sonarcloud-github-action@v2
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           projectBaseDir: StudentDashboard-api
           args: >
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
             -Dsonar.organization=santhosh1277
             -Dsonar.projectKey=StudentDashboard-API
             -Dsonar.projectName="StudentDashboard API"
@@ -53,10 +54,11 @@ jobs:
 
       - name: SonarCloud Scan UI
         uses: SonarSource/sonarcloud-github-action@v2
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           projectBaseDir: StudentDashboard-ui
           args: >
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
             -Dsonar.organization=santhosh1277
             -Dsonar.projectKey=StudentDashboard-UI
             -Dsonar.projectName="StudentDashboard UI"
