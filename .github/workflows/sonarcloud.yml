@@ -22,29 +22,23 @@ jobs:
         run: |
           cd student-dashboard-ui
           npm install
-      - name: Run SonarCloud scan
-        uses: SonarSource/sonarcloud-github-action@master
+      - name: Run SonarCloud scan (UI)
+        uses: SonarSource/sonarqube-scan-action@v5.0.0
         with:
-          organization: santhosh1277         
-          projectKey: StudentDashboardUI      
-          token: ${{ secrets.SONAR_TOKEN }}
-          projectBaseDir: student-dashboard-ui
+          args: "-DprojectBaseDir=student-dashboard-ui -Dsonar.login=${{ secrets.SONAR_TOKEN }}"
 
   sonar-api:
     name: Scan Backend (Spring Boot)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up JDK 21
+      - name: Set up Java 21
         uses: actions/setup-java@v3
         with:
           java-version: '21'
       - name: Build Backend
         run: mvn -f StudentDashboard-api/pom.xml clean verify
-      - name: Run SonarCloud scan
-        uses: SonarSource/sonarcloud-github-action@master
+      - name: Run SonarCloud scan (API)
+        uses: SonarSource/sonarqube-scan-action@v5.0.0
         with:
-          organization: santhosh1277          
-          projectKey: StudentDashboardAPI      
-          token: ${{ secrets.SONAR_TOKEN }}
-          projectBaseDir: StudentDashboard-api
+          args: "-DprojectBaseDir=StudentDashboard-api -Dsonar.login=${{ secrets.SONAR_TOKEN }}"
