@@ -25,7 +25,7 @@ jobs:
       - name: Run SonarCloud scan (UI)
         uses: SonarSource/sonarqube-scan-action@v5.0.0
         with:
-          args: "-DprojectBaseDir=student-dashboard-ui -Dsonar.login=${{ secrets.SONAR_TOKEN }}"
+          args: "-DprojectBaseDir=student-dashboard-ui/src -Dsonar.login=${{ secrets.SONAR_TOKEN }}"
 
   sonar-api:
     name: Scan Backend (Spring Boot)
