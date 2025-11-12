@@ -31,11 +31,11 @@ jobs:
 
       - name: Run SonarCloud scan (UI)
         working-directory: student-dashboard-ui
-        uses: SonarSource/sonarqube-scan-action@v5.0.0
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          args: >
+        run: |
+          npx sonar-scanner \
+            -Dsonar.projectKey=santhosh1277_AgileProjectTeamMavericks_UI \
+            -Dsonar.organization=santhosh1277 \
+            -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
   # ------------------- BACKEND (Spring Boot) -------------------
@@ -60,9 +60,9 @@ jobs:
 
       - name: Run SonarCloud scan (API)
         working-directory: StudentDashboard-api
-        uses: SonarSource/sonarqube-scan-action@v5.0.0
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          args: >
+        run: |
+          mvn sonar:sonar \
+            -Dsonar.projectKey=santhosh1277_AgileProjectTeamMavericks_API \
+            -Dsonar.organization=santhosh1277 \
+            -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
