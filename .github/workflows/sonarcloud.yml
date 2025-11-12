@@ -12,7 +12,7 @@ jobs:
   # ------------------- FRONTEND (React) -------------------
   sonar-ui:
     name: Scan Frontend (React)
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     env:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
@@ -60,9 +60,8 @@ jobs:
 
       - name: Run SonarCloud scan (API)
         working-directory: StudentDashboard-api
-        run: |
-          mvn sonar:sonar \
-            -Dsonar.projectKey=santhosh1277_AgileProjectTeamMavericks_API \
-            -Dsonar.organization=santhosh1277 \
-            -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+        run: mvn clean verify sonar:sonar \
+          -Dsonar.projectKey=santhosh1277_AgileProjectTeamMavericks \
+          -Dsonar.organization=santhosh1277 \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
