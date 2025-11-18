@@ -8,17 +8,19 @@ function DashboardHome() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    getCollegesList()
-      .then((data) => {
-        setColleges(data || []); 
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError("Failed to fetch colleges. Please try again.");
-        console.error(err);
-        setLoading(false);
-      });
-  }, []);
+        const fetchColleges = async () => {
+            try {
+                const data = await getCollegesList(); // Ensure this returns a promise
+                setColleges(data);
+            } catch (err) {
+                setError(err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchColleges();
+    }, []);
 
   if (loading) {
     return <div className="text-center mt-5">Loading colleges...</div>;
