@@ -56,3 +56,4 @@ describe("getCollegesList", () => {
         expect(loggedArgs[1]).toBe(networkError);
     });
 });
+

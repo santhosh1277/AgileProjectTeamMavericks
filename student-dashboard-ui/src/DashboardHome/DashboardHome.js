@@ -1,6 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
-import { getCollegesList } from "../api/Service.js/CollegeService";
+// Service moved to API folder - using direct API call instead
+// import { getCollegesList } from "../api/Service.js/CollegeService";
 
 function DashboardHome() {
   const [colleges, setColleges] = useState([]);
@@ -10,10 +11,14 @@ function DashboardHome() {
   useEffect(() => {
         const fetchColleges = async () => {
             try {
-                const data = await getCollegesList(); // Ensure this returns a promise
+                const response = await fetch("http://localhost:8080/api/colleges");
+                if (!response.ok) {
+                    throw new Error("Failed to fetch colleges");
+                }
+                const data = await response.json();
                 setColleges(data);
             } catch (err) {
-                setError(err);
+                setError(err.message || "Error loading colleges");
             } finally {
                 setLoading(false);
             }
