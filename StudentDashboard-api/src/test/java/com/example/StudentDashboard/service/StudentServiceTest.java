@@ -1,7 +1,6 @@
 package com.example.StudentDashboard.service;
 
 import com.example.StudentDashboard.Entity.Student;
-import com.example.StudentDashboard.exception.InvalidCredentialsException;
 import com.example.StudentDashboard.repository.StudentRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -85,8 +84,9 @@ class StudentServiceTest {
     void login_emailNotFoundThrows() {
         when(studentRepository.findByEmail("missing@example.com")).thenReturn(Optional.empty());
 
-        assertThrows(InvalidCredentialsException.class,
+        RuntimeException exception = assertThrows(RuntimeException.class,
                 () -> studentService.login("missing@example.com", "password"));
+        assertEquals("Invalid email or password", exception.getMessage());
     }
 
     @Test
@@ -100,8 +100,9 @@ class StudentServiceTest {
 
         when(studentRepository.findByEmail(email)).thenReturn(Optional.of(storedStudent));
 
-        assertThrows(InvalidCredentialsException.class,
+        RuntimeException exception = assertThrows(RuntimeException.class,
                 () -> studentService.login(email, "wrongPassword"));
+        assertEquals("Invalid email or password", exception.getMessage());
     }
 }
 

@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.StudentDashboard.Entity.Student;
-import com.example.StudentDashboard.exception.InvalidCredentialsException;
 import com.example.StudentDashboard.service.StudentService;
 
 @RestController
@@ -58,10 +57,15 @@ public class StudentController {
             student.setPassword(null); // Don't send password back
             return ResponseEntity.ok(student);
 
-        } catch (InvalidCredentialsException e) {
-            // Return 401 for invalid credentials
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body(e.getMessage());
+        } catch (RuntimeException e) {
+            // Return 401 for invalid credentials (when message is "Invalid email or password")
+            if ("Invalid email or password".equals(e.getMessage())) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                        .body(e.getMessage());
+            }
+            // Return 500 for other runtime exceptions
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error during login: " + e.getMessage());
         } catch (Exception e) {
             // Return 500 for other errors
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
