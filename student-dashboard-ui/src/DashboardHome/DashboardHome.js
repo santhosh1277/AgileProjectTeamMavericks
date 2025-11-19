@@ -36,7 +36,7 @@ function DashboardHome() {
   }
 
   return (
-    <div className="dashboard-home" style={{ width: "100%", minHeight: "100vh", backgroundColor: "#f8f9fa" }}>
+    <div className="dashboard-home" style={{ width: "100%", minHeight: "100vh", backgroundColor: "transparent" }}>
       <header className="bg-dark text-light py-3 text-center rounded-bottom">
         <h2>Student Dashboard</h2>
       </header>

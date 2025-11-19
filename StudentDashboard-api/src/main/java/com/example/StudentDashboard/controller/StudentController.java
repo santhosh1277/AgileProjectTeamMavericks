@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.StudentDashboard.Entity.Student;
+import com.example.StudentDashboard.exception.InvalidCredentialsException;
 import com.example.StudentDashboard.service.StudentService;
 
 @RestController
@@ -17,7 +18,7 @@ public class StudentController {
     private StudentService studentService;
 
     @PostMapping
-    public ResponseEntity<?> signup(@RequestBody Student student) {
+    public ResponseEntity<Object> signup(@RequestBody Student student) {
         try {
             // Optional: Validate required fields
             if (student.getName() == null || student.getEmail() == null || student.getPassword() == null) {
@@ -39,7 +40,7 @@ public class StudentController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<Object> login(@RequestBody LoginRequest loginRequest) {
         try {
             String email = loginRequest.getUsernameOrEmail();
             String password = loginRequest.getPassword();
@@ -57,7 +58,7 @@ public class StudentController {
             student.setPassword(null); // Don't send password back
             return ResponseEntity.ok(student);
 
-        } catch (RuntimeException e) {
+        } catch (InvalidCredentialsException e) {
             // Return 401 for invalid credentials
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(e.getMessage());

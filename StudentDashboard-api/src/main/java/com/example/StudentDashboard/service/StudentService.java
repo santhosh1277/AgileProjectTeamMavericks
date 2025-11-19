@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.StudentDashboard.Entity.Student;
+import com.example.StudentDashboard.exception.InvalidCredentialsException;
 import com.example.StudentDashboard.repository.StudentRepository;
 import java.util.Optional;
 
@@ -33,7 +34,7 @@ public class StudentService {
         Optional<Student> studentOpt = studentRepository.findByEmail(email);
         
         if (studentOpt.isEmpty()) {
-            throw new RuntimeException("Invalid email or password");
+            throw new InvalidCredentialsException("Invalid email or password");
         }
         
         Student student = studentOpt.get();
@@ -41,7 +42,7 @@ public class StudentService {
         // Verify password using BCrypt
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         if (!encoder.matches(password, student.getPassword())) {
-            throw new RuntimeException("Invalid email or password");
+            throw new InvalidCredentialsException("Invalid email or password");
         }
         
         return student;
