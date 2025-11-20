@@ -35,11 +35,13 @@ const Login = () => {
         usernameOrEmail: formData.usernameOrEmail,
         password: formData.password,
       });
-      // If backend returns a token or user, store as needed
-      if (data?.token) {
-        localStorage.setItem("authToken", data.token);
+      // Store user data in localStorage
+      if (data) {
+        localStorage.setItem("user", JSON.stringify(data));
+        localStorage.setItem("isAuthenticated", "true");
       }
-      navigate("/");
+      // Navigate to dashboard on successful login
+      navigate("/dashboard/home");
     } catch (err) {
       setErrorMessage(err?.message || "Login failed. Please try again.");
     } finally {
@@ -114,7 +116,7 @@ const Login = () => {
  
           <div className="text-center mt-3">
 <span>Don't have an account? </span>
-<a href="/signup" onClick={handleSignUp}>Sign Up</a>
+<a href="/signup" onClick={handleSignUp} style={{ textDecoration: "none" }}>Sign Up</a>
 </div>
 </form>
 </div>

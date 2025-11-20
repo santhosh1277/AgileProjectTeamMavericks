@@ -11,10 +11,12 @@ function Signup() {
   });
 
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate(); // ✅ added
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setErrorMessage(""); // Clear error when user types
   };
 
   const handleSubmit = async (e) => {
@@ -22,11 +24,12 @@ function Signup() {
     const { name, dob, email, password, confirmPassword } = formData;
 
     if (password !== confirmPassword) {
-      alert("Passwords do not match!");
+      setErrorMessage("Passwords do not match!");
       return;
     }
 
     setLoading(true);
+    setErrorMessage("");
 
     try {
       const response = await fetch("http://localhost:8080/api/students", {
@@ -38,14 +41,24 @@ function Signup() {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to register student");
+        let errorMessage = "Failed to register student";
+        try {
+          const data = await response.json();
+          errorMessage = typeof data === 'string' ? data : (data.message || errorMessage);
+        } catch (e) {
+          const text = await response.text();
+          errorMessage = text || errorMessage;
+        }
+        throw new Error(errorMessage);
       }
+
+      const data = await response.json();
 
       alert("Signup successful! Redirecting to login...");
       navigate("/login"); // ✅ redirect to login page
     } catch (error) {
       console.error(error);
-      alert("Error: Could not register student");
+      setErrorMessage(error.message || "Error: Could not register student");
     } finally {
       setLoading(false);
     }
@@ -156,6 +169,19 @@ function Signup() {
           required
           style={inputStyle}
         />
+
+        {errorMessage && (
+          <div style={{ 
+            color: "#dc3545", 
+            backgroundColor: "#f8d7da", 
+            padding: "0.75rem", 
+            borderRadius: "5px", 
+            marginBottom: "1rem",
+            border: "1px solid #f5c6cb"
+          }}>
+            {errorMessage}
+          </div>
+        )}
 
         <button type="submit" style={buttonStyle} disabled={loading}>
           {loading ? "Saving..." : "Create Account"}
