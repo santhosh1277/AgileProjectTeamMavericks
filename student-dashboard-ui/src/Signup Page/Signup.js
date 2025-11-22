@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // ✅ added
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
   const [formData, setFormData] = useState({
-    firstname: "",
-    lastname: "",
+    firstName: "",
+    lastName: "",
     dob: "",
     email: "",
     password: "",
@@ -13,7 +13,7 @@ function Signup() {
 
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const navigate = useNavigate(); // ✅ added
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -22,7 +22,12 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { firstname,lastname, dob, email, password, confirmPassword } = formData;
+    const { firstName, lastName, dob, email, password, confirmPassword } = formData;
+
+    if (!firstName || !lastName || !email || !dob || !password) {
+      setErrorMessage("All fields are required!");
+      return;
+    }
 
     if (password !== confirmPassword) {
       setErrorMessage("Passwords do not match!");
@@ -38,27 +43,23 @@ function Signup() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ firstname,lastname, dob, email, password }),
-       
+        body: JSON.stringify({ firstName, lastName, dob, email, password }),
       });
-       console.log(formData);
 
       if (!response.ok) {
-        let errorMessage = "Failed to register student";
+        let errorText = "Failed to register student";
         try {
           const data = await response.json();
-          errorMessage = typeof data === 'string' ? data : (data.message || errorMessage);
-        } catch (e) {
+          errorText = typeof data === "string" ? data : data.message || errorText;
+        } catch {
           const text = await response.text();
-          errorMessage = text || errorMessage;
+          errorText = text || errorText;
         }
-        throw new Error(errorMessage);
+        throw new Error(errorText);
       }
 
-      const data = await response.json();
-
       alert("Signup successful! Redirecting to login...");
-      navigate("/login"); // ✅ redirect to login page
+      navigate("/login");
     } catch (error) {
       console.error(error);
       setErrorMessage(error.message || "Error: Could not register student");
@@ -67,6 +68,7 @@ function Signup() {
     }
   };
 
+  // Styles
   const containerStyle = {
     minHeight: "100vh",
     display: "flex",
@@ -109,29 +111,39 @@ function Signup() {
     textDecoration: "none",
   };
 
+  const errorStyle = {
+    color: "#dc3545",
+    backgroundColor: "#f8d7da",
+    padding: "0.75rem",
+    borderRadius: "5px",
+    marginBottom: "1rem",
+    border: "1px solid #f5c6cb",
+  };
+
   return (
     <div style={containerStyle}>
       <form style={formStyle} onSubmit={handleSubmit}>
         <h2>🎓 Student Signup</h2>
 
-        <label htmlFor="firstname">Full Name</label>
+        <label htmlFor="firstName">First Name</label>
         <input
           type="text"
-          id="firstname"
-          name="firstname"
+          id="firstName"
+          name="firstName"
           placeholder="Enter your First Name"
-          value={formData.firstname}
+          value={formData.firstName}
           onChange={handleChange}
           required
           style={inputStyle}
         />
-         <label htmlFor="lastname">Full Name</label>
+
+        <label htmlFor="lastName">Last Name</label>
         <input
           type="text"
-          id="lastname"
-          name="lastname"
+          id="lastName"
+          name="lastName"
           placeholder="Enter your Last Name"
-          value={formData.lastname}
+          value={formData.lastName}
           onChange={handleChange}
           required
           style={inputStyle}
@@ -184,18 +196,7 @@ function Signup() {
           style={inputStyle}
         />
 
-        {errorMessage && (
-          <div style={{ 
-            color: "#dc3545", 
-            backgroundColor: "#f8d7da", 
-            padding: "0.75rem", 
-            borderRadius: "5px", 
-            marginBottom: "1rem",
-            border: "1px solid #f5c6cb"
-          }}>
-            {errorMessage}
-          </div>
-        )}
+        {errorMessage && <div style={errorStyle}>{errorMessage}</div>}
 
         <button type="submit" style={buttonStyle} disabled={loading}>
           {loading ? "Saving..." : "Create Account"}
