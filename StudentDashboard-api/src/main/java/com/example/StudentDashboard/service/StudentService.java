@@ -66,4 +66,12 @@ public class StudentService {
     	
         return _student;
     }
+    public Student getStudentDetails(String email) {
+    		if(email == _student.getEmail())
+    		{
+    			return _student;
+    		}
+    		return new Student();
+    }
+  
 }

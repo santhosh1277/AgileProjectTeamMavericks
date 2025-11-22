@@ -103,4 +103,15 @@ public class StudentController {
                 .status(HttpStatus.OK)
                 .body("Student details updated successfully");
     }
+    @GetMapping("/profile")
+    public Student getStudent(String email)
+    {
+    	if(email!=null)
+    	{
+    		var student = studentService.getStudentDetails();
+    		return student;
+    	}
+    	
+    	return new Student();
+    }
 }

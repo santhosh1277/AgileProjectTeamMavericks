@@ -1,4 +1,4 @@
-const apiBaseUrl = "http://localhost:8080/api";
+const apiBaseUrl = "http://localhost:8080/api/students";
 
 export const UpdateStudentDetails = async (user) => {
     try {
