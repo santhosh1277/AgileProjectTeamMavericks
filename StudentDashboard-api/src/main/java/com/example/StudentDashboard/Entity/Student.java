@@ -11,7 +11,8 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String FirstName;
+    private String LastName;
     private String dob;
     private String email;
     private String password;
@@ -19,8 +20,9 @@ public class Student {
     // Constructors
     public Student() {}
 
-    public Student(String name, String dob, String email, String password) {
-        this.name = name;
+    public Student(String fname, String lname, String dob, String email, String password) {
+        this.FirstName = fname;
+        this.LastName = lname;
         this.dob = dob;
         this.email = email;
         this.password = password;
@@ -30,8 +32,11 @@ public class Student {
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public String getFirstName() { return FirstName; }
+    public void setFirstName(String fname) { this.FirstName = fname; }
+    
+    public String getLastName() { return LastName; }
+    public void setLastName(String lname) { this.LastName = lname; }
 
     public String getDob() { return dob; }
     public void setDob(String dob) { this.dob = dob; }

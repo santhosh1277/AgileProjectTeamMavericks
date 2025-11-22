@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom"; // ✅ added
 
 function Signup() {
   const [formData, setFormData] = useState({
-    name: "",
+    firstname: "",
+    lastname: "",
     dob: "",
     email: "",
     password: "",
@@ -21,7 +22,7 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { name, dob, email, password, confirmPassword } = formData;
+    const { firstname,lastname, dob, email, password, confirmPassword } = formData;
 
     if (password !== confirmPassword) {
       setErrorMessage("Passwords do not match!");
@@ -37,8 +38,10 @@ function Signup() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, dob, email, password }),
+        body: JSON.stringify({ firstname,lastname, dob, email, password }),
+       
       });
+       console.log(formData);
 
       if (!response.ok) {
         let errorMessage = "Failed to register student";
@@ -111,13 +114,24 @@ function Signup() {
       <form style={formStyle} onSubmit={handleSubmit}>
         <h2>🎓 Student Signup</h2>
 
-        <label htmlFor="name">Full Name</label>
+        <label htmlFor="firstname">Full Name</label>
         <input
           type="text"
-          id="name"
-          name="name"
-          placeholder="Enter your full name"
-          value={formData.name}
+          id="firstname"
+          name="firstname"
+          placeholder="Enter your First Name"
+          value={formData.firstname}
+          onChange={handleChange}
+          required
+          style={inputStyle}
+        />
+         <label htmlFor="lastname">Full Name</label>
+        <input
+          type="text"
+          id="lastname"
+          name="lastname"
+          placeholder="Enter your Last Name"
+          value={formData.lastname}
           onChange={handleChange}
           required
           style={inputStyle}
