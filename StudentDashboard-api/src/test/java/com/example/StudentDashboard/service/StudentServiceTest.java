@@ -32,7 +32,8 @@ class StudentServiceTest {
     @DisplayName("Signup hashes password and saves student when email is new")
     void registerStudent_successfulSignup() {
         Student student = new Student();
-        student.setName("Test User");
+        student.setFirstName("Test User");
+        student.setLastName("tom");
         student.setEmail("test@example.com");
         student.setPassword("plainPassword");
 
