@@ -1,11 +1,7 @@
 package com.example.StudentDashboard.service;
-
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import com.example.StudentDashboard.Entity.Student;
 import com.example.StudentDashboard.repository.StudentRepository;
 import java.util.Optional;
@@ -15,6 +11,7 @@ public class StudentService {
 
     @Autowired
     private StudentRepository studentRepository;
+    private Student _student;
 
     public Student registerStudent(Student student) {
         if (studentRepository.existsByEmail(student.getEmail())) {
@@ -45,5 +42,28 @@ public class StudentService {
         }
         
         return student;
+    }
+    public boolean updateStudentDetails(Student student) {
+        if (student == null || student.getId() == null) {
+            return false;
+        }
+
+        if (student.getFirstName() == null || student.getLastName() == null || student.getLastName().isEmpty() || student.getFirstName().isEmpty()) {
+            return false;
+        }
+
+        Optional<Student> existingStudent = studentRepository.findById(student.getId());
+        if (existingStudent.isEmpty()) {
+            return false;
+        }
+
+        studentRepository.save(student);
+
+        _student = student;
+        return true;
+    }
+    public Student getCachedStudent(Student student) {
+    	
+        return _student;
     }
 }

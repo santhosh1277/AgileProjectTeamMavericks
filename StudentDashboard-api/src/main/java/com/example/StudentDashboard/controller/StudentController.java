@@ -88,4 +88,19 @@ public class StudentController {
             this.password = password;
         }
     }
+    @PutMapping("/update")
+    public ResponseEntity<?> updateStudent(@RequestBody Student student) {
+
+        boolean updated = studentService.updateStudentDetails(student);
+
+        if (!updated) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body("Failed to update student details. Please check the input.");
+        }
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body("Student details updated successfully");
+    }
 }
