@@ -34,13 +34,15 @@ class StudentControllerTest {
     @DisplayName("Signup returns 201 when student is saved")
     void signupSuccess() throws Exception {
         Student payload = new Student();
-        payload.setName("John");
+        payload.setFirstName("John");
+        payload.setLastName("play");
         payload.setEmail("john@example.com");
         payload.setPassword("pass123");
 
         Student saved = new Student();
         saved.setId(1L);
-        saved.setName("John");
+        saved.setFirstName("John");
+        saved.setLastName("Play");
         saved.setEmail("john@example.com");
         saved.setPassword("hidden");
 
@@ -74,7 +76,8 @@ class StudentControllerTest {
     @DisplayName("Signup returns 500 when service fails")
     void signupServiceThrows() throws Exception {
         Student payload = new Student();
-        payload.setName("John");
+        payload.setFirstName("John");
+        payload.setLastName("Play");
         payload.setEmail("john@example.com");
         payload.setPassword("pass123");
 
@@ -92,7 +95,8 @@ class StudentControllerTest {
     void loginSuccess() throws Exception {
         Student student = new Student();
         student.setId(1L);
-        student.setName("John");
+        student.setFirstName("John");
+        student.setLastName("John");
         student.setEmail("john@example.com");
         student.setPassword("secret");
 
