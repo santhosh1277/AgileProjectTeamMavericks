@@ -5,6 +5,7 @@ import Signup from './Signup Page/Signup';
 import SideNav from './Side-Nav-Bar/SideNav';
 import DashboardHome from './DashboardHome/DashboardHome';
 import Login from './LoginPage/Login';
+import Profile from './DashboardHome/UserProfile';
 
 function AppWrapper() {
   const location = useLocation();
@@ -33,6 +34,7 @@ function AppWrapper() {
                 <div className="col-10 bg-light p-4">
                   <Routes>
                     <Route path="home" element={<DashboardHome />} />
+                    <Route path="profile" element={<Profile />} />
                   </Routes>
                 </div>
               </div>
