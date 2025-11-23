@@ -108,7 +108,7 @@ public class StudentController {
     {
     	if(email!=null)
     	{
-    		var student = studentService.getStudentDetails();
+    		Student student = studentService.getStudentDetails(email);
     		return student;
     	}
     	

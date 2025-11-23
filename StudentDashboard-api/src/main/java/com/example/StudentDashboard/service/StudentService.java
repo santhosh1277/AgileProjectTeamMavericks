@@ -40,6 +40,7 @@ public class StudentService {
         if (!encoder.matches(password, student.getPassword())) {
             throw new RuntimeException("Invalid email or password");
         }
+        _student = student;
         
         return student;
     }
