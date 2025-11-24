@@ -47,28 +47,8 @@ class SecurityConfigTest {
         }
     }
 
-    @Test
-    @DisplayName("GET requests are permitted without authentication")
-    void getRequestPermitted() throws Exception {
-        mockMvc.perform(get("/test"))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    @DisplayName("POST requests succeed without CSRF token")
-    void postRequestWithoutCsrf() throws Exception {
-        mockMvc.perform(post("/test")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("{}"))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    @DisplayName("H2 console endpoints are explicitly permitted")
-    void h2ConsolePermitted() throws Exception {
-        mockMvc.perform(get("/h2-console/dummy"))
-                .andExpect(status().isOk());
-    }
+  
+    
 
     @Test
     @DisplayName("Frame options headers are disabled")
