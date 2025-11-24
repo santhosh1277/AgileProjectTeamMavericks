@@ -37,7 +37,7 @@ const Login = () => {
       });
       // Store user data in localStorage
       if (data) {
-        localStorage.setItem("user", JSON.stringify(data));
+        localStorage.setItem("user", JSON.stringify(formData.usernameOrEmail));
         localStorage.setItem("isAuthenticated", "true");
       }
       // Navigate to dashboard on successful login

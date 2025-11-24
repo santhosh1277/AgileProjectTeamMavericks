@@ -44,35 +44,35 @@ public class StudentService {
         
         return student;
     }
-    public boolean updateStudentDetails(Student student) {
-        if (student == null || student.getId() == null) {
+    public boolean updateStudentDetails(Student updatedStudent) {
+
+        if (updatedStudent == null || updatedStudent.getEmail() == null) {
+            return false;
+        }
+        Optional<Student> existingStudentOpt = studentRepository.findByEmail(updatedStudent.getEmail());
+
+        if (existingStudentOpt.isEmpty()) {
             return false;
         }
 
-        if (student.getFirstName() == null || student.getLastName() == null || student.getLastName().isEmpty() || student.getFirstName().isEmpty()) {
-            return false;
-        }
+        Student existingStudent = existingStudentOpt.get();
+        existingStudent.setFirstName(updatedStudent.getFirstName());
+        existingStudent.setLastName(updatedStudent.getLastName());
+        existingStudent.setPassword(updatedStudent.getPassword());
+        studentRepository.save(existingStudent);
 
-        Optional<Student> existingStudent = studentRepository.findById(student.getId());
-        if (existingStudent.isEmpty()) {
-            return false;
-        }
-
-        studentRepository.save(student);
-
-        _student = student;
         return true;
     }
+
     public Student getCachedStudent(Student student) {
     	
         return _student;
     }
     public Student getStudentDetails(String email) {
-    		if(email == _student.getEmail())
-    		{
-    			return _student;
-    		}
-    		return new Student();
-    }
+    	
+    	        return studentRepository.findByEmail(email)
+    	                .orElse(new Student());
+    	    }
+
   
 }

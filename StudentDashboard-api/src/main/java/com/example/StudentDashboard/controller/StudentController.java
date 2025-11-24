@@ -1,5 +1,7 @@
 package com.example.StudentDashboard.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -103,15 +105,14 @@ public class StudentController {
                 .status(HttpStatus.OK)
                 .body("Student details updated successfully");
     }
-    @GetMapping("/profile")
-    public Student getStudent(String email)
-    {
-    	if(email!=null)
-    	{
-    		Student student = studentService.getStudentDetails(email);
-    		return student;
-    	}
-    	
-    	return new Student();
+    @PostMapping("/profile")
+    public Student getStudent(@RequestBody Map<String, String> request) {
+        String email = request.get("email");
+        
+        if (email != null) {
+            return studentService.getStudentDetails(email);
+        }
+
+        return new Student();
     }
 }

@@ -21,6 +21,11 @@ function SideNav() {
       }
     }
   }, []);
+  const handleLogout = () => {
+    // Clear user data from localStorage
+    localStorage.removeItem("user");
+    localStorage.removeItem("isAuthenticated");
+  };
 
   return (
     <nav className="d-flex flex-column p-3" style={{ minHeight: "100vh" }}>
@@ -64,7 +69,7 @@ function SideNav() {
           <Link className="nav-link text-light" to="/dashboard/settings">Settings</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link text-light" to="/dashboard/logout">Logout</Link>
+          <Link className="nav-link text-light" to="/" onClick={handleLogout}>Logout</Link>
         </li>
       </ul>
     </nav>

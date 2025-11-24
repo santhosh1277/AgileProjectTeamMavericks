@@ -7,7 +7,6 @@ const defaultEditable = {
   lastName: false,
   dob: false,
   email: false,
-  phone: false,
   password: false,
 };
 
@@ -16,7 +15,6 @@ const emptyUser = {
   lastName: "",
   dob: "",
   email: "",
-  phone: "",
   password: "",
 };
 
@@ -24,7 +22,6 @@ const fields = [
   { label: "First Name", name: "firstName", type: "text" },
   { label: "Last Name", name: "lastName", type: "text" },
   { label: "Date of Birth", name: "dob", type: "date" },
-  { label: "Phone Number", name: "phone", type: "text" },
   { label: "Password", name: "password", type: "password" },
 ];
 
@@ -36,13 +33,14 @@ const Profile = () => {
   // Fetch student details
   const fetchStudentDetails = useCallback(async () => {
     try {
-      const data = await GetStudentDetails();
+      const email = JSON.parse(localStorage.getItem("user"));
+      const data = await GetStudentDetails(email);
       setUser({
         firstName: data.firstName || "",
         lastName: data.lastName || "",
         dob: data.dob || "",
-        phone: data.phone || "",
         password: data.password || "",
+        email: data.email || "",
       });
     } catch (error) {
       console.error("Error fetching student details:", error);
