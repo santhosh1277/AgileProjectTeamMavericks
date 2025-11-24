@@ -1,26 +1,36 @@
 package com.example.StudentDashboard.Entity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+
+import jakarta.persistence.*;
+import java.time.LocalDate;
 
 @Entity
+@Table(name = "student")
 public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-    private String dob;
+    @Column(name = "FIRST_NAME", nullable = false)
+    private String firstName;
+
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
+
+    @Column(name = " DATE_OF_BIRTH", nullable = false)
+    private LocalDate dob;
+
+    @Column(nullable = false)
     private String email;
+
+    @Column(nullable = false)
     private String password;
 
-    // Constructors
     public Student() {}
 
-    public Student(String name, String dob, String email, String password) {
-        this.name = name;
+    public Student(String firstName, String lastName, LocalDate dob, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.dob = dob;
         this.email = email;
         this.password = password;
@@ -30,14 +40,19 @@ public class Student {
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public String getFirstName() { return firstName; }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
 
-    public String getDob() { return dob; }
-    public void setDob(String dob) { this.dob = dob; }
+    public String getLastName() { return lastName; }
+    public void setLastName(String lastName) { this.lastName = lastName; }
+
+    public LocalDate getDob() { return dob; }
+    public void setDob(LocalDate dob) { this.dob = dob; }
 
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
+
+    
 
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }

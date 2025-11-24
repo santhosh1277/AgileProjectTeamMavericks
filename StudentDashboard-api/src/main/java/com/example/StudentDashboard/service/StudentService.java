@@ -11,6 +11,7 @@ public class StudentService {
 
     @Autowired
     private StudentRepository studentRepository;
+    private Student _student;
 
     public Student registerStudent(Student student) {
         if (studentRepository.existsByEmail(student.getEmail())) {
@@ -39,7 +40,36 @@ public class StudentService {
         if (!encoder.matches(password, student.getPassword())) {
             throw new RuntimeException("Invalid email or password");
         }
+        _student = student;
         
         return student;
     }
+    public boolean updateStudentDetails(Student updatedStudent) {
+
+        if (updatedStudent == null || updatedStudent.getEmail() == null) {
+            return false;
+        }
+        Optional<Student> existingStudentOpt = studentRepository.findByEmail(updatedStudent.getEmail());
+
+        if (existingStudentOpt.isEmpty()) {
+            return false;
+        }
+
+        Student existingStudent = existingStudentOpt.get();
+        existingStudent.setFirstName(updatedStudent.getFirstName());
+        existingStudent.setLastName(updatedStudent.getLastName());
+        existingStudent.setPassword(updatedStudent.getPassword());
+        studentRepository.save(existingStudent);
+
+        return true;
+    }
+
+   
+    public Student getStudentDetails(String email) {
+    	
+    	        return studentRepository.findByEmail(email)
+    	                .orElse(new Student());
+    	    }
+
+  
 }

@@ -1,5 +1,7 @@
 package com.example.StudentDashboard.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,8 +11,8 @@ import com.example.StudentDashboard.Entity.Student;
 import com.example.StudentDashboard.service.StudentService;
 
 @RestController
-@RequestMapping("/api/students") // Use plural to match REST conventions
-@CrossOrigin(origins = "http://localhost:3000") // Allow frontend
+@RequestMapping("/api/students") 
+@CrossOrigin(origins = "http://localhost:3000") 
 public class StudentController {
 
     @Autowired
@@ -20,7 +22,7 @@ public class StudentController {
     public ResponseEntity<Object> signup(@RequestBody Student student) {
         try {
             // Optional: Validate required fields
-            if (student.getName() == null || student.getEmail() == null || student.getPassword() == null) {
+            if (student.getFirstName() == null || student.getLastName() == null || student.getEmail() == null || student.getPassword() == null) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                         .body("Name, email, and password are required");
             }
@@ -50,11 +52,8 @@ public class StudentController {
                         .body("Email and password are required");
             }
 
-            // Attempt login
             Student student = studentService.login(email, password);
-
-            // Return success with student data (excluding password)
-            student.setPassword(null); // Don't send password back
+            student.setPassword(null);
             return ResponseEntity.ok(student);
 
         } catch (RuntimeException e) {
@@ -63,17 +62,14 @@ public class StudentController {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                         .body(e.getMessage());
             }
-            // Return 500 for other runtime exceptions
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Error during login: " + e.getMessage());
         } catch (Exception e) {
-            // Return 500 for other errors
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Error during login: " + e.getMessage());
         }
     }
 
-    // Inner class for login request
     static class LoginRequest {
         private String usernameOrEmail;
         private String password;
@@ -93,5 +89,30 @@ public class StudentController {
         public void setPassword(String password) {
             this.password = password;
         }
+    }
+    @PutMapping("/update")
+    public ResponseEntity<?> updateStudent(@RequestBody Student student) {
+
+        boolean updated = studentService.updateStudentDetails(student);
+
+        if (!updated) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body("Failed to update student details. Please check the input.");
+        }
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body("Student details updated successfully");
+    }
+    @PostMapping("/profile")
+    public Student getStudent(@RequestBody Map<String, String> request) {
+        String email = request.get("email");
+        
+        if (email != null) {
+            return studentService.getStudentDetails(email);
+        }
+
+        return new Student();
     }
 }
