@@ -64,10 +64,7 @@ public class StudentService {
         return true;
     }
 
-    public Student getCachedStudent(Student student) {
-    	
-        return _student;
-    }
+   
     public Student getStudentDetails(String email) {
     	
     	        return studentRepository.findByEmail(email)

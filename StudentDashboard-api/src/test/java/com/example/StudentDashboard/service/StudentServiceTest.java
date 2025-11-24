@@ -2,109 +2,152 @@ package com.example.StudentDashboard.service;
 
 import com.example.StudentDashboard.Entity.Student;
 import com.example.StudentDashboard.repository.StudentRepository;
-import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-@SuppressWarnings("null")
-@ExtendWith(MockitoExtension.class)
 class StudentServiceTest {
-
-    @Mock
-    private StudentRepository studentRepository;
 
     @InjectMocks
     private StudentService studentService;
 
-    private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    @Mock
+    private StudentRepository studentRepository;
+
+    private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+    private Student testStudent;
+
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
+
+        testStudent = new Student(
+                "Santhosh",
+                "Reddy",
+                LocalDate.of(2000, 1, 1),
+                "test@test.com",
+                "password123"
+        );
+    }
+
+    // ----------------- REGISTER ------------------------
 
     @Test
-    @DisplayName("Signup hashes password and saves student when email is new")
-    void registerStudent_successfulSignup() {
-        Student student = new Student();
-        student.setFirstName("Test User");
-        student.setLastName("tom");
-        student.setEmail("test@example.com");
-        student.setPassword("plainPassword");
+    void registerStudent_Success() {
+        when(studentRepository.existsByEmail(testStudent.getEmail())).thenReturn(false);
+        when(studentRepository.save(any(Student.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
-        when(studentRepository.existsByEmail(student.getEmail())).thenReturn(false);
-        when(studentRepository.save(any(Student.class))).thenAnswer(invocation -> invocation.getArgument(0, Student.class));
+        Student saved = studentService.registerStudent(testStudent);
 
-        Student savedStudent = studentService.registerStudent(student);
-
-        assertNotNull(savedStudent);
-        verify(studentRepository).save(any(Student.class));
-        assertNotEquals("plainPassword", savedStudent.getPassword(), "Password should be hashed");
-        assertTrue(encoder.matches("plainPassword", savedStudent.getPassword()), "Hashed password should match raw password");
+        assertNotNull(saved);
+        assertNotEquals("password123", saved.getPassword()); // Password should be encrypted
+        assertTrue(encoder.matches("password123", saved.getPassword()));
     }
 
     @Test
-    @DisplayName("Signup throws when email already exists")
-    void registerStudent_duplicateEmailThrows() {
-        Student student = new Student();
-        student.setEmail("existing@example.com");
-        student.setPassword("password");
+    void registerStudent_EmailAlreadyExists() {
+        when(studentRepository.existsByEmail(testStudent.getEmail())).thenReturn(true);
 
-        when(studentRepository.existsByEmail(student.getEmail())).thenReturn(true);
+        RuntimeException ex = assertThrows(RuntimeException.class,
+                () -> studentService.registerStudent(testStudent));
 
-        RuntimeException exception = assertThrows(RuntimeException.class,
-                () -> studentService.registerStudent(student));
-        assertEquals("Email already registered!", exception.getMessage());
-        verify(studentRepository, never()).save(any(Student.class));
+        assertEquals("Email already registered!", ex.getMessage());
+    }
+
+    // ----------------- LOGIN ------------------------
+
+    @Test
+    void login_Success() {
+        String hashed = encoder.encode("password123");
+        testStudent.setPassword(hashed);
+
+        when(studentRepository.findByEmail(testStudent.getEmail())).thenReturn(Optional.of(testStudent));
+
+        Student loggedIn = studentService.login("test@test.com", "password123");
+
+        assertNotNull(loggedIn);
+        assertEquals("test@test.com", loggedIn.getEmail());
     }
 
     @Test
-    @DisplayName("Login succeeds with valid credentials")
-    void login_successful() {
-        String email = "user@example.com";
-        String rawPassword = "securePass";
+    void login_InvalidEmail() {
+        when(studentRepository.findByEmail("wrong@test.com")).thenReturn(Optional.empty());
 
-        Student storedStudent = new Student();
-        storedStudent.setEmail(email);
-        storedStudent.setPassword(encoder.encode(rawPassword));
+        RuntimeException ex = assertThrows(RuntimeException.class,
+                () -> studentService.login("wrong@test.com", "password123"));
 
-        when(studentRepository.findByEmail(email)).thenReturn(Optional.of(storedStudent));
-
-        Student result = studentService.login(email, rawPassword);
-
-        assertSame(storedStudent, result);
+        assertEquals("Invalid email or password", ex.getMessage());
     }
 
     @Test
-    @DisplayName("Login throws when email not found")
-    void login_emailNotFoundThrows() {
-        when(studentRepository.findByEmail("missing@example.com")).thenReturn(Optional.empty());
+    void login_InvalidPassword() {
+        testStudent.setPassword(encoder.encode("correctPassword"));
+        when(studentRepository.findByEmail(testStudent.getEmail())).thenReturn(Optional.of(testStudent));
 
-        RuntimeException exception = assertThrows(RuntimeException.class,
-                () -> studentService.login("missing@example.com", "password"));
-        assertEquals("Invalid email or password", exception.getMessage());
+        RuntimeException ex = assertThrows(RuntimeException.class,
+                () -> studentService.login("test@test.com", "wrongPassword"));
+
+        assertEquals("Invalid email or password", ex.getMessage());
+    }
+
+    // ----------------- UPDATE ------------------------
+
+    @Test
+    void updateStudentDetails_Success() {
+        when(studentRepository.findByEmail(testStudent.getEmail())).thenReturn(Optional.of(testStudent));
+        when(studentRepository.save(any(Student.class))).thenAnswer(invocation -> invocation.getArgument(0));
+
+        testStudent.setFirstName("Updated");
+        testStudent.setLastName("Student");
+        testStudent.setPassword("newpass");
+
+        boolean updated = studentService.updateStudentDetails(testStudent);
+
+        assertTrue(updated);
+        verify(studentRepository, times(1)).save(any(Student.class));
+        assertEquals("Updated", testStudent.getFirstName());
     }
 
     @Test
-    @DisplayName("Login throws when password is incorrect")
-    void login_incorrectPasswordThrows() {
-        String email = "user@example.com";
+    void updateStudentDetails_StudentNotFound() {
+        when(studentRepository.findByEmail(testStudent.getEmail())).thenReturn(Optional.empty());
 
-        Student storedStudent = new Student();
-        storedStudent.setEmail(email);
-        storedStudent.setPassword(encoder.encode("correctPassword"));
-
-        when(studentRepository.findByEmail(email)).thenReturn(Optional.of(storedStudent));
-
-        RuntimeException exception = assertThrows(RuntimeException.class,
-                () -> studentService.login(email, "wrongPassword"));
-        assertEquals("Invalid email or password", exception.getMessage());
+        boolean updated = studentService.updateStudentDetails(testStudent);
+        assertFalse(updated);
     }
+
+    @Test
+    void updateStudentDetails_NullEmail() {
+        testStudent.setEmail(null);
+        boolean updated = studentService.updateStudentDetails(testStudent);
+        assertFalse(updated);
+    }
+
+    // ----------------- GET STUDENT ------------------------
+
+    @Test
+    void getStudentDetails_Found() {
+        when(studentRepository.findByEmail(testStudent.getEmail())).thenReturn(Optional.of(testStudent));
+
+        Student fetched = studentService.getStudentDetails(testStudent.getEmail());
+        assertEquals(testStudent.getEmail(), fetched.getEmail());
+    }
+
+    @Test
+    void getStudentDetails_NotFound() {
+        when(studentRepository.findByEmail("unknown@test.com")).thenReturn(Optional.empty());
+
+        Student fetched = studentService.getStudentDetails("unknown@test.com");
+        assertNotNull(fetched); // returns new Student()
+        assertNull(fetched.getEmail());
+    }
+
 }
-
-
