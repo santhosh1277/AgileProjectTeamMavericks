@@ -29,16 +29,21 @@ jobs:
         working-directory: student-dashboard-ui
         run: npm install
 
+      - name: Run frontend tests and generate coverage (ignore failures)
+        working-directory: student-dashboard-ui
+        run: npm test -- --coverage --watchAll=false || true
+
       - name: Run SonarCloud scan (UI)
         working-directory: student-dashboard-ui
         run: |
           npx sonar-scanner \
-          -Dsonar.projectKey=santhosh1277_AgileProjectTeamMavericks \
-          -Dsonar.organization=santhosh1277 \
-          -Dsonar.sources=src \
-          -Dsonar.exclusions=**/node_modules/**,build/** \
-          -Dsonar.host.url=https://sonarcloud.io \
-          -Dsonar.login=$SONAR_TOKEN
+            -Dsonar.projectKey=santhosh1277_AgileProjectTeamMavericks \
+            -Dsonar.organization=santhosh1277 \
+            -Dsonar.sources=src \
+            -Dsonar.exclusions=**/node_modules/**,build/** \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.token=$SONAR_TOKEN \
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
 
   # ------------------- BACKEND (Spring Boot) -------------------
   sonar-api:
@@ -64,7 +69,8 @@ jobs:
         working-directory: StudentDashboard-api
         run: |
           mvn clean verify sonar:sonar \
-          -Dsonar.projectKey=santhosh1277_AgileProjectTeamMavericks \
-          -Dsonar.organization=santhosh1277 \
-          -Dsonar.host.url=https://sonarcloud.io \
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+            -Dsonar.projectKey=santhosh1277_AgileProjectTeamMavericks \
+            -Dsonar.organization=santhosh1277 \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.token=${{ secrets.SONAR_TOKEN }} \
+            -Dsonar.java.binaries=target/classes

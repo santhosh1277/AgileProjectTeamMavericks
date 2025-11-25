@@ -7,6 +7,7 @@ const defaultEditable = {
   lastName: false,
   dob: false,
   email: false,
+  phone: false,
   password: false,
 };
 
@@ -15,6 +16,7 @@ const emptyUser = {
   lastName: "",
   dob: "",
   email: "",
+  phone: "",
   password: "",
 };
 
@@ -22,6 +24,8 @@ const fields = [
   { label: "First Name", name: "firstName", type: "text" },
   { label: "Last Name", name: "lastName", type: "text" },
   { label: "Date of Birth", name: "dob", type: "date" },
+  { label: "Email", name: "email", type: "email" },
+  { label: "Phone Number", name: "phone", type: "tel" },
   { label: "Password", name: "password", type: "password" },
 ];
 
@@ -39,8 +43,9 @@ const Profile = () => {
         firstName: data.firstName || "",
         lastName: data.lastName || "",
         dob: data.dob || "",
-        password: data.password || "",
         email: data.email || "",
+        phone: data.phone || "",
+        password: data.password || "",
       });
     } catch (error) {
       console.error("Error fetching student details:", error);

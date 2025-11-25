@@ -7,6 +7,7 @@ function Signup() {
     lastName: "",
     dob: "",
     email: "",
+    phoneNumber: "",
     password: "",
     confirmPassword: "",
   });
@@ -22,9 +23,9 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { firstName, lastName, dob, email, password, confirmPassword } = formData;
+    const { firstName, lastName, dob, email, phoneNumber, password, confirmPassword } = formData;
 
-    if (!firstName || !lastName || !email || !dob || !password) {
+    if (!firstName || !lastName || !email || !dob || !phoneNumber || !password) {
       setErrorMessage("All fields are required!");
       return;
     }
@@ -43,7 +44,7 @@ function Signup() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ firstName, lastName, dob, email, password }),
+        body: JSON.stringify({ firstName, lastName, dob, email, phoneNumber, password }),
       });
 
       if (!response.ok) {
@@ -167,6 +168,18 @@ function Signup() {
           name="email"
           placeholder="example@email.com"
           value={formData.email}
+          onChange={handleChange}
+          required
+          style={inputStyle}
+        />
+
+        <label htmlFor="phoneNumber">Phone Number</label>
+        <input
+          type="tel"
+          id="phoneNumber"
+          name="phoneNumber"
+          placeholder="Enter your Phone Number"
+          value={formData.phoneNumber}
           onChange={handleChange}
           required
           style={inputStyle}
