@@ -9,8 +9,6 @@ import Profile from './DashboardHome/UserProfile';
 
 function AppWrapper() {
   const location = useLocation();
-
-  // Add a page-specific class to the root div
   const pageClass = location.pathname.startsWith('/dashboard')
     ? 'dashboard-page'
     : location.pathname === '/login' || location.pathname === '/signup'
