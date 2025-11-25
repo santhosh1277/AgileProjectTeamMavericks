@@ -16,38 +16,58 @@ jobs:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
     steps:
+      # 1. Checkout repository
       - name: Checkout code
         uses: actions/checkout@v4
+
+      # ------------------ BACKEND ------------------
+      # 2. Set up Java
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
           distribution: temurin
           java-version: 21
-      - name: Build backend
+
+      # 3. Build backend
+      - name: Build Backend
         run: mvn -f StudentDashboard-api/pom.xml clean verify
+
+      # 4. Scan backend (Java)
+      - name: SonarCloud Scan Backend
+        run: |
+          mvn -f StudentDashboard-api/pom.xml sonar:sonar \
+            -Dsonar.projectKey=santhosh1277_AgileProjectTeamMavericks \
+            -Dsonar.organization=santhosh1277 \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.token=$SONAR_TOKEN \
+            -Dsonar.java.binaries=StudentDashboard-api/target/classes
+
+      # ------------------ FRONTEND ------------------
+      # 5. Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: Install frontend dependencies
+      # 6. Install frontend dependencies
+      - name: Install Frontend Dependencies
         working-directory: student-dashboard-ui
         run: npm install
 
-      # 6. Run frontend tests and generate coverage
-      - name: Run frontend tests
+      # 7. Run frontend tests and generate coverage (ignore failures)
+      - name: Run Frontend Tests
         working-directory: student-dashboard-ui
-        run:  |
-          npm test -- --coverage --watchAll=false || true
+        run: npm test -- --coverage --watchAll=false || true
 
-      # 7. Run SonarCloud scan
-      - name: SonarCloud Scan
+      # 8. Scan frontend (React)
+      - name: SonarCloud Scan Frontend
+        working-directory: student-dashboard-ui
         run: |
           npx sonar-scanner \
-          -Dsonar.projectKey=santhosh1277_AgileProjectTeamMavericks \
-          -Dsonar.organization=santhosh1277 \
-          -Dsonar.sources=StudentDashboard-api/src,student-dashboard-ui/src \
-          -Dsonar.exclusions=**/node_modules/**,**/build/**,**/target/** \
-          -Dsonar.host.url=https://sonarcloud.io \
-          -Dsonar.login=$SONAR_TOKEN \
-          -Dsonar.javascript.lcov.reportPaths=student-dashboard-ui/coverage/lcov.info
+            -Dsonar.projectKey=santhosh1277_AgileProjectTeamMavericks \
+            -Dsonar.organization=santhosh1277 \
+            -Dsonar.sources=src \
+            -Dsonar.exclusions=**/node_modules/**,build/** \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.token=$SONAR_TOKEN \
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
