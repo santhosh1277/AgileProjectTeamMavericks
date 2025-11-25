@@ -1,168 +1,161 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Footer from "../components/Footer";   // ⬅️ IMPORT FOOTER
 
 function Home() {
-  const [colleges, setColleges] = useState([]);
-  const [search, setSearch] = useState("");
-  const [filteredColleges, setFilteredColleges] = useState([]);
-  const [selectedCollege, setSelectedCollege] = useState(null);
+  const [universities, setUniversities] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
   const navigate = useNavigate();
 
-  // Fetch colleges from backend
+  // 🔁 Fetch universities from your backend
   useEffect(() => {
-    axios
-      .get("http://localhost:8080/api/colleges")
-      .then((response) => {
-        setColleges(response.data);
-        setFilteredColleges(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching colleges:", error);
-      });
-  }, []);
+    const fetchUniversities = async () => {
+      try {
+        setLoading(true);
+        setError("");
 
-  // Filter colleges when search changes
-  useEffect(() => {
-    if (search.trim() === "") {
-      setFilteredColleges(colleges);
-    } else {
-      setFilteredColleges(
-        colleges.filter((college) =>
-          college.name.toLowerCase().includes(search.toLowerCase())
-        )
-      );
-    }
-  }, [search, colleges]);
+        const response = await fetch(
+          "http://localhost:8080/api/universities?country=Ireland"
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch universities");
+        }
+
+        const data = await response.json();
+        setUniversities(data || []);
+      } catch (err) {
+        console.error("Error fetching universities:", err);
+        setError("Failed to fetch");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUniversities();
+  }, []);
 
   return (
     <div
       style={{
-        backgroundColor: "black",
-        height: "100vh",
-        width: "100vw",
-        color: "white",
-        padding: "20px",
-        boxSizing: "border-box",
+        minHeight: "100vh",
+        backgroundColor: "#000000",
+        color: "#ffffff",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
-      {/* Header */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: "20px",
-        }}
-      >
-        <h1 style={{ color: "#00BFFF", margin: 0 }}>UniMatch</h1>
+      {/* Top bar */}
+      <header className="d-flex justify-content-between align-items-center px-4 py-3 border-bottom border-secondary">
+        <div style={{ fontSize: "32px", fontWeight: "bold", color: "#00BFFF" }}>
+          UniMatch
+        </div>
         <button
+          className="btn btn-outline-info"
           onClick={() => navigate("/login")}
-          style={{
-            backgroundColor: "transparent",
-            color: "#00BFFF",
-            border: "1px solid #00BFFF",
-            padding: "8px 16px",
-            borderRadius: "8px",
-            cursor: "pointer",
-          }}
         >
           Login
         </button>
-      </div>
+      </header>
 
-      <hr style={{ borderColor: "#00BFFF", marginBottom: "30px" }} />
+      {/* Main content */}
+      <main className="container py-4" style={{ flex: 1 }}>
+        <h2 className="text-center mb-4">Universities in Ireland</h2>
 
-      {/* Title */}
-      <h2 style={{ textAlign: "center", marginBottom: "20px" }}>
-        Welcome to Student Dashboard
-      </h2>
+        {/* Loading & error */}
+        {loading && (
+          <p className="text-center text-info">Loading universities...</p>
+        )}
 
-      {/* Search Dropdown */}
-      <div style={{ textAlign: "center", marginBottom: "30px" }}>
-        <input
-          type="text"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search colleges..."
-          style={{
-            width: "300px",
-            padding: "10px",
-            borderRadius: "8px",
-            border: "1px solid #00BFFF",
-            backgroundColor: "black",
-            color: "white",
-            outline: "none",
-          }}
-        />
+        {error && !loading && (
+          <p className="text-center text-danger">{error}</p>
+        )}
 
-        {/* Dropdown List */}
-        {search && (
-          <div
-            style={{
-              margin: "0 auto",
-              width: "300px",
-              backgroundColor: "#111",
-              border: "1px solid #00BFFF",
-              borderRadius: "8px",
-              maxHeight: "200px",
-              overflowY: "auto",
-              marginTop: "5px",
-              textAlign: "left",
-              zIndex: 10,
-              position: "relative",
-            }}
-          >
-            {filteredColleges.length > 0 ? (
-              filteredColleges.map((college) => (
+        {/* University list */}
+        {!loading && !error && (
+          <div className="row justify-content-center">
+            <div className="col-lg-8 col-md-10 col-sm-12 d-flex flex-column gap-3">
+              {universities.map((u, index) => (
                 <div
-                  key={college.id}
-                  onClick={() => setSelectedCollege(college)}
+                  key={u.name + index}
+                  className="d-flex p-3"
                   style={{
-                    padding: "8px 12px",
-                    cursor: "pointer",
-                    borderBottom: "1px solid #222",
+                    backgroundColor: "#111827",
+                    borderRadius: "16px",
+                    border: "1px solid #1f2937",
+                    boxShadow: "0 2px 10px rgba(0, 0, 0, 0.5)",
                   }}
-                  onMouseEnter={(e) =>
-                    (e.target.style.backgroundColor = "#222")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.target.style.backgroundColor = "transparent")
-                  }
                 >
-                  {college.name}
+                  {/* Left: Banner */}
+                  <div
+                    style={{
+                      width: "140px",
+                      height: "100px",
+                      borderRadius: "12px",
+                      background:
+                        "linear-gradient(135deg, #f97316, #facc15)",
+                      marginRight: "20px",
+                    }}
+                  />
+
+                  {/* Right: Info */}
+                  <div className="flex-grow-1">
+                    <div
+                      className="small"
+                      style={{ color: "#9ca3af", marginBottom: "4px" }}
+                    >
+                      {u.name}
+                    </div>
+
+                    <h5
+                      style={{
+                        color: "#ffffff",
+                        marginBottom: "6px",
+                        fontWeight: "600",
+                      }}
+                    >
+                      {u.name} – Programs & Info
+                    </h5>
+
+                    <div
+                      className="small mb-2"
+                      style={{ color: "#d1d5db", lineHeight: 1.4 }}
+                    >
+                      {u.country || "Ireland"}
+                      {u["state-province"] && ` • ${u["state-province"]}`}
+                      {u.domains && u.domains.length > 0 && ` • ${u.domains[0]}`}
+                    </div>
+
+                    {u.web_pages && u.web_pages.length > 0 && (
+                      <a
+                        href={u.web_pages[0]}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="small"
+                        style={{ color: "#38bdf8", textDecoration: "none" }}
+                      >
+                        Visit website →
+                      </a>
+                    )}
+                  </div>
                 </div>
-              ))
-            ) : (
-              <div style={{ padding: "8px 12px", color: "#aaa" }}>
-                No results found
-              </div>
-            )}
+              ))}
+
+              {universities.length === 0 && (
+                <p className="text-center mt-4">
+                  No universities found from the API.
+                </p>
+              )}
+            </div>
           </div>
         )}
-      </div>
+      </main>
 
-      {/* Selected College Details */}
-      {selectedCollege && (
-        <div
-          style={{
-            width: "70%",
-            margin: "0 auto",
-            border: "1px solid #00BFFF",
-            borderRadius: "8px",
-            padding: "20px",
-            backgroundColor: "#111",
-          }}
-        >
-          <h3 style={{ color: "#00BFFF" }}>{selectedCollege.name}</h3>
-          <p>
-            <strong>Location:</strong> {selectedCollege.location}
-          </p>
-          <p>
-            <strong>Rank:</strong> {selectedCollege.rank}
-          </p>
-        </div>
-      )}
+      {/* Footer added here */}
+      <Footer />
     </div>
   );
 }
