@@ -1,5 +1,5 @@
 package com.example.StudentDashboard.service;
-
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.example.StudentDashboard.Entity.Student;
 import com.example.StudentDashboard.repository.StudentRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,6 +25,7 @@ class StudentServiceTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
+      
         testStudent = new Student("Santhosh", "Reddy", LocalDate.of(2000,1,1), "test@test.com", "password123");
     }
 
@@ -52,5 +53,55 @@ class StudentServiceTest {
         when(studentRepository.save(any(Student.class))).thenReturn(testStudent);
         boolean updated = studentService.updateStudentDetails(testStudent);
         assertTrue(updated);
+    }
+    @Test
+    void testLoginSuccess() {
+        // Setup
+    	  BCryptPasswordEncoder  encoder = new BCryptPasswordEncoder();
+        String rawPassword = "password123";
+        String email = "john@example.com";
+
+        Student student = new Student();
+        student.setEmail(email);
+        student.setPassword(encoder.encode(rawPassword));
+
+        when(studentRepository.findByEmail(email)).thenReturn(Optional.of(student));
+
+        // Execute
+        Student result = studentService.login(email, rawPassword);
+
+        // Verify
+        assertNotNull(result);
+        assertEquals(email, result.getEmail());
+    }
+
+    @Test
+    void testLoginInvalidEmail() {
+        String email = "wrong@example.com";
+
+        when(studentRepository.findByEmail(email)).thenReturn(Optional.empty());
+
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
+            studentService.login(email, "password123");
+        });
+
+        assertEquals("Invalid email or password", exception.getMessage());
+    }
+
+    @Test
+    void testLoginInvalidPassword() {
+        String email = "john@example.com";
+        BCryptPasswordEncoder  encoder = new BCryptPasswordEncoder();
+        Student student = new Student();
+        student.setEmail(email);
+        student.setPassword(encoder.encode("correctPassword"));
+
+        when(studentRepository.findByEmail(email)).thenReturn(Optional.of(student));
+
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
+            studentService.login(email, "wrongPassword");
+        });
+
+        assertEquals("Invalid email or password", exception.getMessage());
     }
 }
