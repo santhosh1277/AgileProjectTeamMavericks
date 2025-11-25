@@ -57,7 +57,10 @@ const Login = () => {
   };
  
   return (
-<div className="d-flex justify-content-center align-items-center vh-100 bg-light">
+<div className="d-flex flex-column justify-content-center align-items-center vh-100 bg-light">
+<h1 className="text-center mb-4" style={{ fontWeight: "bold", fontSize: "3rem", color: "#007bff" }}>
+        UNIMATCH
+      </h1>
 <div className="card shadow-lg p-4" style={{ width: "22rem" }}>
 <h3 className="text-center mb-4">Login</h3>
 <form onSubmit={handleSubmit}>

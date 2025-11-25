@@ -34,6 +34,8 @@ describe("Profile Component", () => {
     expect(firstNameInput).toBeInTheDocument();
     expect(screen.getByDisplayValue("Doe")).toBeInTheDocument();
     expect(screen.getByDisplayValue("2000-01-01")).toBeInTheDocument();
+    expect(screen.getByDisplayValue("john@example.com")).toBeInTheDocument();
+    expect(screen.getByDisplayValue("1234567890")).toBeInTheDocument();
     expect(screen.getByDisplayValue("abc123")).toBeInTheDocument();
   });
 
@@ -47,6 +49,8 @@ describe("Profile Component", () => {
 
     expect(screen.getByDisplayValue("Doe")).toBeDisabled();
     expect(screen.getByDisplayValue("2000-01-01")).toBeDisabled();
+    expect(screen.getByDisplayValue("john@example.com")).toBeDisabled();
+    expect(screen.getByDisplayValue("1234567890")).toBeDisabled();
     expect(screen.getByDisplayValue("abc123")).toBeDisabled();
   });
 
@@ -98,6 +102,7 @@ test("clicking save calls UpdateStudentDetails and resets edit fields", async ()
       lastName: mockStudentData.lastName,
       dob: mockStudentData.dob,
       email: mockStudentData.email,
+      phone: mockStudentData.phone,
       password: mockStudentData.password,
     })
   );
