@@ -2,6 +2,16 @@ import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import DashboardHome from './DashboardHome';
 
+// Mock useNavigate
+const mockNavigate = jest.fn();
+jest.mock(
+    'react-router-dom',
+    () => ({
+        useNavigate: () => mockNavigate,
+    }),
+    { virtual: true }
+);
+
 // Mock global fetch
 global.fetch = jest.fn();
 

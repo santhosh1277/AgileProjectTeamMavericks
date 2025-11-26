@@ -1,6 +1,7 @@
 package com.example.StudentDashboard.Entity;
 import jakarta.persistence.*;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class College {
@@ -13,6 +14,7 @@ public class College {
     private Integer rank;
 
     @OneToMany(mappedBy = "college", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<CourseEntity> courses;
 
     // Getters and setters

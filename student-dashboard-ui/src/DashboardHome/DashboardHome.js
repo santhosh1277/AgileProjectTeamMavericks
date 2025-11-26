@@ -1,9 +1,11 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 // Service moved to API folder - using direct API call instead
 // import { getCollegesList } from "../api/Service.js/CollegeService";
 
 function DashboardHome() {
+  const navigate = useNavigate();
   const [colleges, setColleges] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -46,7 +48,11 @@ function DashboardHome() {
         <div className="row">
           {colleges.map((college) => (
             <div key={college.id} className="col-md-6 col-lg-4 mb-4">
-              <div className="card shadow-sm h-100 border-0">
+              <div 
+                className="card shadow-sm h-100 border-0"
+                style={{ cursor: "pointer" }}
+                onClick={() => navigate(`/dashboard/courses/${college.id}`)}
+              >
                 <div className="card-body d-flex flex-column justify-content-between">
                   <div>
                     <h5 className="card-title text-dark">{college.name}</h5>
@@ -57,7 +63,15 @@ function DashboardHome() {
                       <strong>World Rank:</strong> {college.rank}
                     </p>
                   </div>
-                  <button className="btn btn-primary mt-3 w-100">Apply Now</button>
+                  <button 
+                    className="btn btn-primary mt-3 w-100"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate(`/dashboard/courses/${college.id}`);
+                    }}
+                  >
+                    View Courses
+                  </button>
                 </div>
               </div>
             </div>
