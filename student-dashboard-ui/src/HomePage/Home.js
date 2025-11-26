@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Footer from "../components/Footer";   // ⬅️ IMPORT FOOTER
+import Footer from "../components/Footer";  
 
 function Home() {
   const [universities, setUniversities] = useState([]);
