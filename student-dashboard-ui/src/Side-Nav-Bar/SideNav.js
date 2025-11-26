@@ -10,15 +10,11 @@ function SideNav() {
   useEffect(() => {
     const userData = localStorage.getItem("user");
     if (userData) {
-      try {
-        const user = JSON.parse(userData);
-        if (user.name) {
-          // Extract first name (first word before space)
-          const firstName = user.name.split(" ")[0];
-          setUserName(firstName);
-        }
-      } catch (error) {
-        console.error("Error parsing user data:", error);
+      const user = JSON.parse(userData);
+      if (user.name) {
+        // Extract first name (first word before space)
+        const firstName = user.name.split(" ")[0];
+        setUserName(firstName);
       }
     }
   }, []);

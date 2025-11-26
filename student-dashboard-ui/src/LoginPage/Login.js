@@ -50,12 +50,6 @@ const Login = () => {
 
   };
  
-  const handleSignUp = () => {
-
-    console.log("Redirect to Sign Up page");
-
-  };
- 
   return (
 <div className="d-flex flex-column justify-content-center align-items-center vh-100 bg-light">
 <h1 className="text-center mb-4" style={{ fontWeight: "bold", fontSize: "3rem", color: "#007bff" }}>
@@ -65,12 +59,14 @@ const Login = () => {
 <h3 className="text-center mb-4">Login</h3>
 <form onSubmit={handleSubmit}>
 <div className="mb-3">
-<label className="form-label">Email or Username</label>
+<label htmlFor="usernameOrEmail" className="form-label">Email or Username</label>
 <input
 
               type="text"
 
               className="form-control"
+
+              id="usernameOrEmail"
 
               name="usernameOrEmail"
 
@@ -86,12 +82,14 @@ const Login = () => {
 </div>
  
           <div className="mb-3">
-<label className="form-label">Password</label>
+<label htmlFor="password" className="form-label">Password</label>
 <input
 
               type="password"
 
               className="form-control"
+
+              id="password"
 
               name="password"
 
@@ -119,7 +117,7 @@ const Login = () => {
  
           <div className="text-center mt-3">
 <span>Don't have an account? </span>
-<a href="/signup" onClick={handleSignUp} style={{ textDecoration: "none" }}>Sign Up</a>
+<a href="/signup" style={{ textDecoration: "none" }}>Sign Up</a>
 </div>
 </form>
 </div>

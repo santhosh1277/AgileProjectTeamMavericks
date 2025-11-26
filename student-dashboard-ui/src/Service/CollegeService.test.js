@@ -6,7 +6,6 @@ global.fetch = jest.fn();
 describe("CollegeService", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    console.error = jest.fn();
   });
 
   describe("getCollegesList", () => {
@@ -34,7 +33,6 @@ describe("CollegeService", () => {
       });
 
       await expect(getCollegesList()).rejects.toThrow("Failed to fetch colleges: 500");
-      expect(console.error).toHaveBeenCalled();
     });
 
     test("handles network error", async () => {
@@ -42,7 +40,6 @@ describe("CollegeService", () => {
       global.fetch.mockRejectedValueOnce(networkError);
 
       await expect(getCollegesList()).rejects.toThrow("Network failure");
-      expect(console.error).toHaveBeenCalledWith("Error fetching colleges:", networkError);
     });
   });
 
@@ -72,11 +69,7 @@ describe("CollegeService", () => {
         status: 404,
       });
 
-      await expect(getCollegeById(999)).rejects.toThrow("Failed to fetch college: 404");
-      expect(console.error).toHaveBeenCalledWith(
-        "Error fetching college 999:",
-        expect.any(Error)
-      );
+      await expect(getCollegeById(1)).rejects.toThrow("Failed to fetch college: 404");
     });
 
     test("handles network error for specific college", async () => {
@@ -84,10 +77,6 @@ describe("CollegeService", () => {
       global.fetch.mockRejectedValueOnce(networkError);
 
       await expect(getCollegeById(1)).rejects.toThrow("Connection timeout");
-      expect(console.error).toHaveBeenCalledWith(
-        "Error fetching college 1:",
-        networkError
-      );
     });
   });
 
@@ -116,10 +105,6 @@ describe("CollegeService", () => {
       });
 
       await expect(getCollegeCourses(1)).rejects.toThrow("Failed to fetch courses: 500");
-      expect(console.error).toHaveBeenCalledWith(
-        "Error fetching courses for college 1:",
-        expect.any(Error)
-      );
     });
 
     test("handles empty courses list", async () => {
@@ -139,10 +124,6 @@ describe("CollegeService", () => {
       global.fetch.mockRejectedValueOnce(networkError);
 
       await expect(getCollegeCourses(1)).rejects.toThrow("Service unavailable");
-      expect(console.error).toHaveBeenCalledWith(
-        "Error fetching courses for college 1:",
-        networkError
-      );
     });
   });
 

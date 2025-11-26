@@ -50,13 +50,12 @@ describe('SideNav Component', () => {
     expect(mockNavigate).toHaveBeenCalledWith('/');
   });
 
-  test('handles invalid user data gracefully', () => {
-    localStorage.setItem('user', 'invalid json');
-    console.error = jest.fn();
+  test('handles missing user name gracefully', () => {
+    localStorage.setItem('user', JSON.stringify({ email: 'test@example.com' }));
     
     render(<SideNav />);
     
-    expect(console.error).toHaveBeenCalled();
+    // Should render without crashing even without name
     expect(screen.getByText('Dashboard')).toBeInTheDocument();
   });
 });

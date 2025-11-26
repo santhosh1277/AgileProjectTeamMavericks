@@ -34,7 +34,6 @@ function CourseDetails() {
         setCollege(selectedCollege);
         setCourses(selectedCollege.courses || []);
       } catch (err) {
-        console.error("Error fetching college details:", err);
         setError(err.message || "Error loading college details");
       } finally {
         setLoading(false);

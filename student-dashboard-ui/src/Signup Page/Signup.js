@@ -69,7 +69,6 @@ function Signup() {
       alert("Signup successful! Redirecting to login...");
       navigate("/login");
     } catch (error) {
-      console.error(error);
       setErrorMessage(error.message || "Error: Could not register student");
     } finally {
       setLoading(false);

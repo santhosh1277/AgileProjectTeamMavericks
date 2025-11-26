@@ -195,8 +195,6 @@ describe("Signup Component", () => {
   test("handles network error gracefully", async () => {
     global.fetch.mockRejectedValueOnce(new Error("Network error"));
 
-    console.error = jest.fn();
-
     renderSignup();
 
     fireEvent.change(screen.getByLabelText(/First Name/i), { target: { value: "John" } });
@@ -213,8 +211,6 @@ describe("Signup Component", () => {
     await waitFor(() => {
       expect(screen.getByText(/Network error/i)).toBeInTheDocument();
     });
-
-    expect(console.error).toHaveBeenCalled();
   });
 
   test("renders login link", () => {
