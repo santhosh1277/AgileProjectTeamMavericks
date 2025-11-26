@@ -9,7 +9,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/colleges")
-@CrossOrigin(origins = "http://localhost:3000")
 public class CollegeController {
 
     // ✅ Step 1: Declare the repository
