@@ -71,4 +71,20 @@ class CollegeServiceTest {
         assertEquals("MSc Applied Software Engineering", courses.get(0).getName());
         assertEquals(savedCollege, courses.get(0).getCollege());
     }
+    @Test
+    void testAddPreferenceCollege() {
+        // Call the method
+        College college = collegeService.AddPreferenceCollege();
+
+        // Assertions
+        assertNotNull(college, "The college object should not be null");
+        assertNull(college.getId(), "Id should be null");
+        assertNull(college.getName(), "Name should be null");
+        assertNull(college.getCountry(), "Country should be null");
+        assertNull(college.getStateProvince(), "StateProvince should be null");
+        assertNull(college.getAlphaTwoCode(), "AlphaTwoCode should be null");
+        assertNull(college.getDomains(), "Domains should be null");
+        assertNull(college.getWebPages(), "WebPages should be null");
+    }
+
 }
