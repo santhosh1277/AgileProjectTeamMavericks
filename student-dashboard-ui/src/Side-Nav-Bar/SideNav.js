@@ -1,30 +1,29 @@
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 function SideNav() {
+  const navigate = useNavigate();
   const [userName, setUserName] = useState("");
 
   // Get user data from localStorage
   useEffect(() => {
     const userData = localStorage.getItem("user");
     if (userData) {
-      try {
-        const user = JSON.parse(userData);
-        if (user.name) {
-          // Extract first name (first word before space)
-          const firstName = user.name.split(" ")[0];
-          setUserName(firstName);
-        }
-      } catch (error) {
-        console.error("Error parsing user data:", error);
+      const user = JSON.parse(userData);
+      if (user.name) {
+        // Extract first name (first word before space)
+        const firstName = user.name.split(" ")[0];
+        setUserName(firstName);
       }
     }
   }, []);
+  
   const handleLogout = () => {
     // Clear user data from localStorage
     localStorage.removeItem("user");
     localStorage.removeItem("isAuthenticated");
+    // Navigate to home page
+    navigate("/");
   };
 
   return (
@@ -69,7 +68,13 @@ function SideNav() {
           <Link className="nav-link text-light" to="/dashboard/settings">Settings</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link text-light" to="/" onClick={handleLogout}>Logout</Link>
+          <button 
+            className="nav-link text-light btn btn-link w-100 text-start p-0 ps-3" 
+            onClick={handleLogout}
+            style={{ textDecoration: 'none' }}
+          >
+            Logout
+          </button>
         </li>
       </ul>
     </nav>

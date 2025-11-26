@@ -28,8 +28,8 @@ function Home() {
         const data = await response.json();
         setUniversities(data || []);
       } catch (err) {
-        console.error("Error fetching universities:", err);
-        setError("Failed to fetch");
+        const errorMessage = err?.message || "Failed to fetch universities";
+        setError(errorMessage);
       } finally {
         setLoading(false);
       }

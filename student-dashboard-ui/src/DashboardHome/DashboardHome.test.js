@@ -2,8 +2,18 @@ import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import DashboardHome from './DashboardHome';
 
+// Mock useNavigate
+const mockNavigate = jest.fn();
+jest.mock(
+    'react-router-dom',
+    () => ({
+        useNavigate: () => mockNavigate,
+    }),
+    { virtual: true }
+);
+
 // Mock global fetch
-global.fetch = jest.fn();
+globalThis.fetch = jest.fn();
 
 describe('DashboardHome', () => {
     beforeEach(() => {
@@ -11,7 +21,7 @@ describe('DashboardHome', () => {
     });
 
     test('renders loading state initially', () => {
-        global.fetch.mockResolvedValue({
+        globalThis.fetch.mockResolvedValue({
             ok: true,
             json: async () => [],
         });
@@ -20,7 +30,7 @@ describe('DashboardHome', () => {
     });
 
     test('renders error message on fetch failure', async () => {
-        global.fetch.mockResolvedValue({
+        globalThis.fetch.mockResolvedValue({
             ok: false,
         });
         render(<DashboardHome />);
@@ -33,7 +43,7 @@ describe('DashboardHome', () => {
             { id: 1, name: 'College A', location: 'Location A', rank: 1 },
             { id: 2, name: 'College B', location: 'Location B', rank: 2 },
         ];
-        global.fetch.mockResolvedValue({
+        globalThis.fetch.mockResolvedValue({
             ok: true,
             json: async () => colleges,
         });

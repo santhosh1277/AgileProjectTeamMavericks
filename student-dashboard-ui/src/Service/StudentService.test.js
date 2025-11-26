@@ -1,6 +1,6 @@
 import { UpdateStudentDetails, GetStudentDetails } from "./StudentService";
 
-global.fetch = jest.fn();
+globalThis.fetch = jest.fn();
 
 describe("StudentService API functions", () => {
   beforeEach(() => {

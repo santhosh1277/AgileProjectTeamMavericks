@@ -50,11 +50,18 @@ function Signup() {
       if (!response.ok) {
         let errorText = "Failed to register student";
         try {
-          const data = await response.json();
-          errorText = typeof data === "string" ? data : data.message || errorText;
-        } catch {
           const text = await response.text();
-          errorText = text || errorText;
+          // Try to parse as JSON first
+          try {
+            const data = JSON.parse(text);
+            errorText = typeof data === "string" ? data : data.message || errorText;
+          } catch {
+            // If not JSON, use the text directly
+            errorText = text || errorText;
+          }
+        } catch {
+          // If reading fails completely, use default message
+          errorText = "Failed to register student";
         }
         throw new Error(errorText);
       }
@@ -62,7 +69,6 @@ function Signup() {
       alert("Signup successful! Redirecting to login...");
       navigate("/login");
     } catch (error) {
-      console.error(error);
       setErrorMessage(error.message || "Error: Could not register student");
     } finally {
       setLoading(false);
