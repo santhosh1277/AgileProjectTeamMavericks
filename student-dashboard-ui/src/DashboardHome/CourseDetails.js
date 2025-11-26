@@ -16,23 +16,47 @@ function CourseDetails() {
         setLoading(true);
         setError("");
 
-        // Fetch all colleges and find the one we need
-        const response = await fetch("http://localhost:8080/api/colleges");
-        if (!response.ok) {
+        // Fetch colleges from external API
+        const collegesResponse = await fetch("http://localhost:8080/api/universities?country=Ireland");
+        if (!collegesResponse.ok) {
           throw new Error("Failed to fetch college details");
         }
 
-        const data = await response.json();
-        const selectedCollege = data.find(
-          (c) => c.id === parseInt(collegeId)
-        );
-
-        if (!selectedCollege) {
+        const collegesData = await collegesResponse.json();
+        const collegeIndex = Number.parseInt(collegeId, 10) - 1;
+        
+        if (collegeIndex < 0 || collegeIndex >= collegesData.length) {
           throw new Error("College not found");
         }
 
-        setCollege(selectedCollege);
-        setCourses(selectedCollege.courses || []);
+        const selectedUniversity = collegesData[collegeIndex];
+        
+        // Set college details
+        setCollege({
+          id: Number.parseInt(collegeId, 10),
+          name: selectedUniversity.name,
+          location: selectedUniversity.state_province || "Ireland",
+          rank: collegeIndex + 1,
+          country: selectedUniversity.country
+        });
+
+        // Fetch unified master's courses (same for all colleges)
+        const coursesResponse = await fetch("http://localhost:8080/api/courses/masters");
+        if (!coursesResponse.ok) {
+          throw new Error("Failed to fetch courses");
+        }
+
+        const coursesData = await coursesResponse.json();
+        
+        // Get unique courses by name
+        const uniqueCourses = coursesData.reduce((acc, course) => {
+          if (!acc.find(c => c.name === course.name)) {
+            acc.push(course);
+          }
+          return acc;
+        }, []);
+        
+        setCourses(uniqueCourses);
       } catch (err) {
         setError(err.message || "Error loading college details");
       } finally {
@@ -48,10 +72,10 @@ function CourseDetails() {
   if (loading) {
     return (
       <div className="text-center mt-5">
-        <div className="spinner-border text-primary" role="status">
+        <div className="spinner-border text-primary" aria-live="polite">
           <span className="visually-hidden">Loading...</span>
         </div>
-        <p className="mt-3">Loading course details...</p>
+        <output className="mt-3 d-block">Loading course details...</output>
       </div>
     );
   }

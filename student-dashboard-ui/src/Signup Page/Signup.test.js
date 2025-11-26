@@ -14,10 +14,10 @@ jest.mock(
 );
 
 // Mock fetch
-global.fetch = jest.fn();
+globalThis.fetch = jest.fn();
 
 // Mock alert
-global.alert = jest.fn();
+globalThis.alert = jest.fn();
 
 describe("Signup Component", () => {
   beforeEach(() => {
@@ -101,7 +101,7 @@ describe("Signup Component", () => {
   });
 
   test("submits form successfully and navigates to login", async () => {
-    global.fetch.mockResolvedValueOnce({
+    globalThis.fetch.mockResolvedValueOnce({
       ok: true,
       json: async () => ({ message: "Success" }),
     });
@@ -120,7 +120,7 @@ describe("Signup Component", () => {
     fireEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(global.fetch).toHaveBeenCalledWith("http://localhost:8080/api/students", {
+      expect(globalThis.fetch).toHaveBeenCalledWith("http://localhost:8080/api/students", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -137,13 +137,13 @@ describe("Signup Component", () => {
     });
 
     await waitFor(() => {
-      expect(global.alert).toHaveBeenCalledWith("Signup successful! Redirecting to login...");
+      expect(globalThis.alert).toHaveBeenCalledWith("Signup successful! Redirecting to login...");
       expect(mockNavigate).toHaveBeenCalledWith("/login");
     });
   });
 
   test("displays error message on failed signup", async () => {
-    global.fetch.mockResolvedValueOnce({
+    globalThis.fetch.mockResolvedValueOnce({
       ok: false,
       text: async () => "Email already exists",
     });
@@ -167,7 +167,7 @@ describe("Signup Component", () => {
   });
 
   test("shows loading state during submission", async () => {
-    global.fetch.mockImplementationOnce(
+    globalThis.fetch.mockImplementationOnce(
       () => new Promise((resolve) => setTimeout(() => resolve({ ok: true }), 100))
     );
 
@@ -193,7 +193,7 @@ describe("Signup Component", () => {
   });
 
   test("handles network error gracefully", async () => {
-    global.fetch.mockRejectedValueOnce(new Error("Network error"));
+    globalThis.fetch.mockRejectedValueOnce(new Error("Network error"));
 
     renderSignup();
 

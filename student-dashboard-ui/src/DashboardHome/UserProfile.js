@@ -78,7 +78,8 @@ const Profile = () => {
       setUser(updated);
       setIsEditable(defaultEditable);
     } catch {
-      // Silently fail - keep existing state
+      // Keep existing state on error - user can retry by editing again
+      setIsEditable(defaultEditable);
     }
   };
 

@@ -19,7 +19,7 @@ jest.mock(
 );
 
 // Mock fetch globally
-global.fetch = jest.fn();
+globalThis.fetch = jest.fn();
 
 describe("CourseDetails Component", () => {
   const mockCollegeData = [

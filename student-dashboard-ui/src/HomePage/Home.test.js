@@ -16,7 +16,7 @@ jest.mock(
 jest.mock('../components/Footer', () => () => <div>Footer</div>);
 
 // Mock fetch
-global.fetch = jest.fn();
+globalThis.fetch = jest.fn();
 
 describe('Home Component', () => {
   beforeEach(() => {
@@ -24,7 +24,7 @@ describe('Home Component', () => {
   });
 
   test('renders loading state initially', () => {
-    global.fetch.mockImplementation(() => new Promise(() => {}));
+    globalThis.fetch.mockImplementation(() => new Promise(() => {}));
     
     render(<Home />);
     expect(screen.getByText(/Loading universities/i)).toBeInTheDocument();
@@ -36,7 +36,7 @@ describe('Home Component', () => {
       { id: 2, name: 'University College Cork', country: 'Ireland' },
     ];
 
-    global.fetch.mockResolvedValueOnce({
+    globalThis.fetch.mockResolvedValueOnce({
       ok: true,
       json: async () => mockData,
     });
@@ -49,7 +49,7 @@ describe('Home Component', () => {
   });
 
   test('displays error on fetch failure', async () => {
-    global.fetch.mockResolvedValueOnce({
+    globalThis.fetch.mockResolvedValueOnce({
       ok: false,
     });
 

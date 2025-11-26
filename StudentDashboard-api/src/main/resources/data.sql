@@ -34,3 +34,85 @@ INSERT INTO course_entity (id, name, college_id) VALUES
 INSERT INTO course_entity (id, name, college_id) VALUES
 (13, 'Communications', 5),
 (14, 'Data Analytics', 5);
+
+-- Insert Master's Degree courses for all colleges
+
+-- Trinity College Dublin - Master's Degrees
+INSERT INTO course_entity (id, name, college_id) VALUES
+(15, 'MSc Applied Software Engineering', 1),
+(16, 'MSc Software Engineering', 1),
+(17, 'MSc Data Analytics', 1),
+(18, 'MSc Software Design with Cloud Native Computing', 1),
+(19, 'MSc Software Design with Cybersecurity', 1),
+(20, 'MSc Software Design with Artificial Intelligence', 1),
+(21, 'MSc Biopharmaceutical Technology', 1),
+(22, 'MSc Pharmaceutical & Chemical Analysis', 1),
+(23, 'MSc Digital Health', 1),
+(24, 'MSc Digital Marketing', 1),
+(25, 'MA Accounting', 1),
+(26, 'Master of Business', 1),
+(27, 'MEng Engineering Management', 1);
+
+-- University College Dublin - Master's Degrees
+INSERT INTO course_entity (id, name, college_id) VALUES
+(28, 'MSc Applied Software Engineering', 2),
+(29, 'MSc Software Engineering', 2),
+(30, 'MSc Data Analytics', 2),
+(31, 'MSc Software Design with Cloud Native Computing', 2),
+(32, 'MSc Software Design with Cybersecurity', 2),
+(33, 'MSc Software Design with Artificial Intelligence', 2),
+(34, 'MSc Biopharmaceutical Technology', 2),
+(35, 'MSc Pharmaceutical & Chemical Analysis', 2),
+(36, 'MSc Digital Health', 2),
+(37, 'MSc Digital Marketing', 2),
+(38, 'MA Accounting', 2),
+(39, 'Master of Business', 2),
+(40, 'MEng Engineering Management', 2);
+
+-- University College Cork - Master's Degrees
+INSERT INTO course_entity (id, name, college_id) VALUES
+(41, 'MSc Applied Software Engineering', 3),
+(42, 'MSc Software Engineering', 3),
+(43, 'MSc Data Analytics', 3),
+(44, 'MSc Software Design with Cloud Native Computing', 3),
+(45, 'MSc Software Design with Cybersecurity', 3),
+(46, 'MSc Software Design with Artificial Intelligence', 3),
+(47, 'MSc Biopharmaceutical Technology', 3),
+(48, 'MSc Pharmaceutical & Chemical Analysis', 3),
+(49, 'MSc Digital Health', 3),
+(50, 'MSc Digital Marketing', 3),
+(51, 'MA Accounting', 3),
+(52, 'Master of Business', 3),
+(53, 'MEng Engineering Management', 3);
+
+-- National University of Ireland Galway - Master's Degrees
+INSERT INTO course_entity (id, name, college_id) VALUES
+(54, 'MSc Applied Software Engineering', 4),
+(55, 'MSc Software Engineering', 4),
+(56, 'MSc Data Analytics', 4),
+(57, 'MSc Software Design with Cloud Native Computing', 4),
+(58, 'MSc Software Design with Cybersecurity', 4),
+(59, 'MSc Software Design with Artificial Intelligence', 4),
+(60, 'MSc Biopharmaceutical Technology', 4),
+(61, 'MSc Pharmaceutical & Chemical Analysis', 4),
+(62, 'MSc Digital Health', 4),
+(63, 'MSc Digital Marketing', 4),
+(64, 'MA Accounting', 4),
+(65, 'Master of Business', 4),
+(66, 'MEng Engineering Management', 4);
+
+-- Dublin City University - Master's Degrees
+INSERT INTO course_entity (id, name, college_id) VALUES
+(67, 'MSc Applied Software Engineering', 5),
+(68, 'MSc Software Engineering', 5),
+(69, 'MSc Data Analytics', 5),
+(70, 'MSc Software Design with Cloud Native Computing', 5),
+(71, 'MSc Software Design with Cybersecurity', 5),
+(72, 'MSc Software Design with Artificial Intelligence', 5),
+(73, 'MSc Biopharmaceutical Technology', 5),
+(74, 'MSc Pharmaceutical & Chemical Analysis', 5),
+(75, 'MSc Digital Health', 5),
+(76, 'MSc Digital Marketing', 5),
+(77, 'MA Accounting', 5),
+(78, 'Master of Business', 5),
+(79, 'MEng Engineering Management', 5);

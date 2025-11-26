@@ -4,10 +4,11 @@ import App from './App';
 
 // Mock react-router-dom
 const mockNavigate = jest.fn();
+
 jest.mock('react-router-dom', () => ({
-  BrowserRouter: ({ children }) => <div>{children}</div>,
+  BrowserRouter: ({ children }) => children,
   Route: ({ element }) => element,
-  Routes: ({ children }) => <div>{children}</div>,
+  Routes: ({ children }) => children,
   useLocation: () => ({ pathname: '/' }),
   useNavigate: () => mockNavigate,
 }), { virtual: true });
@@ -20,7 +21,7 @@ jest.mock('./Side-Nav-Bar/SideNav', () => () => <div>SideNav</div>);
 jest.mock('./DashboardHome/DashboardHome', () => () => <div>Dashboard</div>);
 jest.mock('./DashboardHome/UserProfile', () => () => <div>Profile</div>);
 jest.mock('./DashboardHome/CourseDetails', () => () => <div>CourseDetails</div>);
-jest.mock('./components/ProtectedRoute', () => ({ children }) => <div>{children}</div>);
+jest.mock('./components/ProtectedRoute', () => ({ children }) => children);
 
 describe('App Component', () => {
   test('renders without crashing', () => {

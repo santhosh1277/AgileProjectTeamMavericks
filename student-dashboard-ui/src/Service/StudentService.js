@@ -16,7 +16,7 @@ export const UpdateStudentDetails = async (user) => {
         const data = await response.json();
         return data;
     } catch (error) {
-        throw error;
+        throw new Error(`Failed to update student details: ${error.message}`);
     }
 };
 
@@ -39,6 +39,6 @@ export const GetStudentDetails = async (email) => {
 
         return data;  // ⬅️ this will be entire student object
     } catch (error) {
-        throw error;
+        throw new Error(`Failed to fetch student details: ${error.message}`);
     }
 };

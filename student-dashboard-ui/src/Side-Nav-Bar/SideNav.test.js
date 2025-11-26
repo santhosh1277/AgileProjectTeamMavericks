@@ -4,6 +4,7 @@ import SideNav from './SideNav';
 
 // Mock useNavigate and Link
 const mockNavigate = jest.fn();
+
 jest.mock(
   'react-router-dom',
   () => ({
