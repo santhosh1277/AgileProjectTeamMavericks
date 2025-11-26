@@ -203,6 +203,46 @@ function DashboardHome() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [selectedCountry, setSelectedCountry] = useState("Ireland");
+  const [fadeIn, setFadeIn] = useState(false);
+
+  // Add CSS animations
+  useEffect(() => {
+    const styleSheet = `
+      @keyframes dashboardFadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes dashboardSlideUp {
+        from { 
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to { 
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes cardStaggerIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    `;
+    
+    const style = document.createElement('style');
+    style.textContent = styleSheet;
+    document.head.appendChild(style);
+    
+    // Trigger fade in after a short delay
+    setTimeout(() => setFadeIn(true), 50);
+    
+    return () => document.head.removeChild(style);
+  }, []);
 
   useEffect(() => {
         const fetchColleges = async () => {
@@ -240,7 +280,15 @@ function DashboardHome() {
 
   if (loading) {
     return (
-      <div className="dashboard-home" style={{ width: "100%", minHeight: "100vh", backgroundColor: "transparent" }}>
+      <div 
+        className="dashboard-home" 
+        style={{ 
+          width: "100%", 
+          minHeight: "100vh", 
+          backgroundColor: "transparent",
+          animation: "dashboardFadeIn 0.5s ease-out"
+        }}
+      >
         <header className="bg-dark text-light py-3 text-center rounded-bottom">
           <h2>Student Dashboard</h2>
         </header>
@@ -256,7 +304,15 @@ function DashboardHome() {
 
   if (error) {
     return (
-      <div className="dashboard-home" style={{ width: "100%", minHeight: "100vh", backgroundColor: "transparent" }}>
+      <div 
+        className="dashboard-home" 
+        style={{ 
+          width: "100%", 
+          minHeight: "100vh", 
+          backgroundColor: "transparent",
+          animation: "dashboardFadeIn 0.5s ease-out"
+        }}
+      >
         <header className="bg-dark text-light py-3 text-center rounded-bottom">
           <h2>Student Dashboard</h2>
         </header>
@@ -269,12 +325,31 @@ function DashboardHome() {
   }
 
   return (
-    <div className="dashboard-home" style={{ width: "100%", minHeight: "100vh", backgroundColor: "transparent" }}>
-      <header className="bg-dark text-light py-3 text-center rounded-bottom">
+    <div 
+      className="dashboard-home" 
+      style={{ 
+        width: "100%", 
+        minHeight: "100vh", 
+        backgroundColor: "transparent",
+        animation: fadeIn ? "dashboardFadeIn 0.6s ease-out" : "none",
+        opacity: fadeIn ? 1 : 0
+      }}
+    >
+      <header 
+        className="bg-dark text-light py-3 text-center rounded-bottom"
+        style={{
+          animation: fadeIn ? "dashboardSlideUp 0.5s ease-out" : "none"
+        }}
+      >
         <h2>Student Dashboard</h2>
       </header>
 
-      <main className="container-fluid mt-4">
+      <main 
+        className="container-fluid mt-4"
+        style={{
+          animation: fadeIn ? "dashboardSlideUp 0.6s ease-out 0.1s backwards" : "none"
+        }}
+      >
         {/* Country Filter */}
         <div className="row mb-4">
           <div className="col-12">
@@ -321,8 +396,14 @@ function DashboardHome() {
           </div>
         ) : (
           <div className="row">
-          {colleges.map((college) => (
-            <div key={college.id} className="col-md-6 col-lg-4 mb-4">
+          {colleges.map((college, index) => (
+            <div 
+              key={college.id} 
+              className="col-md-6 col-lg-4 mb-4"
+              style={{
+                animation: fadeIn ? `cardStaggerIn 0.5s ease-out ${0.1 + index * 0.05}s backwards` : "none"
+              }}
+            >
               <div 
                 className="card shadow-sm h-100 border-0"
                 style={{ cursor: "pointer" }}
