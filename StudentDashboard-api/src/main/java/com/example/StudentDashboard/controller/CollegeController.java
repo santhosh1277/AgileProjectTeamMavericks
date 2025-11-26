@@ -1,7 +1,8 @@
 package com.example.StudentDashboard.controller;
 
 import com.example.StudentDashboard.Entity.College;
-import com.example.StudentDashboard.repository.CollegeRepository;
+import com.example.StudentDashboard.service.CollegeService;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,21 +13,23 @@ import java.util.List;
 public class CollegeController {
 
     // ✅ Step 1: Declare the repository
-    private final CollegeRepository collegeRepository;
+    private CollegeService collegeService;
 
     // ✅ Step 2: Inject it via constructor
-    public CollegeController(CollegeRepository collegeRepository) {
-        this.collegeRepository = collegeRepository;
+    public CollegeController(CollegeService collegeService ) {
+        this.collegeService = collegeService;
     }
 
     // ✅ Step 3: Use it
     @GetMapping
     public List<College> getAllColleges() {
-        return collegeRepository.findAll();
+    	
+        return collegeService.getAllColleges();
     }
 
-    @PostMapping
-    public College addCollege(@RequestBody College college) {
-        return collegeRepository.save(college);
+    @GetMapping("updatecolleges")
+    public void UpdateCollegesList() {
+        collegeService.UpdateCollegesList();
     }
+    
 }
