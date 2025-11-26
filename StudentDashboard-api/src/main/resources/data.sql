@@ -1,10 +1,13 @@
 -- Insert sample colleges
-INSERT INTO college (id, name, location, rank) VALUES 
-(1, 'Trinity College Dublin', 'Dublin, Ireland', 101),
-(2, 'University College Dublin', 'Dublin, Ireland', 177),
-(3, 'University College Cork', 'Cork, Ireland', 298),
-(4, 'National University of Ireland Galway', 'Galway, Ireland', 258),
-(5, 'Dublin City University', 'Dublin, Ireland', 439);
+
+INSERT INTO College (id, name, country, state_province, alpha_two_code, domains)
+VALUES
+(1, 'Trinity College Dublin', 'Ireland', 'Dublin', 'IE', 'tcd.ie'),
+(2, 'University College Dublin', 'Ireland', 'Dublin', 'IE', 'ucd.ie'),
+(3, 'University College Cork', 'Ireland', 'Cork', 'IE', 'ucc.ie'),
+(4, 'National University of Ireland Galway', 'Ireland', 'Galway', 'IE', 'nuigalway.ie'),
+(5, 'Dublin City University', 'Ireland', 'Dublin', 'IE', 'dcu.ie');
+
 
 -- Insert sample courses for Trinity College Dublin
 INSERT INTO course_entity (id, name, college_id) VALUES
