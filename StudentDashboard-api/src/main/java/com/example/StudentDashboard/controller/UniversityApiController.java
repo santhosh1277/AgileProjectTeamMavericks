@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/universities")
-@CrossOrigin(origins = "http://localhost:3000") // React dev server
+
 public class UniversityApiController {
 
     private final UniversityApiService universityApiService;
