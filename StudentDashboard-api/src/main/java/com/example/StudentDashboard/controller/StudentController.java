@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.StudentDashboard.Entity.AcademicProfile;
 import com.example.StudentDashboard.Entity.Student;
 import com.example.StudentDashboard.service.StudentService;
 
@@ -114,5 +115,15 @@ public class StudentController {
         }
 
         return new Student();
+    }
+    @PostMapping("/academic-profile")
+    public ResponseEntity<?> AddAcademicProfile(@RequestBody AcademicProfile request) {
+        
+        
+        if (request.getEmail() != null) {
+            return ResponseEntity.ok(studentService.AddAcademicProfile(request));
+        }
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email is required");
     }
 }

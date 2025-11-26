@@ -20,7 +20,6 @@ public class CollegeController {
         this.collegeService = collegeService;
     }
 
-    // ✅ Step 3: Use it
     @GetMapping
     public List<College> getAllColleges() {
     	
@@ -31,5 +30,5 @@ public class CollegeController {
     public void UpdateCollegesList() {
         collegeService.UpdateCollegesList();
     }
-    
+   
 }

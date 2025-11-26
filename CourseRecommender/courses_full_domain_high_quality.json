@@ -1,0 +1,2012 @@
+[
+  {
+    "course_name": "MSc in Data Science",
+    "description": "MSc in Data Science provides training in Python, SQL, Data Analysis, Machine Learning and prepares students for roles such as Data Scientist.",
+    "domains": [
+      "Data Science"
+    ],
+    "skills": [
+      "Python",
+      "SQL",
+      "Data Analysis",
+      "Machine Learning"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science",
+      "Statistics"
+    ],
+    "career_paths": [
+      "Data Scientist"
+    ],
+    "embedding_text": "MSc in Data Science. MSc in Data Science provides training in Python, SQL, Data Analysis, Machine Learning and prepares students for roles such as Data Scientist.. Skills: Python, SQL, Data Analysis, Machine Learning. Domains: Data Science."
+  },
+  {
+    "course_name": "MSc in Machine Learning",
+    "description": "MSc in Machine Learning provides training in Python, TensorFlow, PyTorch, Deep Learning and prepares students for roles such as Machine Learning Engineer.",
+    "domains": [
+      "Machine Learning"
+    ],
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "PyTorch",
+      "Deep Learning"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science",
+      "Mathematics"
+    ],
+    "career_paths": [
+      "Machine Learning Engineer"
+    ],
+    "embedding_text": "MSc in Machine Learning. MSc in Machine Learning provides training in Python, TensorFlow, PyTorch, Deep Learning and prepares students for roles such as Machine Learning Engineer.. Skills: Python, TensorFlow, PyTorch, Deep Learning. Domains: Machine Learning."
+  },
+  {
+    "course_name": "MSc in Cybersecurity",
+    "description": "MSc in Cybersecurity provides training in Python, Network Security, Cryptography and prepares students for roles such as Cybersecurity Analyst.",
+    "domains": [
+      "Cybersecurity"
+    ],
+    "skills": [
+      "Python",
+      "Network Security",
+      "Cryptography"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science",
+      "IT"
+    ],
+    "career_paths": [
+      "Cybersecurity Analyst"
+    ],
+    "embedding_text": "MSc in Cybersecurity. MSc in Cybersecurity provides training in Python, Network Security, Cryptography and prepares students for roles such as Cybersecurity Analyst.. Skills: Python, Network Security, Cryptography. Domains: Cybersecurity."
+  },
+  {
+    "course_name": "MSc in Software Engineering",
+    "description": "MSc in Software Engineering provides training in Python, Software Development, DevOps and prepares students for roles such as Software Developer.",
+    "domains": [
+      "Software Engineering"
+    ],
+    "skills": [
+      "Python",
+      "Software Development",
+      "DevOps"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science"
+    ],
+    "career_paths": [
+      "Software Developer"
+    ],
+    "embedding_text": "MSc in Software Engineering. MSc in Software Engineering provides training in Python, Software Development, DevOps and prepares students for roles such as Software Developer.. Skills: Python, Software Development, DevOps. Domains: Software Engineering."
+  },
+  {
+    "course_name": "MSc in Business Analytics",
+    "description": "MSc in Business Analytics provides training in Python, SQL, Data Analysis and prepares students for roles such as Business Analyst.",
+    "domains": [
+      "Analytics"
+    ],
+    "skills": [
+      "Python",
+      "SQL",
+      "Data Analysis"
+    ],
+    "ideal_backgrounds": [
+      "Business Administration",
+      "Statistics"
+    ],
+    "career_paths": [
+      "Business Analyst"
+    ],
+    "embedding_text": "MSc in Business Analytics. MSc in Business Analytics provides training in Python, SQL, Data Analysis and prepares students for roles such as Business Analyst.. Skills: Python, SQL, Data Analysis. Domains: Analytics."
+  },
+  {
+    "course_name": "MSc in Finance",
+    "description": "MSc in Finance provides training in Financial Modeling, Excel, Risk Analysis and prepares students for roles such as Financial Analyst.",
+    "domains": [
+      "Finance"
+    ],
+    "skills": [
+      "Financial Modeling",
+      "Excel",
+      "Risk Analysis"
+    ],
+    "ideal_backgrounds": [
+      "Finance",
+      "Economics"
+    ],
+    "career_paths": [
+      "Financial Analyst"
+    ],
+    "embedding_text": "MSc in Finance. MSc in Finance provides training in Financial Modeling, Excel, Risk Analysis and prepares students for roles such as Financial Analyst.. Skills: Financial Modeling, Excel, Risk Analysis. Domains: Finance."
+  },
+  {
+    "course_name": "MSc in UX/UI and Digital Experience",
+    "description": "MSc in UX/UI and Digital Experience provides training in UX Research, UI Design, Prototyping and prepares students for roles such as UX Designer.",
+    "domains": [
+      "HCI"
+    ],
+    "skills": [
+      "UX Research",
+      "UI Design",
+      "Prototyping"
+    ],
+    "ideal_backgrounds": [
+      "Design",
+      "Computer Science"
+    ],
+    "career_paths": [
+      "UX Designer"
+    ],
+    "embedding_text": "MSc in UX/UI and Digital Experience. MSc in UX/UI and Digital Experience provides training in UX Research, UI Design, Prototyping and prepares students for roles such as UX Designer.. Skills: UX Research, UI Design, Prototyping. Domains: HCI."
+  },
+  {
+    "course_name": "MSc in Robotics",
+    "description": "MSc in Robotics provides training in Python, Robotics Control, ROS and prepares students for roles such as Robotics Engineer.",
+    "domains": [
+      "Robotics"
+    ],
+    "skills": [
+      "Python",
+      "Robotics Control",
+      "ROS"
+    ],
+    "ideal_backgrounds": [
+      "Mechanical Engineering",
+      "Computer Science"
+    ],
+    "career_paths": [
+      "Robotics Engineer"
+    ],
+    "embedding_text": "MSc in Robotics. MSc in Robotics provides training in Python, Robotics Control, ROS and prepares students for roles such as Robotics Engineer.. Skills: Python, Robotics Control, ROS. Domains: Robotics."
+  },
+  {
+    "course_name": "MSc in Bioinformatics",
+    "description": "MSc in Bioinformatics provides training in Python, Bioinformatics Tools, Genomics Analysis and prepares students for roles such as Bioinformatics Scientist.",
+    "domains": [
+      "Bioinformatics"
+    ],
+    "skills": [
+      "Python",
+      "Bioinformatics Tools",
+      "Genomics Analysis"
+    ],
+    "ideal_backgrounds": [
+      "Biology",
+      "Computer Science"
+    ],
+    "career_paths": [
+      "Bioinformatics Scientist"
+    ],
+    "embedding_text": "MSc in Bioinformatics. MSc in Bioinformatics provides training in Python, Bioinformatics Tools, Genomics Analysis and prepares students for roles such as Bioinformatics Scientist.. Skills: Python, Bioinformatics Tools, Genomics Analysis. Domains: Bioinformatics."
+  },
+  {
+    "course_name": "MSc in Public Health",
+    "description": "MSc in Public Health provides training in Epidemiology, Data Analysis, Statistics and prepares students for roles such as Public Health Researcher.",
+    "domains": [
+      "Public Health"
+    ],
+    "skills": [
+      "Epidemiology",
+      "Data Analysis",
+      "Statistics"
+    ],
+    "ideal_backgrounds": [
+      "Biology",
+      "Nursing"
+    ],
+    "career_paths": [
+      "Public Health Researcher"
+    ],
+    "embedding_text": "MSc in Public Health. MSc in Public Health provides training in Epidemiology, Data Analysis, Statistics and prepares students for roles such as Public Health Researcher.. Skills: Epidemiology, Data Analysis, Statistics. Domains: Public Health."
+  },
+  {
+    "course_name": "MSc in Data Science",
+    "description": "MSc in Data Science provides training in Python, SQL, Data Analysis, Machine Learning and prepares students for roles such as Data Scientist.",
+    "domains": [
+      "Data Science"
+    ],
+    "skills": [
+      "Python",
+      "SQL",
+      "Data Analysis",
+      "Machine Learning"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science",
+      "Statistics"
+    ],
+    "career_paths": [
+      "Data Scientist"
+    ],
+    "embedding_text": "MSc in Data Science. MSc in Data Science provides training in Python, SQL, Data Analysis, Machine Learning and prepares students for roles such as Data Scientist.. Skills: Python, SQL, Data Analysis, Machine Learning. Domains: Data Science."
+  },
+  {
+    "course_name": "MSc in Machine Learning",
+    "description": "MSc in Machine Learning provides training in Python, TensorFlow, PyTorch, Deep Learning and prepares students for roles such as Machine Learning Engineer.",
+    "domains": [
+      "Machine Learning"
+    ],
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "PyTorch",
+      "Deep Learning"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science",
+      "Mathematics"
+    ],
+    "career_paths": [
+      "Machine Learning Engineer"
+    ],
+    "embedding_text": "MSc in Machine Learning. MSc in Machine Learning provides training in Python, TensorFlow, PyTorch, Deep Learning and prepares students for roles such as Machine Learning Engineer.. Skills: Python, TensorFlow, PyTorch, Deep Learning. Domains: Machine Learning."
+  },
+  {
+    "course_name": "MSc in Cybersecurity",
+    "description": "MSc in Cybersecurity provides training in Python, Network Security, Cryptography and prepares students for roles such as Cybersecurity Analyst.",
+    "domains": [
+      "Cybersecurity"
+    ],
+    "skills": [
+      "Python",
+      "Network Security",
+      "Cryptography"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science",
+      "IT"
+    ],
+    "career_paths": [
+      "Cybersecurity Analyst"
+    ],
+    "embedding_text": "MSc in Cybersecurity. MSc in Cybersecurity provides training in Python, Network Security, Cryptography and prepares students for roles such as Cybersecurity Analyst.. Skills: Python, Network Security, Cryptography. Domains: Cybersecurity."
+  },
+  {
+    "course_name": "MSc in Software Engineering",
+    "description": "MSc in Software Engineering provides training in Python, Software Development, DevOps and prepares students for roles such as Software Developer.",
+    "domains": [
+      "Software Engineering"
+    ],
+    "skills": [
+      "Python",
+      "Software Development",
+      "DevOps"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science"
+    ],
+    "career_paths": [
+      "Software Developer"
+    ],
+    "embedding_text": "MSc in Software Engineering. MSc in Software Engineering provides training in Python, Software Development, DevOps and prepares students for roles such as Software Developer.. Skills: Python, Software Development, DevOps. Domains: Software Engineering."
+  },
+  {
+    "course_name": "MSc in Business Analytics",
+    "description": "MSc in Business Analytics provides training in Python, SQL, Data Analysis and prepares students for roles such as Business Analyst.",
+    "domains": [
+      "Analytics"
+    ],
+    "skills": [
+      "Python",
+      "SQL",
+      "Data Analysis"
+    ],
+    "ideal_backgrounds": [
+      "Business Administration",
+      "Statistics"
+    ],
+    "career_paths": [
+      "Business Analyst"
+    ],
+    "embedding_text": "MSc in Business Analytics. MSc in Business Analytics provides training in Python, SQL, Data Analysis and prepares students for roles such as Business Analyst.. Skills: Python, SQL, Data Analysis. Domains: Analytics."
+  },
+  {
+    "course_name": "MSc in Finance",
+    "description": "MSc in Finance provides training in Financial Modeling, Excel, Risk Analysis and prepares students for roles such as Financial Analyst.",
+    "domains": [
+      "Finance"
+    ],
+    "skills": [
+      "Financial Modeling",
+      "Excel",
+      "Risk Analysis"
+    ],
+    "ideal_backgrounds": [
+      "Finance",
+      "Economics"
+    ],
+    "career_paths": [
+      "Financial Analyst"
+    ],
+    "embedding_text": "MSc in Finance. MSc in Finance provides training in Financial Modeling, Excel, Risk Analysis and prepares students for roles such as Financial Analyst.. Skills: Financial Modeling, Excel, Risk Analysis. Domains: Finance."
+  },
+  {
+    "course_name": "MSc in UX/UI and Digital Experience",
+    "description": "MSc in UX/UI and Digital Experience provides training in UX Research, UI Design, Prototyping and prepares students for roles such as UX Designer.",
+    "domains": [
+      "HCI"
+    ],
+    "skills": [
+      "UX Research",
+      "UI Design",
+      "Prototyping"
+    ],
+    "ideal_backgrounds": [
+      "Design",
+      "Computer Science"
+    ],
+    "career_paths": [
+      "UX Designer"
+    ],
+    "embedding_text": "MSc in UX/UI and Digital Experience. MSc in UX/UI and Digital Experience provides training in UX Research, UI Design, Prototyping and prepares students for roles such as UX Designer.. Skills: UX Research, UI Design, Prototyping. Domains: HCI."
+  },
+  {
+    "course_name": "MSc in Robotics",
+    "description": "MSc in Robotics provides training in Python, Robotics Control, ROS and prepares students for roles such as Robotics Engineer.",
+    "domains": [
+      "Robotics"
+    ],
+    "skills": [
+      "Python",
+      "Robotics Control",
+      "ROS"
+    ],
+    "ideal_backgrounds": [
+      "Mechanical Engineering",
+      "Computer Science"
+    ],
+    "career_paths": [
+      "Robotics Engineer"
+    ],
+    "embedding_text": "MSc in Robotics. MSc in Robotics provides training in Python, Robotics Control, ROS and prepares students for roles such as Robotics Engineer.. Skills: Python, Robotics Control, ROS. Domains: Robotics."
+  },
+  {
+    "course_name": "MSc in Bioinformatics",
+    "description": "MSc in Bioinformatics provides training in Python, Bioinformatics Tools, Genomics Analysis and prepares students for roles such as Bioinformatics Scientist.",
+    "domains": [
+      "Bioinformatics"
+    ],
+    "skills": [
+      "Python",
+      "Bioinformatics Tools",
+      "Genomics Analysis"
+    ],
+    "ideal_backgrounds": [
+      "Biology",
+      "Computer Science"
+    ],
+    "career_paths": [
+      "Bioinformatics Scientist"
+    ],
+    "embedding_text": "MSc in Bioinformatics. MSc in Bioinformatics provides training in Python, Bioinformatics Tools, Genomics Analysis and prepares students for roles such as Bioinformatics Scientist.. Skills: Python, Bioinformatics Tools, Genomics Analysis. Domains: Bioinformatics."
+  },
+  {
+    "course_name": "MSc in Public Health",
+    "description": "MSc in Public Health provides training in Epidemiology, Data Analysis, Statistics and prepares students for roles such as Public Health Researcher.",
+    "domains": [
+      "Public Health"
+    ],
+    "skills": [
+      "Epidemiology",
+      "Data Analysis",
+      "Statistics"
+    ],
+    "ideal_backgrounds": [
+      "Biology",
+      "Nursing"
+    ],
+    "career_paths": [
+      "Public Health Researcher"
+    ],
+    "embedding_text": "MSc in Public Health. MSc in Public Health provides training in Epidemiology, Data Analysis, Statistics and prepares students for roles such as Public Health Researcher.. Skills: Epidemiology, Data Analysis, Statistics. Domains: Public Health."
+  },
+  {
+    "course_name": "MSc in Data Science",
+    "description": "MSc in Data Science provides training in Python, SQL, Data Analysis, Machine Learning and prepares students for roles such as Data Scientist.",
+    "domains": [
+      "Data Science"
+    ],
+    "skills": [
+      "Python",
+      "SQL",
+      "Data Analysis",
+      "Machine Learning"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science",
+      "Statistics"
+    ],
+    "career_paths": [
+      "Data Scientist"
+    ],
+    "embedding_text": "MSc in Data Science. MSc in Data Science provides training in Python, SQL, Data Analysis, Machine Learning and prepares students for roles such as Data Scientist.. Skills: Python, SQL, Data Analysis, Machine Learning. Domains: Data Science."
+  },
+  {
+    "course_name": "MSc in Machine Learning",
+    "description": "MSc in Machine Learning provides training in Python, TensorFlow, PyTorch, Deep Learning and prepares students for roles such as Machine Learning Engineer.",
+    "domains": [
+      "Machine Learning"
+    ],
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "PyTorch",
+      "Deep Learning"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science",
+      "Mathematics"
+    ],
+    "career_paths": [
+      "Machine Learning Engineer"
+    ],
+    "embedding_text": "MSc in Machine Learning. MSc in Machine Learning provides training in Python, TensorFlow, PyTorch, Deep Learning and prepares students for roles such as Machine Learning Engineer.. Skills: Python, TensorFlow, PyTorch, Deep Learning. Domains: Machine Learning."
+  },
+  {
+    "course_name": "MSc in Cybersecurity",
+    "description": "MSc in Cybersecurity provides training in Python, Network Security, Cryptography and prepares students for roles such as Cybersecurity Analyst.",
+    "domains": [
+      "Cybersecurity"
+    ],
+    "skills": [
+      "Python",
+      "Network Security",
+      "Cryptography"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science",
+      "IT"
+    ],
+    "career_paths": [
+      "Cybersecurity Analyst"
+    ],
+    "embedding_text": "MSc in Cybersecurity. MSc in Cybersecurity provides training in Python, Network Security, Cryptography and prepares students for roles such as Cybersecurity Analyst.. Skills: Python, Network Security, Cryptography. Domains: Cybersecurity."
+  },
+  {
+    "course_name": "MSc in Software Engineering",
+    "description": "MSc in Software Engineering provides training in Python, Software Development, DevOps and prepares students for roles such as Software Developer.",
+    "domains": [
+      "Software Engineering"
+    ],
+    "skills": [
+      "Python",
+      "Software Development",
+      "DevOps"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science"
+    ],
+    "career_paths": [
+      "Software Developer"
+    ],
+    "embedding_text": "MSc in Software Engineering. MSc in Software Engineering provides training in Python, Software Development, DevOps and prepares students for roles such as Software Developer.. Skills: Python, Software Development, DevOps. Domains: Software Engineering."
+  },
+  {
+    "course_name": "MSc in Business Analytics",
+    "description": "MSc in Business Analytics provides training in Python, SQL, Data Analysis and prepares students for roles such as Business Analyst.",
+    "domains": [
+      "Analytics"
+    ],
+    "skills": [
+      "Python",
+      "SQL",
+      "Data Analysis"
+    ],
+    "ideal_backgrounds": [
+      "Business Administration",
+      "Statistics"
+    ],
+    "career_paths": [
+      "Business Analyst"
+    ],
+    "embedding_text": "MSc in Business Analytics. MSc in Business Analytics provides training in Python, SQL, Data Analysis and prepares students for roles such as Business Analyst.. Skills: Python, SQL, Data Analysis. Domains: Analytics."
+  },
+  {
+    "course_name": "MSc in Finance",
+    "description": "MSc in Finance provides training in Financial Modeling, Excel, Risk Analysis and prepares students for roles such as Financial Analyst.",
+    "domains": [
+      "Finance"
+    ],
+    "skills": [
+      "Financial Modeling",
+      "Excel",
+      "Risk Analysis"
+    ],
+    "ideal_backgrounds": [
+      "Finance",
+      "Economics"
+    ],
+    "career_paths": [
+      "Financial Analyst"
+    ],
+    "embedding_text": "MSc in Finance. MSc in Finance provides training in Financial Modeling, Excel, Risk Analysis and prepares students for roles such as Financial Analyst.. Skills: Financial Modeling, Excel, Risk Analysis. Domains: Finance."
+  },
+  {
+    "course_name": "MSc in UX/UI and Digital Experience",
+    "description": "MSc in UX/UI and Digital Experience provides training in UX Research, UI Design, Prototyping and prepares students for roles such as UX Designer.",
+    "domains": [
+      "HCI"
+    ],
+    "skills": [
+      "UX Research",
+      "UI Design",
+      "Prototyping"
+    ],
+    "ideal_backgrounds": [
+      "Design",
+      "Computer Science"
+    ],
+    "career_paths": [
+      "UX Designer"
+    ],
+    "embedding_text": "MSc in UX/UI and Digital Experience. MSc in UX/UI and Digital Experience provides training in UX Research, UI Design, Prototyping and prepares students for roles such as UX Designer.. Skills: UX Research, UI Design, Prototyping. Domains: HCI."
+  },
+  {
+    "course_name": "MSc in Robotics",
+    "description": "MSc in Robotics provides training in Python, Robotics Control, ROS and prepares students for roles such as Robotics Engineer.",
+    "domains": [
+      "Robotics"
+    ],
+    "skills": [
+      "Python",
+      "Robotics Control",
+      "ROS"
+    ],
+    "ideal_backgrounds": [
+      "Mechanical Engineering",
+      "Computer Science"
+    ],
+    "career_paths": [
+      "Robotics Engineer"
+    ],
+    "embedding_text": "MSc in Robotics. MSc in Robotics provides training in Python, Robotics Control, ROS and prepares students for roles such as Robotics Engineer.. Skills: Python, Robotics Control, ROS. Domains: Robotics."
+  },
+  {
+    "course_name": "MSc in Bioinformatics",
+    "description": "MSc in Bioinformatics provides training in Python, Bioinformatics Tools, Genomics Analysis and prepares students for roles such as Bioinformatics Scientist.",
+    "domains": [
+      "Bioinformatics"
+    ],
+    "skills": [
+      "Python",
+      "Bioinformatics Tools",
+      "Genomics Analysis"
+    ],
+    "ideal_backgrounds": [
+      "Biology",
+      "Computer Science"
+    ],
+    "career_paths": [
+      "Bioinformatics Scientist"
+    ],
+    "embedding_text": "MSc in Bioinformatics. MSc in Bioinformatics provides training in Python, Bioinformatics Tools, Genomics Analysis and prepares students for roles such as Bioinformatics Scientist.. Skills: Python, Bioinformatics Tools, Genomics Analysis. Domains: Bioinformatics."
+  },
+  {
+    "course_name": "MSc in Public Health",
+    "description": "MSc in Public Health provides training in Epidemiology, Data Analysis, Statistics and prepares students for roles such as Public Health Researcher.",
+    "domains": [
+      "Public Health"
+    ],
+    "skills": [
+      "Epidemiology",
+      "Data Analysis",
+      "Statistics"
+    ],
+    "ideal_backgrounds": [
+      "Biology",
+      "Nursing"
+    ],
+    "career_paths": [
+      "Public Health Researcher"
+    ],
+    "embedding_text": "MSc in Public Health. MSc in Public Health provides training in Epidemiology, Data Analysis, Statistics and prepares students for roles such as Public Health Researcher.. Skills: Epidemiology, Data Analysis, Statistics. Domains: Public Health."
+  },
+  {
+    "course_name": "MSc in Data Science",
+    "description": "MSc in Data Science provides training in Python, SQL, Data Analysis, Machine Learning and prepares students for roles such as Data Scientist.",
+    "domains": [
+      "Data Science"
+    ],
+    "skills": [
+      "Python",
+      "SQL",
+      "Data Analysis",
+      "Machine Learning"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science",
+      "Statistics"
+    ],
+    "career_paths": [
+      "Data Scientist"
+    ],
+    "embedding_text": "MSc in Data Science. MSc in Data Science provides training in Python, SQL, Data Analysis, Machine Learning and prepares students for roles such as Data Scientist.. Skills: Python, SQL, Data Analysis, Machine Learning. Domains: Data Science."
+  },
+  {
+    "course_name": "MSc in Machine Learning",
+    "description": "MSc in Machine Learning provides training in Python, TensorFlow, PyTorch, Deep Learning and prepares students for roles such as Machine Learning Engineer.",
+    "domains": [
+      "Machine Learning"
+    ],
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "PyTorch",
+      "Deep Learning"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science",
+      "Mathematics"
+    ],
+    "career_paths": [
+      "Machine Learning Engineer"
+    ],
+    "embedding_text": "MSc in Machine Learning. MSc in Machine Learning provides training in Python, TensorFlow, PyTorch, Deep Learning and prepares students for roles such as Machine Learning Engineer.. Skills: Python, TensorFlow, PyTorch, Deep Learning. Domains: Machine Learning."
+  },
+  {
+    "course_name": "MSc in Cybersecurity",
+    "description": "MSc in Cybersecurity provides training in Python, Network Security, Cryptography and prepares students for roles such as Cybersecurity Analyst.",
+    "domains": [
+      "Cybersecurity"
+    ],
+    "skills": [
+      "Python",
+      "Network Security",
+      "Cryptography"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science",
+      "IT"
+    ],
+    "career_paths": [
+      "Cybersecurity Analyst"
+    ],
+    "embedding_text": "MSc in Cybersecurity. MSc in Cybersecurity provides training in Python, Network Security, Cryptography and prepares students for roles such as Cybersecurity Analyst.. Skills: Python, Network Security, Cryptography. Domains: Cybersecurity."
+  },
+  {
+    "course_name": "MSc in Software Engineering",
+    "description": "MSc in Software Engineering provides training in Python, Software Development, DevOps and prepares students for roles such as Software Developer.",
+    "domains": [
+      "Software Engineering"
+    ],
+    "skills": [
+      "Python",
+      "Software Development",
+      "DevOps"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science"
+    ],
+    "career_paths": [
+      "Software Developer"
+    ],
+    "embedding_text": "MSc in Software Engineering. MSc in Software Engineering provides training in Python, Software Development, DevOps and prepares students for roles such as Software Developer.. Skills: Python, Software Development, DevOps. Domains: Software Engineering."
+  },
+  {
+    "course_name": "MSc in Business Analytics",
+    "description": "MSc in Business Analytics provides training in Python, SQL, Data Analysis and prepares students for roles such as Business Analyst.",
+    "domains": [
+      "Analytics"
+    ],
+    "skills": [
+      "Python",
+      "SQL",
+      "Data Analysis"
+    ],
+    "ideal_backgrounds": [
+      "Business Administration",
+      "Statistics"
+    ],
+    "career_paths": [
+      "Business Analyst"
+    ],
+    "embedding_text": "MSc in Business Analytics. MSc in Business Analytics provides training in Python, SQL, Data Analysis and prepares students for roles such as Business Analyst.. Skills: Python, SQL, Data Analysis. Domains: Analytics."
+  },
+  {
+    "course_name": "MSc in Finance",
+    "description": "MSc in Finance provides training in Financial Modeling, Excel, Risk Analysis and prepares students for roles such as Financial Analyst.",
+    "domains": [
+      "Finance"
+    ],
+    "skills": [
+      "Financial Modeling",
+      "Excel",
+      "Risk Analysis"
+    ],
+    "ideal_backgrounds": [
+      "Finance",
+      "Economics"
+    ],
+    "career_paths": [
+      "Financial Analyst"
+    ],
+    "embedding_text": "MSc in Finance. MSc in Finance provides training in Financial Modeling, Excel, Risk Analysis and prepares students for roles such as Financial Analyst.. Skills: Financial Modeling, Excel, Risk Analysis. Domains: Finance."
+  },
+  {
+    "course_name": "MSc in UX/UI and Digital Experience",
+    "description": "MSc in UX/UI and Digital Experience provides training in UX Research, UI Design, Prototyping and prepares students for roles such as UX Designer.",
+    "domains": [
+      "HCI"
+    ],
+    "skills": [
+      "UX Research",
+      "UI Design",
+      "Prototyping"
+    ],
+    "ideal_backgrounds": [
+      "Design",
+      "Computer Science"
+    ],
+    "career_paths": [
+      "UX Designer"
+    ],
+    "embedding_text": "MSc in UX/UI and Digital Experience. MSc in UX/UI and Digital Experience provides training in UX Research, UI Design, Prototyping and prepares students for roles such as UX Designer.. Skills: UX Research, UI Design, Prototyping. Domains: HCI."
+  },
+  {
+    "course_name": "MSc in Robotics",
+    "description": "MSc in Robotics provides training in Python, Robotics Control, ROS and prepares students for roles such as Robotics Engineer.",
+    "domains": [
+      "Robotics"
+    ],
+    "skills": [
+      "Python",
+      "Robotics Control",
+      "ROS"
+    ],
+    "ideal_backgrounds": [
+      "Mechanical Engineering",
+      "Computer Science"
+    ],
+    "career_paths": [
+      "Robotics Engineer"
+    ],
+    "embedding_text": "MSc in Robotics. MSc in Robotics provides training in Python, Robotics Control, ROS and prepares students for roles such as Robotics Engineer.. Skills: Python, Robotics Control, ROS. Domains: Robotics."
+  },
+  {
+    "course_name": "MSc in Bioinformatics",
+    "description": "MSc in Bioinformatics provides training in Python, Bioinformatics Tools, Genomics Analysis and prepares students for roles such as Bioinformatics Scientist.",
+    "domains": [
+      "Bioinformatics"
+    ],
+    "skills": [
+      "Python",
+      "Bioinformatics Tools",
+      "Genomics Analysis"
+    ],
+    "ideal_backgrounds": [
+      "Biology",
+      "Computer Science"
+    ],
+    "career_paths": [
+      "Bioinformatics Scientist"
+    ],
+    "embedding_text": "MSc in Bioinformatics. MSc in Bioinformatics provides training in Python, Bioinformatics Tools, Genomics Analysis and prepares students for roles such as Bioinformatics Scientist.. Skills: Python, Bioinformatics Tools, Genomics Analysis. Domains: Bioinformatics."
+  },
+  {
+    "course_name": "MSc in Public Health",
+    "description": "MSc in Public Health provides training in Epidemiology, Data Analysis, Statistics and prepares students for roles such as Public Health Researcher.",
+    "domains": [
+      "Public Health"
+    ],
+    "skills": [
+      "Epidemiology",
+      "Data Analysis",
+      "Statistics"
+    ],
+    "ideal_backgrounds": [
+      "Biology",
+      "Nursing"
+    ],
+    "career_paths": [
+      "Public Health Researcher"
+    ],
+    "embedding_text": "MSc in Public Health. MSc in Public Health provides training in Epidemiology, Data Analysis, Statistics and prepares students for roles such as Public Health Researcher.. Skills: Epidemiology, Data Analysis, Statistics. Domains: Public Health."
+  },
+  {
+    "course_name": "MSc in Data Science",
+    "description": "MSc in Data Science provides training in Python, SQL, Data Analysis, Machine Learning and prepares students for roles such as Data Scientist.",
+    "domains": [
+      "Data Science"
+    ],
+    "skills": [
+      "Python",
+      "SQL",
+      "Data Analysis",
+      "Machine Learning"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science",
+      "Statistics"
+    ],
+    "career_paths": [
+      "Data Scientist"
+    ],
+    "embedding_text": "MSc in Data Science. MSc in Data Science provides training in Python, SQL, Data Analysis, Machine Learning and prepares students for roles such as Data Scientist.. Skills: Python, SQL, Data Analysis, Machine Learning. Domains: Data Science."
+  },
+  {
+    "course_name": "MSc in Machine Learning",
+    "description": "MSc in Machine Learning provides training in Python, TensorFlow, PyTorch, Deep Learning and prepares students for roles such as Machine Learning Engineer.",
+    "domains": [
+      "Machine Learning"
+    ],
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "PyTorch",
+      "Deep Learning"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science",
+      "Mathematics"
+    ],
+    "career_paths": [
+      "Machine Learning Engineer"
+    ],
+    "embedding_text": "MSc in Machine Learning. MSc in Machine Learning provides training in Python, TensorFlow, PyTorch, Deep Learning and prepares students for roles such as Machine Learning Engineer.. Skills: Python, TensorFlow, PyTorch, Deep Learning. Domains: Machine Learning."
+  },
+  {
+    "course_name": "MSc in Cybersecurity",
+    "description": "MSc in Cybersecurity provides training in Python, Network Security, Cryptography and prepares students for roles such as Cybersecurity Analyst.",
+    "domains": [
+      "Cybersecurity"
+    ],
+    "skills": [
+      "Python",
+      "Network Security",
+      "Cryptography"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science",
+      "IT"
+    ],
+    "career_paths": [
+      "Cybersecurity Analyst"
+    ],
+    "embedding_text": "MSc in Cybersecurity. MSc in Cybersecurity provides training in Python, Network Security, Cryptography and prepares students for roles such as Cybersecurity Analyst.. Skills: Python, Network Security, Cryptography. Domains: Cybersecurity."
+  },
+  {
+    "course_name": "MSc in Software Engineering",
+    "description": "MSc in Software Engineering provides training in Python, Software Development, DevOps and prepares students for roles such as Software Developer.",
+    "domains": [
+      "Software Engineering"
+    ],
+    "skills": [
+      "Python",
+      "Software Development",
+      "DevOps"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science"
+    ],
+    "career_paths": [
+      "Software Developer"
+    ],
+    "embedding_text": "MSc in Software Engineering. MSc in Software Engineering provides training in Python, Software Development, DevOps and prepares students for roles such as Software Developer.. Skills: Python, Software Development, DevOps. Domains: Software Engineering."
+  },
+  {
+    "course_name": "MSc in Business Analytics",
+    "description": "MSc in Business Analytics provides training in Python, SQL, Data Analysis and prepares students for roles such as Business Analyst.",
+    "domains": [
+      "Analytics"
+    ],
+    "skills": [
+      "Python",
+      "SQL",
+      "Data Analysis"
+    ],
+    "ideal_backgrounds": [
+      "Business Administration",
+      "Statistics"
+    ],
+    "career_paths": [
+      "Business Analyst"
+    ],
+    "embedding_text": "MSc in Business Analytics. MSc in Business Analytics provides training in Python, SQL, Data Analysis and prepares students for roles such as Business Analyst.. Skills: Python, SQL, Data Analysis. Domains: Analytics."
+  },
+  {
+    "course_name": "MSc in Finance",
+    "description": "MSc in Finance provides training in Financial Modeling, Excel, Risk Analysis and prepares students for roles such as Financial Analyst.",
+    "domains": [
+      "Finance"
+    ],
+    "skills": [
+      "Financial Modeling",
+      "Excel",
+      "Risk Analysis"
+    ],
+    "ideal_backgrounds": [
+      "Finance",
+      "Economics"
+    ],
+    "career_paths": [
+      "Financial Analyst"
+    ],
+    "embedding_text": "MSc in Finance. MSc in Finance provides training in Financial Modeling, Excel, Risk Analysis and prepares students for roles such as Financial Analyst.. Skills: Financial Modeling, Excel, Risk Analysis. Domains: Finance."
+  },
+  {
+    "course_name": "MSc in UX/UI and Digital Experience",
+    "description": "MSc in UX/UI and Digital Experience provides training in UX Research, UI Design, Prototyping and prepares students for roles such as UX Designer.",
+    "domains": [
+      "HCI"
+    ],
+    "skills": [
+      "UX Research",
+      "UI Design",
+      "Prototyping"
+    ],
+    "ideal_backgrounds": [
+      "Design",
+      "Computer Science"
+    ],
+    "career_paths": [
+      "UX Designer"
+    ],
+    "embedding_text": "MSc in UX/UI and Digital Experience. MSc in UX/UI and Digital Experience provides training in UX Research, UI Design, Prototyping and prepares students for roles such as UX Designer.. Skills: UX Research, UI Design, Prototyping. Domains: HCI."
+  },
+  {
+    "course_name": "MSc in Robotics",
+    "description": "MSc in Robotics provides training in Python, Robotics Control, ROS and prepares students for roles such as Robotics Engineer.",
+    "domains": [
+      "Robotics"
+    ],
+    "skills": [
+      "Python",
+      "Robotics Control",
+      "ROS"
+    ],
+    "ideal_backgrounds": [
+      "Mechanical Engineering",
+      "Computer Science"
+    ],
+    "career_paths": [
+      "Robotics Engineer"
+    ],
+    "embedding_text": "MSc in Robotics. MSc in Robotics provides training in Python, Robotics Control, ROS and prepares students for roles such as Robotics Engineer.. Skills: Python, Robotics Control, ROS. Domains: Robotics."
+  },
+  {
+    "course_name": "MSc in Bioinformatics",
+    "description": "MSc in Bioinformatics provides training in Python, Bioinformatics Tools, Genomics Analysis and prepares students for roles such as Bioinformatics Scientist.",
+    "domains": [
+      "Bioinformatics"
+    ],
+    "skills": [
+      "Python",
+      "Bioinformatics Tools",
+      "Genomics Analysis"
+    ],
+    "ideal_backgrounds": [
+      "Biology",
+      "Computer Science"
+    ],
+    "career_paths": [
+      "Bioinformatics Scientist"
+    ],
+    "embedding_text": "MSc in Bioinformatics. MSc in Bioinformatics provides training in Python, Bioinformatics Tools, Genomics Analysis and prepares students for roles such as Bioinformatics Scientist.. Skills: Python, Bioinformatics Tools, Genomics Analysis. Domains: Bioinformatics."
+  },
+  {
+    "course_name": "MSc in Public Health",
+    "description": "MSc in Public Health provides training in Epidemiology, Data Analysis, Statistics and prepares students for roles such as Public Health Researcher.",
+    "domains": [
+      "Public Health"
+    ],
+    "skills": [
+      "Epidemiology",
+      "Data Analysis",
+      "Statistics"
+    ],
+    "ideal_backgrounds": [
+      "Biology",
+      "Nursing"
+    ],
+    "career_paths": [
+      "Public Health Researcher"
+    ],
+    "embedding_text": "MSc in Public Health. MSc in Public Health provides training in Epidemiology, Data Analysis, Statistics and prepares students for roles such as Public Health Researcher.. Skills: Epidemiology, Data Analysis, Statistics. Domains: Public Health."
+  },
+  {
+    "course_name": "MSc in Data Science",
+    "description": "MSc in Data Science provides training in Python, SQL, Data Analysis, Machine Learning and prepares students for roles such as Data Scientist.",
+    "domains": [
+      "Data Science"
+    ],
+    "skills": [
+      "Python",
+      "SQL",
+      "Data Analysis",
+      "Machine Learning"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science",
+      "Statistics"
+    ],
+    "career_paths": [
+      "Data Scientist"
+    ],
+    "embedding_text": "MSc in Data Science. MSc in Data Science provides training in Python, SQL, Data Analysis, Machine Learning and prepares students for roles such as Data Scientist.. Skills: Python, SQL, Data Analysis, Machine Learning. Domains: Data Science."
+  },
+  {
+    "course_name": "MSc in Machine Learning",
+    "description": "MSc in Machine Learning provides training in Python, TensorFlow, PyTorch, Deep Learning and prepares students for roles such as Machine Learning Engineer.",
+    "domains": [
+      "Machine Learning"
+    ],
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "PyTorch",
+      "Deep Learning"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science",
+      "Mathematics"
+    ],
+    "career_paths": [
+      "Machine Learning Engineer"
+    ],
+    "embedding_text": "MSc in Machine Learning. MSc in Machine Learning provides training in Python, TensorFlow, PyTorch, Deep Learning and prepares students for roles such as Machine Learning Engineer.. Skills: Python, TensorFlow, PyTorch, Deep Learning. Domains: Machine Learning."
+  },
+  {
+    "course_name": "MSc in Cybersecurity",
+    "description": "MSc in Cybersecurity provides training in Python, Network Security, Cryptography and prepares students for roles such as Cybersecurity Analyst.",
+    "domains": [
+      "Cybersecurity"
+    ],
+    "skills": [
+      "Python",
+      "Network Security",
+      "Cryptography"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science",
+      "IT"
+    ],
+    "career_paths": [
+      "Cybersecurity Analyst"
+    ],
+    "embedding_text": "MSc in Cybersecurity. MSc in Cybersecurity provides training in Python, Network Security, Cryptography and prepares students for roles such as Cybersecurity Analyst.. Skills: Python, Network Security, Cryptography. Domains: Cybersecurity."
+  },
+  {
+    "course_name": "MSc in Software Engineering",
+    "description": "MSc in Software Engineering provides training in Python, Software Development, DevOps and prepares students for roles such as Software Developer.",
+    "domains": [
+      "Software Engineering"
+    ],
+    "skills": [
+      "Python",
+      "Software Development",
+      "DevOps"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science"
+    ],
+    "career_paths": [
+      "Software Developer"
+    ],
+    "embedding_text": "MSc in Software Engineering. MSc in Software Engineering provides training in Python, Software Development, DevOps and prepares students for roles such as Software Developer.. Skills: Python, Software Development, DevOps. Domains: Software Engineering."
+  },
+  {
+    "course_name": "MSc in Business Analytics",
+    "description": "MSc in Business Analytics provides training in Python, SQL, Data Analysis and prepares students for roles such as Business Analyst.",
+    "domains": [
+      "Analytics"
+    ],
+    "skills": [
+      "Python",
+      "SQL",
+      "Data Analysis"
+    ],
+    "ideal_backgrounds": [
+      "Business Administration",
+      "Statistics"
+    ],
+    "career_paths": [
+      "Business Analyst"
+    ],
+    "embedding_text": "MSc in Business Analytics. MSc in Business Analytics provides training in Python, SQL, Data Analysis and prepares students for roles such as Business Analyst.. Skills: Python, SQL, Data Analysis. Domains: Analytics."
+  },
+  {
+    "course_name": "MSc in Finance",
+    "description": "MSc in Finance provides training in Financial Modeling, Excel, Risk Analysis and prepares students for roles such as Financial Analyst.",
+    "domains": [
+      "Finance"
+    ],
+    "skills": [
+      "Financial Modeling",
+      "Excel",
+      "Risk Analysis"
+    ],
+    "ideal_backgrounds": [
+      "Finance",
+      "Economics"
+    ],
+    "career_paths": [
+      "Financial Analyst"
+    ],
+    "embedding_text": "MSc in Finance. MSc in Finance provides training in Financial Modeling, Excel, Risk Analysis and prepares students for roles such as Financial Analyst.. Skills: Financial Modeling, Excel, Risk Analysis. Domains: Finance."
+  },
+  {
+    "course_name": "MSc in UX/UI and Digital Experience",
+    "description": "MSc in UX/UI and Digital Experience provides training in UX Research, UI Design, Prototyping and prepares students for roles such as UX Designer.",
+    "domains": [
+      "HCI"
+    ],
+    "skills": [
+      "UX Research",
+      "UI Design",
+      "Prototyping"
+    ],
+    "ideal_backgrounds": [
+      "Design",
+      "Computer Science"
+    ],
+    "career_paths": [
+      "UX Designer"
+    ],
+    "embedding_text": "MSc in UX/UI and Digital Experience. MSc in UX/UI and Digital Experience provides training in UX Research, UI Design, Prototyping and prepares students for roles such as UX Designer.. Skills: UX Research, UI Design, Prototyping. Domains: HCI."
+  },
+  {
+    "course_name": "MSc in Robotics",
+    "description": "MSc in Robotics provides training in Python, Robotics Control, ROS and prepares students for roles such as Robotics Engineer.",
+    "domains": [
+      "Robotics"
+    ],
+    "skills": [
+      "Python",
+      "Robotics Control",
+      "ROS"
+    ],
+    "ideal_backgrounds": [
+      "Mechanical Engineering",
+      "Computer Science"
+    ],
+    "career_paths": [
+      "Robotics Engineer"
+    ],
+    "embedding_text": "MSc in Robotics. MSc in Robotics provides training in Python, Robotics Control, ROS and prepares students for roles such as Robotics Engineer.. Skills: Python, Robotics Control, ROS. Domains: Robotics."
+  },
+  {
+    "course_name": "MSc in Bioinformatics",
+    "description": "MSc in Bioinformatics provides training in Python, Bioinformatics Tools, Genomics Analysis and prepares students for roles such as Bioinformatics Scientist.",
+    "domains": [
+      "Bioinformatics"
+    ],
+    "skills": [
+      "Python",
+      "Bioinformatics Tools",
+      "Genomics Analysis"
+    ],
+    "ideal_backgrounds": [
+      "Biology",
+      "Computer Science"
+    ],
+    "career_paths": [
+      "Bioinformatics Scientist"
+    ],
+    "embedding_text": "MSc in Bioinformatics. MSc in Bioinformatics provides training in Python, Bioinformatics Tools, Genomics Analysis and prepares students for roles such as Bioinformatics Scientist.. Skills: Python, Bioinformatics Tools, Genomics Analysis. Domains: Bioinformatics."
+  },
+  {
+    "course_name": "MSc in Public Health",
+    "description": "MSc in Public Health provides training in Epidemiology, Data Analysis, Statistics and prepares students for roles such as Public Health Researcher.",
+    "domains": [
+      "Public Health"
+    ],
+    "skills": [
+      "Epidemiology",
+      "Data Analysis",
+      "Statistics"
+    ],
+    "ideal_backgrounds": [
+      "Biology",
+      "Nursing"
+    ],
+    "career_paths": [
+      "Public Health Researcher"
+    ],
+    "embedding_text": "MSc in Public Health. MSc in Public Health provides training in Epidemiology, Data Analysis, Statistics and prepares students for roles such as Public Health Researcher.. Skills: Epidemiology, Data Analysis, Statistics. Domains: Public Health."
+  },
+  {
+    "course_name": "MSc in Data Science",
+    "description": "MSc in Data Science provides training in Python, SQL, Data Analysis, Machine Learning and prepares students for roles such as Data Scientist.",
+    "domains": [
+      "Data Science"
+    ],
+    "skills": [
+      "Python",
+      "SQL",
+      "Data Analysis",
+      "Machine Learning"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science",
+      "Statistics"
+    ],
+    "career_paths": [
+      "Data Scientist"
+    ],
+    "embedding_text": "MSc in Data Science. MSc in Data Science provides training in Python, SQL, Data Analysis, Machine Learning and prepares students for roles such as Data Scientist.. Skills: Python, SQL, Data Analysis, Machine Learning. Domains: Data Science."
+  },
+  {
+    "course_name": "MSc in Machine Learning",
+    "description": "MSc in Machine Learning provides training in Python, TensorFlow, PyTorch, Deep Learning and prepares students for roles such as Machine Learning Engineer.",
+    "domains": [
+      "Machine Learning"
+    ],
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "PyTorch",
+      "Deep Learning"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science",
+      "Mathematics"
+    ],
+    "career_paths": [
+      "Machine Learning Engineer"
+    ],
+    "embedding_text": "MSc in Machine Learning. MSc in Machine Learning provides training in Python, TensorFlow, PyTorch, Deep Learning and prepares students for roles such as Machine Learning Engineer.. Skills: Python, TensorFlow, PyTorch, Deep Learning. Domains: Machine Learning."
+  },
+  {
+    "course_name": "MSc in Cybersecurity",
+    "description": "MSc in Cybersecurity provides training in Python, Network Security, Cryptography and prepares students for roles such as Cybersecurity Analyst.",
+    "domains": [
+      "Cybersecurity"
+    ],
+    "skills": [
+      "Python",
+      "Network Security",
+      "Cryptography"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science",
+      "IT"
+    ],
+    "career_paths": [
+      "Cybersecurity Analyst"
+    ],
+    "embedding_text": "MSc in Cybersecurity. MSc in Cybersecurity provides training in Python, Network Security, Cryptography and prepares students for roles such as Cybersecurity Analyst.. Skills: Python, Network Security, Cryptography. Domains: Cybersecurity."
+  },
+  {
+    "course_name": "MSc in Software Engineering",
+    "description": "MSc in Software Engineering provides training in Python, Software Development, DevOps and prepares students for roles such as Software Developer.",
+    "domains": [
+      "Software Engineering"
+    ],
+    "skills": [
+      "Python",
+      "Software Development",
+      "DevOps"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science"
+    ],
+    "career_paths": [
+      "Software Developer"
+    ],
+    "embedding_text": "MSc in Software Engineering. MSc in Software Engineering provides training in Python, Software Development, DevOps and prepares students for roles such as Software Developer.. Skills: Python, Software Development, DevOps. Domains: Software Engineering."
+  },
+  {
+    "course_name": "MSc in Business Analytics",
+    "description": "MSc in Business Analytics provides training in Python, SQL, Data Analysis and prepares students for roles such as Business Analyst.",
+    "domains": [
+      "Analytics"
+    ],
+    "skills": [
+      "Python",
+      "SQL",
+      "Data Analysis"
+    ],
+    "ideal_backgrounds": [
+      "Business Administration",
+      "Statistics"
+    ],
+    "career_paths": [
+      "Business Analyst"
+    ],
+    "embedding_text": "MSc in Business Analytics. MSc in Business Analytics provides training in Python, SQL, Data Analysis and prepares students for roles such as Business Analyst.. Skills: Python, SQL, Data Analysis. Domains: Analytics."
+  },
+  {
+    "course_name": "MSc in Finance",
+    "description": "MSc in Finance provides training in Financial Modeling, Excel, Risk Analysis and prepares students for roles such as Financial Analyst.",
+    "domains": [
+      "Finance"
+    ],
+    "skills": [
+      "Financial Modeling",
+      "Excel",
+      "Risk Analysis"
+    ],
+    "ideal_backgrounds": [
+      "Finance",
+      "Economics"
+    ],
+    "career_paths": [
+      "Financial Analyst"
+    ],
+    "embedding_text": "MSc in Finance. MSc in Finance provides training in Financial Modeling, Excel, Risk Analysis and prepares students for roles such as Financial Analyst.. Skills: Financial Modeling, Excel, Risk Analysis. Domains: Finance."
+  },
+  {
+    "course_name": "MSc in UX/UI and Digital Experience",
+    "description": "MSc in UX/UI and Digital Experience provides training in UX Research, UI Design, Prototyping and prepares students for roles such as UX Designer.",
+    "domains": [
+      "HCI"
+    ],
+    "skills": [
+      "UX Research",
+      "UI Design",
+      "Prototyping"
+    ],
+    "ideal_backgrounds": [
+      "Design",
+      "Computer Science"
+    ],
+    "career_paths": [
+      "UX Designer"
+    ],
+    "embedding_text": "MSc in UX/UI and Digital Experience. MSc in UX/UI and Digital Experience provides training in UX Research, UI Design, Prototyping and prepares students for roles such as UX Designer.. Skills: UX Research, UI Design, Prototyping. Domains: HCI."
+  },
+  {
+    "course_name": "MSc in Robotics",
+    "description": "MSc in Robotics provides training in Python, Robotics Control, ROS and prepares students for roles such as Robotics Engineer.",
+    "domains": [
+      "Robotics"
+    ],
+    "skills": [
+      "Python",
+      "Robotics Control",
+      "ROS"
+    ],
+    "ideal_backgrounds": [
+      "Mechanical Engineering",
+      "Computer Science"
+    ],
+    "career_paths": [
+      "Robotics Engineer"
+    ],
+    "embedding_text": "MSc in Robotics. MSc in Robotics provides training in Python, Robotics Control, ROS and prepares students for roles such as Robotics Engineer.. Skills: Python, Robotics Control, ROS. Domains: Robotics."
+  },
+  {
+    "course_name": "MSc in Bioinformatics",
+    "description": "MSc in Bioinformatics provides training in Python, Bioinformatics Tools, Genomics Analysis and prepares students for roles such as Bioinformatics Scientist.",
+    "domains": [
+      "Bioinformatics"
+    ],
+    "skills": [
+      "Python",
+      "Bioinformatics Tools",
+      "Genomics Analysis"
+    ],
+    "ideal_backgrounds": [
+      "Biology",
+      "Computer Science"
+    ],
+    "career_paths": [
+      "Bioinformatics Scientist"
+    ],
+    "embedding_text": "MSc in Bioinformatics. MSc in Bioinformatics provides training in Python, Bioinformatics Tools, Genomics Analysis and prepares students for roles such as Bioinformatics Scientist.. Skills: Python, Bioinformatics Tools, Genomics Analysis. Domains: Bioinformatics."
+  },
+  {
+    "course_name": "MSc in Public Health",
+    "description": "MSc in Public Health provides training in Epidemiology, Data Analysis, Statistics and prepares students for roles such as Public Health Researcher.",
+    "domains": [
+      "Public Health"
+    ],
+    "skills": [
+      "Epidemiology",
+      "Data Analysis",
+      "Statistics"
+    ],
+    "ideal_backgrounds": [
+      "Biology",
+      "Nursing"
+    ],
+    "career_paths": [
+      "Public Health Researcher"
+    ],
+    "embedding_text": "MSc in Public Health. MSc in Public Health provides training in Epidemiology, Data Analysis, Statistics and prepares students for roles such as Public Health Researcher.. Skills: Epidemiology, Data Analysis, Statistics. Domains: Public Health."
+  },
+  {
+    "course_name": "MSc in Data Science",
+    "description": "MSc in Data Science provides training in Python, SQL, Data Analysis, Machine Learning and prepares students for roles such as Data Scientist.",
+    "domains": [
+      "Data Science"
+    ],
+    "skills": [
+      "Python",
+      "SQL",
+      "Data Analysis",
+      "Machine Learning"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science",
+      "Statistics"
+    ],
+    "career_paths": [
+      "Data Scientist"
+    ],
+    "embedding_text": "MSc in Data Science. MSc in Data Science provides training in Python, SQL, Data Analysis, Machine Learning and prepares students for roles such as Data Scientist.. Skills: Python, SQL, Data Analysis, Machine Learning. Domains: Data Science."
+  },
+  {
+    "course_name": "MSc in Machine Learning",
+    "description": "MSc in Machine Learning provides training in Python, TensorFlow, PyTorch, Deep Learning and prepares students for roles such as Machine Learning Engineer.",
+    "domains": [
+      "Machine Learning"
+    ],
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "PyTorch",
+      "Deep Learning"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science",
+      "Mathematics"
+    ],
+    "career_paths": [
+      "Machine Learning Engineer"
+    ],
+    "embedding_text": "MSc in Machine Learning. MSc in Machine Learning provides training in Python, TensorFlow, PyTorch, Deep Learning and prepares students for roles such as Machine Learning Engineer.. Skills: Python, TensorFlow, PyTorch, Deep Learning. Domains: Machine Learning."
+  },
+  {
+    "course_name": "MSc in Cybersecurity",
+    "description": "MSc in Cybersecurity provides training in Python, Network Security, Cryptography and prepares students for roles such as Cybersecurity Analyst.",
+    "domains": [
+      "Cybersecurity"
+    ],
+    "skills": [
+      "Python",
+      "Network Security",
+      "Cryptography"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science",
+      "IT"
+    ],
+    "career_paths": [
+      "Cybersecurity Analyst"
+    ],
+    "embedding_text": "MSc in Cybersecurity. MSc in Cybersecurity provides training in Python, Network Security, Cryptography and prepares students for roles such as Cybersecurity Analyst.. Skills: Python, Network Security, Cryptography. Domains: Cybersecurity."
+  },
+  {
+    "course_name": "MSc in Software Engineering",
+    "description": "MSc in Software Engineering provides training in Python, Software Development, DevOps and prepares students for roles such as Software Developer.",
+    "domains": [
+      "Software Engineering"
+    ],
+    "skills": [
+      "Python",
+      "Software Development",
+      "DevOps"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science"
+    ],
+    "career_paths": [
+      "Software Developer"
+    ],
+    "embedding_text": "MSc in Software Engineering. MSc in Software Engineering provides training in Python, Software Development, DevOps and prepares students for roles such as Software Developer.. Skills: Python, Software Development, DevOps. Domains: Software Engineering."
+  },
+  {
+    "course_name": "MSc in Business Analytics",
+    "description": "MSc in Business Analytics provides training in Python, SQL, Data Analysis and prepares students for roles such as Business Analyst.",
+    "domains": [
+      "Analytics"
+    ],
+    "skills": [
+      "Python",
+      "SQL",
+      "Data Analysis"
+    ],
+    "ideal_backgrounds": [
+      "Business Administration",
+      "Statistics"
+    ],
+    "career_paths": [
+      "Business Analyst"
+    ],
+    "embedding_text": "MSc in Business Analytics. MSc in Business Analytics provides training in Python, SQL, Data Analysis and prepares students for roles such as Business Analyst.. Skills: Python, SQL, Data Analysis. Domains: Analytics."
+  },
+  {
+    "course_name": "MSc in Finance",
+    "description": "MSc in Finance provides training in Financial Modeling, Excel, Risk Analysis and prepares students for roles such as Financial Analyst.",
+    "domains": [
+      "Finance"
+    ],
+    "skills": [
+      "Financial Modeling",
+      "Excel",
+      "Risk Analysis"
+    ],
+    "ideal_backgrounds": [
+      "Finance",
+      "Economics"
+    ],
+    "career_paths": [
+      "Financial Analyst"
+    ],
+    "embedding_text": "MSc in Finance. MSc in Finance provides training in Financial Modeling, Excel, Risk Analysis and prepares students for roles such as Financial Analyst.. Skills: Financial Modeling, Excel, Risk Analysis. Domains: Finance."
+  },
+  {
+    "course_name": "MSc in UX/UI and Digital Experience",
+    "description": "MSc in UX/UI and Digital Experience provides training in UX Research, UI Design, Prototyping and prepares students for roles such as UX Designer.",
+    "domains": [
+      "HCI"
+    ],
+    "skills": [
+      "UX Research",
+      "UI Design",
+      "Prototyping"
+    ],
+    "ideal_backgrounds": [
+      "Design",
+      "Computer Science"
+    ],
+    "career_paths": [
+      "UX Designer"
+    ],
+    "embedding_text": "MSc in UX/UI and Digital Experience. MSc in UX/UI and Digital Experience provides training in UX Research, UI Design, Prototyping and prepares students for roles such as UX Designer.. Skills: UX Research, UI Design, Prototyping. Domains: HCI."
+  },
+  {
+    "course_name": "MSc in Robotics",
+    "description": "MSc in Robotics provides training in Python, Robotics Control, ROS and prepares students for roles such as Robotics Engineer.",
+    "domains": [
+      "Robotics"
+    ],
+    "skills": [
+      "Python",
+      "Robotics Control",
+      "ROS"
+    ],
+    "ideal_backgrounds": [
+      "Mechanical Engineering",
+      "Computer Science"
+    ],
+    "career_paths": [
+      "Robotics Engineer"
+    ],
+    "embedding_text": "MSc in Robotics. MSc in Robotics provides training in Python, Robotics Control, ROS and prepares students for roles such as Robotics Engineer.. Skills: Python, Robotics Control, ROS. Domains: Robotics."
+  },
+  {
+    "course_name": "MSc in Bioinformatics",
+    "description": "MSc in Bioinformatics provides training in Python, Bioinformatics Tools, Genomics Analysis and prepares students for roles such as Bioinformatics Scientist.",
+    "domains": [
+      "Bioinformatics"
+    ],
+    "skills": [
+      "Python",
+      "Bioinformatics Tools",
+      "Genomics Analysis"
+    ],
+    "ideal_backgrounds": [
+      "Biology",
+      "Computer Science"
+    ],
+    "career_paths": [
+      "Bioinformatics Scientist"
+    ],
+    "embedding_text": "MSc in Bioinformatics. MSc in Bioinformatics provides training in Python, Bioinformatics Tools, Genomics Analysis and prepares students for roles such as Bioinformatics Scientist.. Skills: Python, Bioinformatics Tools, Genomics Analysis. Domains: Bioinformatics."
+  },
+  {
+    "course_name": "MSc in Public Health",
+    "description": "MSc in Public Health provides training in Epidemiology, Data Analysis, Statistics and prepares students for roles such as Public Health Researcher.",
+    "domains": [
+      "Public Health"
+    ],
+    "skills": [
+      "Epidemiology",
+      "Data Analysis",
+      "Statistics"
+    ],
+    "ideal_backgrounds": [
+      "Biology",
+      "Nursing"
+    ],
+    "career_paths": [
+      "Public Health Researcher"
+    ],
+    "embedding_text": "MSc in Public Health. MSc in Public Health provides training in Epidemiology, Data Analysis, Statistics and prepares students for roles such as Public Health Researcher.. Skills: Epidemiology, Data Analysis, Statistics. Domains: Public Health."
+  },
+  {
+    "course_name": "MSc in Data Science",
+    "description": "MSc in Data Science provides training in Python, SQL, Data Analysis, Machine Learning and prepares students for roles such as Data Scientist.",
+    "domains": [
+      "Data Science"
+    ],
+    "skills": [
+      "Python",
+      "SQL",
+      "Data Analysis",
+      "Machine Learning"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science",
+      "Statistics"
+    ],
+    "career_paths": [
+      "Data Scientist"
+    ],
+    "embedding_text": "MSc in Data Science. MSc in Data Science provides training in Python, SQL, Data Analysis, Machine Learning and prepares students for roles such as Data Scientist.. Skills: Python, SQL, Data Analysis, Machine Learning. Domains: Data Science."
+  },
+  {
+    "course_name": "MSc in Machine Learning",
+    "description": "MSc in Machine Learning provides training in Python, TensorFlow, PyTorch, Deep Learning and prepares students for roles such as Machine Learning Engineer.",
+    "domains": [
+      "Machine Learning"
+    ],
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "PyTorch",
+      "Deep Learning"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science",
+      "Mathematics"
+    ],
+    "career_paths": [
+      "Machine Learning Engineer"
+    ],
+    "embedding_text": "MSc in Machine Learning. MSc in Machine Learning provides training in Python, TensorFlow, PyTorch, Deep Learning and prepares students for roles such as Machine Learning Engineer.. Skills: Python, TensorFlow, PyTorch, Deep Learning. Domains: Machine Learning."
+  },
+  {
+    "course_name": "MSc in Cybersecurity",
+    "description": "MSc in Cybersecurity provides training in Python, Network Security, Cryptography and prepares students for roles such as Cybersecurity Analyst.",
+    "domains": [
+      "Cybersecurity"
+    ],
+    "skills": [
+      "Python",
+      "Network Security",
+      "Cryptography"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science",
+      "IT"
+    ],
+    "career_paths": [
+      "Cybersecurity Analyst"
+    ],
+    "embedding_text": "MSc in Cybersecurity. MSc in Cybersecurity provides training in Python, Network Security, Cryptography and prepares students for roles such as Cybersecurity Analyst.. Skills: Python, Network Security, Cryptography. Domains: Cybersecurity."
+  },
+  {
+    "course_name": "MSc in Software Engineering",
+    "description": "MSc in Software Engineering provides training in Python, Software Development, DevOps and prepares students for roles such as Software Developer.",
+    "domains": [
+      "Software Engineering"
+    ],
+    "skills": [
+      "Python",
+      "Software Development",
+      "DevOps"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science"
+    ],
+    "career_paths": [
+      "Software Developer"
+    ],
+    "embedding_text": "MSc in Software Engineering. MSc in Software Engineering provides training in Python, Software Development, DevOps and prepares students for roles such as Software Developer.. Skills: Python, Software Development, DevOps. Domains: Software Engineering."
+  },
+  {
+    "course_name": "MSc in Business Analytics",
+    "description": "MSc in Business Analytics provides training in Python, SQL, Data Analysis and prepares students for roles such as Business Analyst.",
+    "domains": [
+      "Analytics"
+    ],
+    "skills": [
+      "Python",
+      "SQL",
+      "Data Analysis"
+    ],
+    "ideal_backgrounds": [
+      "Business Administration",
+      "Statistics"
+    ],
+    "career_paths": [
+      "Business Analyst"
+    ],
+    "embedding_text": "MSc in Business Analytics. MSc in Business Analytics provides training in Python, SQL, Data Analysis and prepares students for roles such as Business Analyst.. Skills: Python, SQL, Data Analysis. Domains: Analytics."
+  },
+  {
+    "course_name": "MSc in Finance",
+    "description": "MSc in Finance provides training in Financial Modeling, Excel, Risk Analysis and prepares students for roles such as Financial Analyst.",
+    "domains": [
+      "Finance"
+    ],
+    "skills": [
+      "Financial Modeling",
+      "Excel",
+      "Risk Analysis"
+    ],
+    "ideal_backgrounds": [
+      "Finance",
+      "Economics"
+    ],
+    "career_paths": [
+      "Financial Analyst"
+    ],
+    "embedding_text": "MSc in Finance. MSc in Finance provides training in Financial Modeling, Excel, Risk Analysis and prepares students for roles such as Financial Analyst.. Skills: Financial Modeling, Excel, Risk Analysis. Domains: Finance."
+  },
+  {
+    "course_name": "MSc in UX/UI and Digital Experience",
+    "description": "MSc in UX/UI and Digital Experience provides training in UX Research, UI Design, Prototyping and prepares students for roles such as UX Designer.",
+    "domains": [
+      "HCI"
+    ],
+    "skills": [
+      "UX Research",
+      "UI Design",
+      "Prototyping"
+    ],
+    "ideal_backgrounds": [
+      "Design",
+      "Computer Science"
+    ],
+    "career_paths": [
+      "UX Designer"
+    ],
+    "embedding_text": "MSc in UX/UI and Digital Experience. MSc in UX/UI and Digital Experience provides training in UX Research, UI Design, Prototyping and prepares students for roles such as UX Designer.. Skills: UX Research, UI Design, Prototyping. Domains: HCI."
+  },
+  {
+    "course_name": "MSc in Robotics",
+    "description": "MSc in Robotics provides training in Python, Robotics Control, ROS and prepares students for roles such as Robotics Engineer.",
+    "domains": [
+      "Robotics"
+    ],
+    "skills": [
+      "Python",
+      "Robotics Control",
+      "ROS"
+    ],
+    "ideal_backgrounds": [
+      "Mechanical Engineering",
+      "Computer Science"
+    ],
+    "career_paths": [
+      "Robotics Engineer"
+    ],
+    "embedding_text": "MSc in Robotics. MSc in Robotics provides training in Python, Robotics Control, ROS and prepares students for roles such as Robotics Engineer.. Skills: Python, Robotics Control, ROS. Domains: Robotics."
+  },
+  {
+    "course_name": "MSc in Bioinformatics",
+    "description": "MSc in Bioinformatics provides training in Python, Bioinformatics Tools, Genomics Analysis and prepares students for roles such as Bioinformatics Scientist.",
+    "domains": [
+      "Bioinformatics"
+    ],
+    "skills": [
+      "Python",
+      "Bioinformatics Tools",
+      "Genomics Analysis"
+    ],
+    "ideal_backgrounds": [
+      "Biology",
+      "Computer Science"
+    ],
+    "career_paths": [
+      "Bioinformatics Scientist"
+    ],
+    "embedding_text": "MSc in Bioinformatics. MSc in Bioinformatics provides training in Python, Bioinformatics Tools, Genomics Analysis and prepares students for roles such as Bioinformatics Scientist.. Skills: Python, Bioinformatics Tools, Genomics Analysis. Domains: Bioinformatics."
+  },
+  {
+    "course_name": "MSc in Public Health",
+    "description": "MSc in Public Health provides training in Epidemiology, Data Analysis, Statistics and prepares students for roles such as Public Health Researcher.",
+    "domains": [
+      "Public Health"
+    ],
+    "skills": [
+      "Epidemiology",
+      "Data Analysis",
+      "Statistics"
+    ],
+    "ideal_backgrounds": [
+      "Biology",
+      "Nursing"
+    ],
+    "career_paths": [
+      "Public Health Researcher"
+    ],
+    "embedding_text": "MSc in Public Health. MSc in Public Health provides training in Epidemiology, Data Analysis, Statistics and prepares students for roles such as Public Health Researcher.. Skills: Epidemiology, Data Analysis, Statistics. Domains: Public Health."
+  },
+  {
+    "course_name": "MSc in Data Science",
+    "description": "MSc in Data Science provides training in Python, SQL, Data Analysis, Machine Learning and prepares students for roles such as Data Scientist.",
+    "domains": [
+      "Data Science"
+    ],
+    "skills": [
+      "Python",
+      "SQL",
+      "Data Analysis",
+      "Machine Learning"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science",
+      "Statistics"
+    ],
+    "career_paths": [
+      "Data Scientist"
+    ],
+    "embedding_text": "MSc in Data Science. MSc in Data Science provides training in Python, SQL, Data Analysis, Machine Learning and prepares students for roles such as Data Scientist.. Skills: Python, SQL, Data Analysis, Machine Learning. Domains: Data Science."
+  },
+  {
+    "course_name": "MSc in Machine Learning",
+    "description": "MSc in Machine Learning provides training in Python, TensorFlow, PyTorch, Deep Learning and prepares students for roles such as Machine Learning Engineer.",
+    "domains": [
+      "Machine Learning"
+    ],
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "PyTorch",
+      "Deep Learning"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science",
+      "Mathematics"
+    ],
+    "career_paths": [
+      "Machine Learning Engineer"
+    ],
+    "embedding_text": "MSc in Machine Learning. MSc in Machine Learning provides training in Python, TensorFlow, PyTorch, Deep Learning and prepares students for roles such as Machine Learning Engineer.. Skills: Python, TensorFlow, PyTorch, Deep Learning. Domains: Machine Learning."
+  },
+  {
+    "course_name": "MSc in Cybersecurity",
+    "description": "MSc in Cybersecurity provides training in Python, Network Security, Cryptography and prepares students for roles such as Cybersecurity Analyst.",
+    "domains": [
+      "Cybersecurity"
+    ],
+    "skills": [
+      "Python",
+      "Network Security",
+      "Cryptography"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science",
+      "IT"
+    ],
+    "career_paths": [
+      "Cybersecurity Analyst"
+    ],
+    "embedding_text": "MSc in Cybersecurity. MSc in Cybersecurity provides training in Python, Network Security, Cryptography and prepares students for roles such as Cybersecurity Analyst.. Skills: Python, Network Security, Cryptography. Domains: Cybersecurity."
+  },
+  {
+    "course_name": "MSc in Software Engineering",
+    "description": "MSc in Software Engineering provides training in Python, Software Development, DevOps and prepares students for roles such as Software Developer.",
+    "domains": [
+      "Software Engineering"
+    ],
+    "skills": [
+      "Python",
+      "Software Development",
+      "DevOps"
+    ],
+    "ideal_backgrounds": [
+      "Computer Science"
+    ],
+    "career_paths": [
+      "Software Developer"
+    ],
+    "embedding_text": "MSc in Software Engineering. MSc in Software Engineering provides training in Python, Software Development, DevOps and prepares students for roles such as Software Developer.. Skills: Python, Software Development, DevOps. Domains: Software Engineering."
+  },
+  {
+    "course_name": "MSc in Business Analytics",
+    "description": "MSc in Business Analytics provides training in Python, SQL, Data Analysis and prepares students for roles such as Business Analyst.",
+    "domains": [
+      "Analytics"
+    ],
+    "skills": [
+      "Python",
+      "SQL",
+      "Data Analysis"
+    ],
+    "ideal_backgrounds": [
+      "Business Administration",
+      "Statistics"
+    ],
+    "career_paths": [
+      "Business Analyst"
+    ],
+    "embedding_text": "MSc in Business Analytics. MSc in Business Analytics provides training in Python, SQL, Data Analysis and prepares students for roles such as Business Analyst.. Skills: Python, SQL, Data Analysis. Domains: Analytics."
+  },
+  {
+    "course_name": "MSc in Finance",
+    "description": "MSc in Finance provides training in Financial Modeling, Excel, Risk Analysis and prepares students for roles such as Financial Analyst.",
+    "domains": [
+      "Finance"
+    ],
+    "skills": [
+      "Financial Modeling",
+      "Excel",
+      "Risk Analysis"
+    ],
+    "ideal_backgrounds": [
+      "Finance",
+      "Economics"
+    ],
+    "career_paths": [
+      "Financial Analyst"
+    ],
+    "embedding_text": "MSc in Finance. MSc in Finance provides training in Financial Modeling, Excel, Risk Analysis and prepares students for roles such as Financial Analyst.. Skills: Financial Modeling, Excel, Risk Analysis. Domains: Finance."
+  },
+  {
+    "course_name": "MSc in UX/UI and Digital Experience",
+    "description": "MSc in UX/UI and Digital Experience provides training in UX Research, UI Design, Prototyping and prepares students for roles such as UX Designer.",
+    "domains": [
+      "HCI"
+    ],
+    "skills": [
+      "UX Research",
+      "UI Design",
+      "Prototyping"
+    ],
+    "ideal_backgrounds": [
+      "Design",
+      "Computer Science"
+    ],
+    "career_paths": [
+      "UX Designer"
+    ],
+    "embedding_text": "MSc in UX/UI and Digital Experience. MSc in UX/UI and Digital Experience provides training in UX Research, UI Design, Prototyping and prepares students for roles such as UX Designer.. Skills: UX Research, UI Design, Prototyping. Domains: HCI."
+  },
+  {
+    "course_name": "MSc in Robotics",
+    "description": "MSc in Robotics provides training in Python, Robotics Control, ROS and prepares students for roles such as Robotics Engineer.",
+    "domains": [
+      "Robotics"
+    ],
+    "skills": [
+      "Python",
+      "Robotics Control",
+      "ROS"
+    ],
+    "ideal_backgrounds": [
+      "Mechanical Engineering",
+      "Computer Science"
+    ],
+    "career_paths": [
+      "Robotics Engineer"
+    ],
+    "embedding_text": "MSc in Robotics. MSc in Robotics provides training in Python, Robotics Control, ROS and prepares students for roles such as Robotics Engineer.. Skills: Python, Robotics Control, ROS. Domains: Robotics."
+  },
+  {
+    "course_name": "MSc in Bioinformatics",
+    "description": "MSc in Bioinformatics provides training in Python, Bioinformatics Tools, Genomics Analysis and prepares students for roles such as Bioinformatics Scientist.",
+    "domains": [
+      "Bioinformatics"
+    ],
+    "skills": [
+      "Python",
+      "Bioinformatics Tools",
+      "Genomics Analysis"
+    ],
+    "ideal_backgrounds": [
+      "Biology",
+      "Computer Science"
+    ],
+    "career_paths": [
+      "Bioinformatics Scientist"
+    ],
+    "embedding_text": "MSc in Bioinformatics. MSc in Bioinformatics provides training in Python, Bioinformatics Tools, Genomics Analysis and prepares students for roles such as Bioinformatics Scientist.. Skills: Python, Bioinformatics Tools, Genomics Analysis. Domains: Bioinformatics."
+  },
+  {
+    "course_name": "MSc in Public Health",
+    "description": "MSc in Public Health provides training in Epidemiology, Data Analysis, Statistics and prepares students for roles such as Public Health Researcher.",
+    "domains": [
+      "Public Health"
+    ],
+    "skills": [
+      "Epidemiology",
+      "Data Analysis",
+      "Statistics"
+    ],
+    "ideal_backgrounds": [
+      "Biology",
+      "Nursing"
+    ],
+    "career_paths": [
+      "Public Health Researcher"
+    ],
+    "embedding_text": "MSc in Public Health. MSc in Public Health provides training in Epidemiology, Data Analysis, Statistics and prepares students for roles such as Public Health Researcher.. Skills: Epidemiology, Data Analysis, Statistics. Domains: Public Health."
+  }
+]
