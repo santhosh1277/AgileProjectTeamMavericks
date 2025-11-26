@@ -2,6 +2,7 @@ package com.example.StudentDashboard.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class CourseEntity {

@@ -6,6 +6,8 @@ import SideNav from './Side-Nav-Bar/SideNav';
 import DashboardHome from './DashboardHome/DashboardHome';
 import Login from './LoginPage/Login';
 import Profile from './DashboardHome/UserProfile';
+import CourseDetails from './DashboardHome/CourseDetails';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function AppWrapper() {
   const location = useLocation();
@@ -24,19 +26,22 @@ function AppWrapper() {
         <Route
           path='/dashboard/*'
           element={
-            <div className="container-fluid p-0">
-              <div className="row min-vh-100">
-                <div className="col-2 bg-dark text-white p-0">
-                  <SideNav />
-                </div>
-                <div className="col-10 bg-light p-4">
-                  <Routes>
-                    <Route path="home" element={<DashboardHome />} />
-                    <Route path="profile" element={<Profile />} />
-                  </Routes>
+            <ProtectedRoute>
+              <div className="container-fluid p-0">
+                <div className="row min-vh-100">
+                  <div className="col-2 bg-dark text-white p-0">
+                    <SideNav />
+                  </div>
+                  <div className="col-10 bg-light p-4">
+                    <Routes>
+                      <Route path="home" element={<DashboardHome />} />
+                      <Route path="profile" element={<Profile />} />
+                      <Route path="courses/:collegeId" element={<CourseDetails />} />
+                    </Routes>
+                  </div>
                 </div>
               </div>
-            </div>
+            </ProtectedRoute>
           }
         />
       </Routes>

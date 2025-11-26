@@ -48,7 +48,7 @@ const Profile = () => {
         password: data.password || "",
       });
     } catch (error) {
-      console.error("Error fetching student details:", error);
+      setUser(emptyUser);
     } finally {
       setLoading(false);
     }
@@ -77,8 +77,9 @@ const Profile = () => {
       const updated = await UpdateStudentDetails(user);
       setUser(updated);
       setIsEditable(defaultEditable);
-    } catch (error) {
-      console.error("Error updating student details:", error);
+    } catch {
+      // Keep existing state on error - user can retry by editing again
+      setIsEditable(defaultEditable);
     }
   };
 

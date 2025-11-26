@@ -1,6 +1,7 @@
 package com.example.StudentDashboard.Entity;
 import jakarta.persistence.*;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "College")
