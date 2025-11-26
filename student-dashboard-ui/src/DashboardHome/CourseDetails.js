@@ -9,6 +9,56 @@ function CourseDetails() {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [fadeIn, setFadeIn] = useState(false);
+
+  // Add CSS animations
+  useEffect(() => {
+    const styleSheet = `
+      @keyframes courseFadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes courseSlideUp {
+        from { 
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to { 
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes courseCardStagger {
+        from {
+          opacity: 0;
+          transform: translateY(20px) scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      @keyframes headerSlideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    `;
+    
+    const style = document.createElement('style');
+    style.textContent = styleSheet;
+    document.head.appendChild(style);
+    
+    // Trigger fade in after a short delay
+    setTimeout(() => setFadeIn(true), 50);
+    
+    return () => style.remove();
+  }, []);
 
   useEffect(() => {
     const fetchCollegeDetails = async () => {
@@ -71,7 +121,12 @@ function CourseDetails() {
 
   if (loading) {
     return (
-      <div className="text-center mt-5">
+      <div 
+        className="text-center mt-5"
+        style={{
+          animation: "courseFadeIn 0.5s ease-out"
+        }}
+      >
         <div className="spinner-border text-primary" aria-live="polite">
           <span className="visually-hidden">Loading...</span>
         </div>
@@ -82,7 +137,12 @@ function CourseDetails() {
 
   if (error) {
     return (
-      <div className="text-center mt-5">
+      <div 
+        className="text-center mt-5"
+        style={{
+          animation: "courseFadeIn 0.5s ease-out"
+        }}
+      >
         <div className="alert alert-danger" role="alert">
           {error}
         </div>
@@ -103,10 +163,17 @@ function CourseDetails() {
         width: "100%",
         minHeight: "100vh",
         backgroundColor: "transparent",
+        animation: fadeIn ? "courseFadeIn 0.6s ease-out" : "none",
+        opacity: fadeIn ? 1 : 0
       }}
     >
       {/* Header with college information */}
-      <header className="bg-dark text-light py-4 px-4 rounded-bottom mb-4">
+      <header 
+        className="bg-dark text-light py-4 px-4 rounded-bottom mb-4"
+        style={{
+          animation: fadeIn ? "headerSlideDown 0.5s ease-out" : "none"
+        }}
+      >
         <div className="d-flex justify-content-between align-items-center">
           <div>
             <h2 className="mb-2">{college?.name}</h2>
@@ -123,7 +190,12 @@ function CourseDetails() {
         </div>
       </header>
 
-      <main className="container-fluid px-4">
+      <main 
+        className="container-fluid px-4"
+        style={{
+          animation: fadeIn ? "courseSlideUp 0.6s ease-out 0.1s backwards" : "none"
+        }}
+      >
         <div className="mb-4">
           <h4 className="mb-3">
             Available Courses at {college?.name}
@@ -144,8 +216,14 @@ function CourseDetails() {
           </div>
         ) : (
           <div className="row">
-            {courses.map((course) => (
-              <div key={course.id} className="col-md-6 col-lg-4 mb-4">
+            {courses.map((course, index) => (
+              <div 
+                key={course.id} 
+                className="col-md-6 col-lg-4 mb-4"
+                style={{
+                  animation: fadeIn ? `courseCardStagger 0.5s ease-out ${0.15 + index * 0.06}s backwards` : "none"
+                }}
+              >
                 <div className="card shadow-sm h-100 border-0">
                   <div className="card-body d-flex flex-column">
                     <h5 className="card-title text-primary">
@@ -169,7 +247,12 @@ function CourseDetails() {
         )}
 
         {/* Additional Information Section */}
-        <div className="mt-5 mb-4">
+        <div 
+          className="mt-5 mb-4"
+          style={{
+            animation: fadeIn ? "courseSlideUp 0.6s ease-out 0.3s backwards" : "none"
+          }}
+        >
           <div className="card border-0 shadow-sm">
             <div className="card-body">
               <h5 className="card-title mb-3">College Information</h5>
