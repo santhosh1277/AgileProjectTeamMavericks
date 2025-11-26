@@ -71,10 +71,6 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
@@ -98,17 +94,15 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.2.5</version>
 				<configuration>
-					<includes>
-						<include>**/*ControllerTest.java</include>
-						<include>**/*ServiceTest.java</include>
-						<include>**/*ModelTest.java</include>
-						<include>**/*Entity*Test.java</include>
-					</includes>
-					<excludes>
-						<exclude>**/StudentDashboardBackendApplicationTests.java</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
+				<includes>
+					<include>**/*Test.java</include>
+				</includes>
+				<excludes>
+					<exclude>**/StudentDashboardBackendApplicationTests.java</exclude>
+				</excludes>
+				<argLine>@{argLine} -Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+			</configuration>
+		</plugin>
 			<plugin>
 				<groupId>org.sonarsource.scanner.maven</groupId>
 				<artifactId>sonar-maven-plugin</artifactId>
