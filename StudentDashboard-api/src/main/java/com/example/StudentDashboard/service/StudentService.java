@@ -11,6 +11,9 @@ import com.example.StudentDashboard.repository.StudentRepository;
 import com.example.StudentDashboard.repository.UserConsentRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 import jakarta.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,10 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Optional;
+
+import javax.crypto.SecretKey;
+
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -168,20 +175,52 @@ public class StudentService {
         return false;
     }
 
-   public List<CourseRecommender> getRecommendedCourses(String email) {
-    List<CourseRecommender> allCourses = recommendedCourseRepository.findByEmail(email);
-    
-    Map<String, CourseRecommender> uniqueCourses = new LinkedHashMap<>();
-    for (CourseRecommender course : allCourses) {
-        uniqueCourses.putIfAbsent(course.getCourseName(), course);
-    }
-    
-    return new ArrayList<>(uniqueCourses.values());
-}
+    public List<CourseRecommender> getRecommendedCourses(String email) {
+        List<CourseRecommender> allCourses = recommendedCourseRepository.findByEmail(email);
 
-   public boolean userConsent(String email) {
-    return _userConsentRepository.findByEmailIgnoreCase(email)
-                                 .map(UserConsent::isConsentGiven)
-                                 .orElse(false);
-}
+        Map<String, CourseRecommender> uniqueCourses = new LinkedHashMap<>();
+        for (CourseRecommender course : allCourses) {
+            uniqueCourses.putIfAbsent(course.getCourseName(), course);
+        }
+
+        return new ArrayList<>(uniqueCourses.values());
+    }
+
+    public boolean userConsent(String email) {
+        return _userConsentRepository.findByEmailIgnoreCase(email)
+                .map(UserConsent::isConsentGiven)
+                .orElse(false);
+    }
+
+    public class JwtTokenService {
+
+        private final SecretKey secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+
+        // Generate a JWT token valid for 15 minutes
+        public String generateUatToken(String email) {
+
+            long nowMillis = System.currentTimeMillis();
+            long expireMillis = nowMillis + (15 * 60 * 1000); // 15 minutes
+
+            return Jwts.builder()
+                    .setSubject(email)
+                    .claim("uat", true) // custom claim: User Acceptance Token
+                    .setIssuedAt(new Date(nowMillis))
+                    .setExpiration(new Date(expireMillis))
+                    .signWith(secretKey)
+                    .compact();
+        }
+
+        public boolean validateToken(String token) {
+            try {
+                Jwts.parserBuilder()
+                        .setSigningKey(secretKey)
+                        .build()
+                        .parseClaimsJws(token);
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
+        }
+    }
 }
