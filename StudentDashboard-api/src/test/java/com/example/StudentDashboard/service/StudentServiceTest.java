@@ -332,4 +332,178 @@ class StudentServiceTest {
 
         assertFalse(result);
     }
+
+    // ==================== JwtTokenService Tests ====================
+
+    @Test
+    void testGenerateUatToken() {
+        StudentService.JwtTokenService jwtTokenService = studentService.new JwtTokenService();
+        
+        String token = jwtTokenService.generateUatToken("student@test.com");
+        
+        assertNotNull(token);
+        assertFalse(token.isEmpty());
+        assertTrue(token.split("\\.").length == 3); // JWT has 3 parts separated by dots
+    }
+
+    @Test
+    void testGenerateUatTokenWithDifferentEmails() {
+        StudentService.JwtTokenService jwtTokenService = studentService.new JwtTokenService();
+        
+        String token1 = jwtTokenService.generateUatToken("student1@test.com");
+        String token2 = jwtTokenService.generateUatToken("student2@test.com");
+        
+        assertNotNull(token1);
+        assertNotNull(token2);
+        assertNotEquals(token1, token2); // Different emails should produce different tokens
+    }
+
+    @Test
+    void testValidateTokenValid() {
+        StudentService.JwtTokenService jwtTokenService = studentService.new JwtTokenService();
+        
+        String token = jwtTokenService.generateUatToken("student@test.com");
+        boolean isValid = jwtTokenService.validateToken(token);
+        
+        assertTrue(isValid);
+    }
+
+    @Test
+    void testValidateTokenInvalid() {
+        StudentService.JwtTokenService jwtTokenService = studentService.new JwtTokenService();
+        
+        String invalidToken = "invalid.token.here";
+        boolean isValid = jwtTokenService.validateToken(invalidToken);
+        
+        assertFalse(isValid);
+    }
+
+    @Test
+    void testValidateTokenMalformed() {
+        StudentService.JwtTokenService jwtTokenService = studentService.new JwtTokenService();
+        
+        String malformedToken = "malformed";
+        boolean isValid = jwtTokenService.validateToken(malformedToken);
+        
+        assertFalse(isValid);
+    }
+
+    @Test
+    void testValidateTokenEmpty() {
+        StudentService.JwtTokenService jwtTokenService = studentService.new JwtTokenService();
+        
+        boolean isValid = jwtTokenService.validateToken("");
+        
+        assertFalse(isValid);
+    }
+
+    @Test
+    void testValidateTokenNull() {
+        StudentService.JwtTokenService jwtTokenService = studentService.new JwtTokenService();
+        
+        boolean isValid = jwtTokenService.validateToken(null);
+        
+        assertFalse(isValid);
+    }
+
+    @Test
+    void testJwtTokenServiceTokenExpiration() throws InterruptedException {
+        StudentService.JwtTokenService jwtTokenService = studentService.new JwtTokenService();
+        
+        String token = jwtTokenService.generateUatToken("student@test.com");
+        
+        // Token should be valid immediately
+        assertTrue(jwtTokenService.validateToken(token));
+    }
+
+    @Test
+    void testAddCourseRecommendationsHttpClientError() {
+        AcademicProfile profile = new AcademicProfile();
+        profile.setEmail("student@test.com");
+        profile.setDegree("BTech");
+
+        when(restTemplate.postForEntity(eq("http://127.0.0.1:5000/recommend"), any(AcademicProfile.class), eq(String.class)))
+                .thenThrow(new org.springframework.web.client.HttpClientErrorException(HttpStatus.BAD_REQUEST, "Bad Request"));
+
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
+            studentService.addCourseRecommendations(profile);
+        });
+
+        assertTrue(exception.getMessage().contains("Error adding course recommendation"));
+    }
+
+    @Test
+    void testAddCourseRecommendationsParsingError() {
+        AcademicProfile profile = new AcademicProfile();
+        profile.setEmail("student@test.com");
+        profile.setDegree("BTech");
+
+        when(restTemplate.postForEntity(eq("http://127.0.0.1:5000/recommend"), any(AcademicProfile.class), eq(String.class)))
+                .thenReturn(new ResponseEntity<>("{invalid json}", HttpStatus.OK));
+
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
+            studentService.addCourseRecommendations(profile);
+        });
+
+        assertTrue(exception.getMessage().contains("Error parsing AI response"));
+    }
+
+    @Test
+    void testAddAcademicProfileWithNullCertificationsAndInterests() {
+        AcademicProfile profile = new AcademicProfile();
+        profile.setEmail("student@test.com");
+        profile.setDegree("BTech");
+        profile.setCertifications(null);
+        profile.setInterests(null);
+
+        when(academicProfileRepository.findByEmail("student@test.com")).thenReturn(null);
+        when(academicProfileRepository.save(any(AcademicProfile.class))).thenReturn(profile);
+
+        List<CourseRecommender> recommendations = new ArrayList<>();
+        when(courseRecommenderRepository.saveAll(any())).thenReturn(recommendations);
+
+        when(restTemplate.postForEntity(eq("http://127.0.0.1:5000/recommend"), any(AcademicProfile.class), eq(String.class)))
+                .thenReturn(new ResponseEntity<>("{\"recommendations\": []}", HttpStatus.OK));
+
+        List<CourseRecommender> result = studentService.AddAcademicProfile(profile);
+
+        assertNotNull(result);
+        assertNotNull(profile.getCertifications());
+        assertNotNull(profile.getInterests());
+    }
+
+    @Test
+    void testAddCourseRecommendationsSuccessfulWithEmailSet() {
+        AcademicProfile profile = new AcademicProfile();
+        profile.setEmail("student@test.com");
+        profile.setDegree("BTech");
+
+        List<CourseRecommender> recommendations = new ArrayList<>();
+        CourseRecommender course1 = new CourseRecommender();
+        course1.setCourseName("MSc Data Science");
+        
+        CourseRecommender course2 = new CourseRecommender();
+        course2.setCourseName("MSc AI");
+        
+        recommendations.add(course1);
+        recommendations.add(course2);
+
+        CourseRecommenderRequest mockResponse = new CourseRecommenderRequest();
+        mockResponse.setRecommendations(recommendations);
+
+        when(restTemplate.postForEntity(eq("http://127.0.0.1:5000/recommend"), any(AcademicProfile.class), eq(String.class)))
+                .thenReturn(new ResponseEntity<>("{\"recommendations\": [{\"course_name\": \"MSc Data Science\"}, {\"course_name\": \"MSc AI\"}]}", HttpStatus.OK));
+
+        when(courseRecommenderRepository.saveAll(any())).thenAnswer(invocation -> {
+            List<CourseRecommender> courses = invocation.getArgument(0);
+            courses.forEach(c -> c.setEmail(profile.getEmail()));
+            return courses;
+        });
+
+        List<CourseRecommender> result = studentService.addCourseRecommendations(profile);
+
+        assertNotNull(result);
+        assertEquals(2, result.size());
+        result.forEach(course -> assertEquals("student@test.com", course.getEmail()));
+    }
 }
