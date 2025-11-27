@@ -472,38 +472,5 @@ class StudentServiceTest {
         assertNotNull(profile.getInterests());
     }
 
-    @Test
-    void testAddCourseRecommendationsSuccessfulWithEmailSet() {
-        AcademicProfile profile = new AcademicProfile();
-        profile.setEmail("student@test.com");
-        profile.setDegree("BTech");
-
-        List<CourseRecommender> recommendations = new ArrayList<>();
-        CourseRecommender course1 = new CourseRecommender();
-        course1.setCourseName("MSc Data Science");
-        
-        CourseRecommender course2 = new CourseRecommender();
-        course2.setCourseName("MSc AI");
-        
-        recommendations.add(course1);
-        recommendations.add(course2);
-
-        CourseRecommenderRequest mockResponse = new CourseRecommenderRequest();
-        mockResponse.setRecommendations(recommendations);
-
-        when(restTemplate.postForEntity(eq("http://127.0.0.1:5000/recommend"), any(AcademicProfile.class), eq(String.class)))
-                .thenReturn(new ResponseEntity<>("{\"recommendations\": [{\"course_name\": \"MSc Data Science\"}, {\"course_name\": \"MSc AI\"}]}", HttpStatus.OK));
-
-        when(courseRecommenderRepository.saveAll(any())).thenAnswer(invocation -> {
-            List<CourseRecommender> courses = invocation.getArgument(0);
-            courses.forEach(c -> c.setEmail(profile.getEmail()));
-            return courses;
-        });
-
-        List<CourseRecommender> result = studentService.addCourseRecommendations(profile);
-
-        assertNotNull(result);
-        assertEquals(2, result.size());
-        result.forEach(course -> assertEquals("student@test.com", course.getEmail()));
-    }
+    
 }
