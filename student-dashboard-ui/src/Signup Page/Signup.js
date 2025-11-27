@@ -321,58 +321,73 @@ function Signup() {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#1e1e2f",
-    padding: "1rem",
+    background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+    padding: "2rem 1rem",
   };
 
   const formStyle = {
-    backgroundColor: "#fff",
-    padding: "2rem",
-    borderRadius: "10px",
-    boxShadow: "0 4px 15px rgba(0,0,0,0.2)",
+    background: "rgba(255, 255, 255, 0.95)",
+    backdropFilter: "blur(10px)",
+    padding: "2.5rem",
+    borderRadius: "24px",
+    border: "2px solid rgba(255, 255, 255, 0.3)",
+    boxShadow: "0 16px 48px rgba(0, 0, 0, 0.2)",
     width: "100%",
-    maxWidth: "400px",
+    maxWidth: "480px",
   };
 
   const inputStyle = {
     width: "100%",
-    padding: "0.5rem",
-    margin: "0.5rem 0 1rem",
-    borderRadius: "5px",
-    border: "1px solid #ccc",
+    padding: "0.75rem 1rem",
+    margin: "0.5rem 0 0.25rem",
+    borderRadius: "12px",
+    border: "2px solid #e2e8f0",
+    fontSize: "15px",
+    transition: "all 0.3s ease",
   };
 
   const buttonStyle = {
     width: "100%",
-    padding: "0.75rem",
-    borderRadius: "5px",
+    padding: "0.875rem",
+    marginTop: "1rem",
+    borderRadius: "12px",
     border: "none",
-    backgroundColor: (loading || Object.values(fieldErrors).some(error => error !== "")) ? "#6c757d" : "#007bff",
+    background: (loading || Object.values(fieldErrors).some(error => error !== "")) 
+      ? "#a0aec0" 
+      : "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
     color: "#fff",
-    fontWeight: "bold",
+    fontWeight: "700",
+    fontSize: "16px",
     cursor: (loading || Object.values(fieldErrors).some(error => error !== "")) ? "not-allowed" : "pointer",
     opacity: (loading || Object.values(fieldErrors).some(error => error !== "")) ? 0.6 : 1,
+    boxShadow: "0 4px 15px rgba(102, 126, 234, 0.4)",
+    transition: "all 0.3s ease",
   };
 
   const linkStyle = {
-    color: "#007bff",
+    color: "#667eea",
     textDecoration: "none",
+    fontWeight: "600",
   };
 
   const errorStyle = {
-    color: "#dc3545",
-    backgroundColor: "#f8d7da",
-    padding: "0.75rem",
-    borderRadius: "5px",
+    color: "#c53030",
+    backgroundColor: "#fed7d7",
+    padding: "0.875rem",
+    borderRadius: "12px",
     marginBottom: "1rem",
-    border: "1px solid #f5c6cb",
+    marginTop: "0.5rem",
+    border: "2px solid #fc8181",
+    fontSize: "14px",
+    fontWeight: "500",
   };
 
   const fieldErrorStyle = {
-    color: "#dc3545",
-    fontSize: "0.875rem",
+    color: "#c53030",
+    fontSize: "0.8125rem",
     marginTop: "0.25rem",
-    marginBottom: "0.5rem",
+    marginBottom: "0.75rem",
+    fontWeight: "500",
   };
 
   const successStyle = {
@@ -433,9 +448,14 @@ function Signup() {
       )}
       
       <form style={formStyle} onSubmit={handleSubmit}>
-        <h2>🎓 Student Signup</h2>
+        <h2 style={{
+          fontSize: "2rem",
+          fontWeight: "700",
+          color: "#2d3748",
+          marginBottom: "1.5rem",
+        }}>🎓 Create Account</h2>
 
-        <label htmlFor="firstName">First Name</label>
+        <label htmlFor="firstName" style={{ fontWeight: "600", color: "#4a5568", fontSize: "14px" }}>First Name</label>
         <input
           type="text"
           id="firstName"
@@ -446,10 +466,12 @@ function Signup() {
           onBlur={handleBlur}
           required
           style={inputStyle}
+          onFocus={(e) => e.target.style.borderColor = "#667eea"}
+          onMouseOut={(e) => e.target.style.borderColor = "#e2e8f0"}
         />
         {fieldErrors.firstName && <div style={fieldErrorStyle}>{fieldErrors.firstName}</div>}
 
-        <label htmlFor="lastName">Last Name</label>
+        <label htmlFor="lastName" style={{ fontWeight: "600", color: "#4a5568", fontSize: "14px" }}>Last Name</label>
         <input
           type="text"
           id="lastName"
@@ -460,10 +482,12 @@ function Signup() {
           onBlur={handleBlur}
           required
           style={inputStyle}
+          onFocus={(e) => e.target.style.borderColor = "#667eea"}
+          onMouseOut={(e) => e.target.style.borderColor = "#e2e8f0"}
         />
         {fieldErrors.lastName && <div style={fieldErrorStyle}>{fieldErrors.lastName}</div>}
 
-        <label htmlFor="dob">Date of Birth</label>
+        <label htmlFor="dob" style={{ fontWeight: "600", color: "#4a5568", fontSize: "14px" }}>Date of Birth</label>
         <input
           type="date"
           id="dob"
@@ -473,10 +497,12 @@ function Signup() {
           onBlur={handleBlur}
           required
           style={inputStyle}
+          onFocus={(e) => e.target.style.borderColor = "#667eea"}
+          onMouseOut={(e) => e.target.style.borderColor = "#e2e8f0"}
         />
         {fieldErrors.dob && <div style={fieldErrorStyle}>{fieldErrors.dob}</div>}
 
-        <label htmlFor="email">Email Address</label>
+        <label htmlFor="email" style={{ fontWeight: "600", color: "#4a5568", fontSize: "14px" }}>Email Address</label>
         <input
           type="email"
           id="email"
@@ -487,10 +513,12 @@ function Signup() {
           onBlur={handleBlur}
           required
           style={inputStyle}
+          onFocus={(e) => e.target.style.borderColor = "#667eea"}
+          onMouseOut={(e) => e.target.style.borderColor = "#e2e8f0"}
         />
         {fieldErrors.email && <div style={fieldErrorStyle}>{fieldErrors.email}</div>}
 
-        <label htmlFor="phoneNumber">Phone Number</label>
+        <label htmlFor="phoneNumber" style={{ fontWeight: "600", color: "#4a5568", fontSize: "14px" }}>Phone Number</label>
         <input
           type="tel"
           id="phoneNumber"
@@ -501,10 +529,12 @@ function Signup() {
           onBlur={handleBlur}
           required
           style={inputStyle}
+          onFocus={(e) => e.target.style.borderColor = "#667eea"}
+          onMouseOut={(e) => e.target.style.borderColor = "#e2e8f0"}
         />
         {fieldErrors.phoneNumber && <div style={fieldErrorStyle}>{fieldErrors.phoneNumber}</div>}
 
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password" style={{ fontWeight: "600", color: "#4a5568", fontSize: "14px" }}>Password</label>
         <input
           type="password"
           id="password"
@@ -515,10 +545,12 @@ function Signup() {
           onBlur={handleBlur}
           required
           style={inputStyle}
+          onFocus={(e) => e.target.style.borderColor = "#667eea"}
+          onMouseOut={(e) => e.target.style.borderColor = "#e2e8f0"}
         />
         {fieldErrors.password && <div style={fieldErrorStyle}>{fieldErrors.password}</div>}
 
-        <label htmlFor="confirmPassword">Confirm Password</label>
+        <label htmlFor="confirmPassword" style={{ fontWeight: "600", color: "#4a5568", fontSize: "14px" }}>Confirm Password</label>
         <input
           type="password"
           id="confirmPassword"
@@ -529,16 +561,32 @@ function Signup() {
           onBlur={handleBlur}
           required
           style={inputStyle}
+          onFocus={(e) => e.target.style.borderColor = "#667eea"}
+          onMouseOut={(e) => e.target.style.borderColor = "#e2e8f0"}
         />
         {fieldErrors.confirmPassword && <div style={fieldErrorStyle}>{fieldErrors.confirmPassword}</div>}
 
         {errorMessage && <div style={errorStyle}>{errorMessage}</div>}
 
-        <button type="submit" style={buttonStyle} disabled={loading || Object.values(fieldErrors).some(error => error !== "")}>
-          {loading ? "Saving..." : "Create Account"}
+        <button 
+          type="submit" 
+          style={buttonStyle} 
+          disabled={loading || Object.values(fieldErrors).some(error => error !== "")}
+          onMouseOver={(e) => {
+            if (!loading && !Object.values(fieldErrors).some(error => error !== "")) {
+              e.target.style.transform = "translateY(-2px)";
+              e.target.style.boxShadow = "0 6px 20px rgba(102, 126, 234, 0.5)";
+            }
+          }}
+          onMouseOut={(e) => {
+            e.target.style.transform = "translateY(0)";
+            e.target.style.boxShadow = "0 4px 15px rgba(102, 126, 234, 0.4)";
+          }}
+        >
+          {loading ? "Creating Account..." : "Create Account"}
         </button>
 
-        <p style={{ marginTop: "1rem", textAlign: "center" }}>
+        <p style={{ marginTop: "1.5rem", textAlign: "center", fontSize: "15px", color: "#4a5568" }}>
           Already have an account?{" "}
           <a href="/login" style={linkStyle}>
             Login here

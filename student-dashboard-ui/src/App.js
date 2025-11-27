@@ -28,12 +28,15 @@ function AppWrapper() {
           path='/dashboard/*'
           element={
             <ProtectedRoute>
-              <div className="container-fluid p-0">
-                <div className="row min-vh-100">
-                  <div className="col-2 bg-dark text-white p-0">
+              <div className="container-fluid p-0" style={{ background: "transparent" }}>
+                <div className="row min-vh-100" style={{ margin: 0 }}>
+                  <div className="col-2 p-0" style={{ 
+                    background: "linear-gradient(180deg, #667eea 0%, #764ba2 100%)",
+                    boxShadow: "4px 0 30px rgba(0, 0, 0, 0.1)"
+                  }}>
                     <SideNav />
                   </div>
-                  <div className="col-10 bg-light p-4">
+                  <div className="col-10 p-0" style={{ background: "transparent" }}>
                     <Routes>
                       <Route path="/" element={<DashboardHome />} />
                       <Route path="profile" element={<Profile />} />

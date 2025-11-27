@@ -285,18 +285,32 @@ function DashboardHome() {
         style={{ 
           width: "100%", 
           minHeight: "100vh", 
-          backgroundColor: "transparent",
+          background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
           animation: "dashboardFadeIn 0.5s ease-out"
         }}
       >
-        <header className="bg-dark text-light py-3 text-center rounded-bottom">
-          <h2>Student Dashboard</h2>
+        <header 
+          className="text-light py-4 text-center"
+          style={{
+            background: "rgba(255, 255, 255, 0.95)",
+            backdropFilter: "blur(10px)",
+            boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+          }}
+        >
+          <h2 style={{
+            fontSize: "2rem",
+            fontWeight: "800",
+            background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}>🎓 Student Dashboard</h2>
         </header>
         <div className="text-center mt-5">
-          <div className="spinner-border text-primary" role="status">
+          <div className="spinner-border" style={{ color: "white", width: "3rem", height: "3rem" }} role="status">
             <span className="visually-hidden">Loading...</span>
           </div>
-          <p className="mt-3">Loading universities...</p>
+          <p className="mt-3" style={{ color: "white", fontSize: "18px", fontWeight: "500" }}>Loading universities...</p>
         </div>
       </div>
     );
@@ -309,16 +323,41 @@ function DashboardHome() {
         style={{ 
           width: "100%", 
           minHeight: "100vh", 
-          backgroundColor: "transparent",
+          background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
           animation: "dashboardFadeIn 0.5s ease-out"
         }}
       >
-        <header className="bg-dark text-light py-3 text-center rounded-bottom">
-          <h2>Student Dashboard</h2>
+        <header 
+          className="text-light py-4 text-center"
+          style={{
+            background: "rgba(255, 255, 255, 0.95)",
+            backdropFilter: "blur(10px)",
+            boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+          }}
+        >
+          <h2 style={{
+            fontSize: "2rem",
+            fontWeight: "800",
+            background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}>🎓 Student Dashboard</h2>
         </header>
-        <div className="text-center mt-5 text-danger">
-          <i className="bi bi-exclamation-triangle-fill" style={{ fontSize: "3rem" }}></i>
-          <p className="mt-3">{error}</p>
+        <div className="text-center mt-5">
+          <div 
+            className="alert alert-danger mx-auto" 
+            style={{ 
+              maxWidth: "600px", 
+              borderRadius: "16px",
+              background: "rgba(255, 255, 255, 0.95)",
+              border: "2px solid #f56565",
+              boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <i className="bi bi-exclamation-triangle-fill" style={{ fontSize: "2rem" }}></i>
+            <p className="mt-3">{error}</p>
+          </div>
         </div>
       </div>
     );
@@ -330,22 +369,35 @@ function DashboardHome() {
       style={{ 
         width: "100%", 
         minHeight: "100vh", 
-        backgroundColor: "transparent",
+        background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
         animation: fadeIn ? "dashboardFadeIn 0.6s ease-out" : "none",
         opacity: fadeIn ? 1 : 0
       }}
     >
       <header 
-        className="bg-dark text-light py-3 text-center rounded-bottom"
+        className="text-light py-4 text-center"
         style={{
+          background: "rgba(255, 255, 255, 0.95)",
+          backdropFilter: "blur(10px)",
+          boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+          position: "sticky",
+          top: 0,
+          zIndex: 1000,
           animation: fadeIn ? "dashboardSlideUp 0.5s ease-out" : "none"
         }}
       >
-        <h2>Student Dashboard</h2>
+        <h2 style={{
+          fontSize: "2rem",
+          fontWeight: "800",
+          background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          backgroundClip: "text",
+        }}>🎓 Student Dashboard</h2>
       </header>
 
       <main 
-        className="container-fluid mt-4"
+        className="container-fluid mt-4 px-4"
         style={{
           animation: fadeIn ? "dashboardSlideUp 0.6s ease-out 0.1s backwards" : "none"
         }}
@@ -353,12 +405,17 @@ function DashboardHome() {
         {/* Country Filter */}
         <div className="row mb-4">
           <div className="col-12">
-            <div className="card shadow-sm border-0">
-              <div className="card-body">
+            <div className="card border-0" style={{
+              background: "rgba(255, 255, 255, 0.95)",
+              backdropFilter: "blur(10px)",
+              borderRadius: "20px",
+              boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
+            }}>
+              <div className="card-body p-4">
                 <div className="row align-items-center">
                   <div className="col-md-3">
-                    <label htmlFor="countryFilter" className="form-label fw-bold mb-0">
-                      Select Country:
+                    <label htmlFor="countryFilter" className="form-label fw-bold mb-0" style={{ color: "#2d3748", fontSize: "1.1rem" }}>
+                      🌍 Select Country:
                     </label>
                   </div>
                   <div className="col-md-9">
@@ -367,7 +424,14 @@ function DashboardHome() {
                       className="form-select form-select-lg"
                       value={selectedCountry}
                       onChange={(e) => setSelectedCountry(e.target.value)}
-                      style={{ maxWidth: "400px" }}
+                      style={{ 
+                        maxWidth: "400px",
+                        borderRadius: "12px",
+                        border: "2px solid #e2e8f0",
+                        fontWeight: "500",
+                      }}
+                      onFocus={(e) => e.target.style.borderColor = "#667eea"}
+                      onBlur={(e) => e.target.style.borderColor = "#e2e8f0"}
                     >
                       {COUNTRIES.map((country) => (
                         <option key={country} value={country}>
@@ -382,15 +446,27 @@ function DashboardHome() {
           </div>
         </div>
 
-        <h4 className="mb-3">
+        <h4 className="mb-4" style={{ color: "white", fontWeight: "700" }}>
           Universities in {selectedCountry}
-          {colleges.length > 0 && <span className="badge bg-primary ms-2">{colleges.length}</span>}
+          {colleges.length > 0 && <span className="badge ms-2" style={{
+            background: "rgba(255, 255, 255, 0.95)",
+            color: "#667eea",
+            fontSize: "1rem",
+            padding: "0.5rem 1rem",
+            borderRadius: "12px",
+          }}>{colleges.length}</span>}
         </h4>
         
         {colleges.length === 0 ? (
-          <div className="alert alert-info" role="alert">
-            <h5 className="alert-heading">No Universities Found</h5>
-            <p className="mb-0">
+          <div className="alert" role="alert" style={{
+            background: "rgba(255, 255, 255, 0.95)",
+            backdropFilter: "blur(10px)",
+            borderRadius: "20px",
+            border: "2px solid rgba(255, 255, 255, 0.3)",
+            boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
+          }}>
+            <h5 className="alert-heading" style={{ color: "#2d3748", fontWeight: "700" }}>No Universities Found</h5>
+            <p className="mb-0" style={{ color: "#4a5568" }}>
               No universities found for {selectedCountry}. Try selecting a different country from the filter above.
             </p>
           </div>
@@ -405,25 +481,59 @@ function DashboardHome() {
               }}
             >
               <div 
-                className="card shadow-sm h-100 border-0"
-                style={{ cursor: "pointer" }}
+                className="card h-100 border-0"
+                style={{ 
+                  cursor: "pointer",
+                  background: "rgba(255, 255, 255, 0.95)",
+                  backdropFilter: "blur(10px)",
+                  borderRadius: "20px",
+                  boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
+                  transition: "all 0.3s ease",
+                }}
                 onClick={() => navigate(`/dashboard/courses/${college.id}`)}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.transform = "translateY(-8px)";
+                  e.currentTarget.style.boxShadow = "0 16px 48px rgba(0, 0, 0, 0.2)";
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow = "0 8px 32px rgba(0, 0, 0, 0.1)";
+                }}
               >
-                <div className="card-body d-flex flex-column justify-content-between">
+                <div className="card-body d-flex flex-column justify-content-between p-4">
                   <div>
-                    <h5 className="card-title text-dark">{college.name}</h5>
-                    <p className="card-text text-muted">
-                      <strong>Location:</strong> {college.location}
+                    <h5 className="card-title" style={{ color: "#2d3748", fontWeight: "700", fontSize: "1.25rem" }}>{college.name}</h5>
+                    <p className="card-text" style={{ color: "#718096", marginTop: "0.75rem" }}>
+                      <strong>📍 Location:</strong> {college.location}
                     </p>
-                    <p className="card-text text-muted">
-                      <strong>World Rank:</strong> {college.rank}
+                    <p className="card-text" style={{ color: "#718096" }}>
+                      <strong>🏆 World Rank:</strong> {college.rank}
                     </p>
                   </div>
                   <button 
-                    className="btn btn-primary mt-3 w-100"
+                    className="btn mt-3 w-100"
+                    style={{
+                      background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "12px",
+                      padding: "12px",
+                      fontWeight: "600",
+                      fontSize: "15px",
+                      boxShadow: "0 4px 15px rgba(102, 126, 234, 0.4)",
+                      transition: "all 0.3s ease",
+                    }}
                     onClick={(e) => {
                       e.stopPropagation();
                       navigate(`/dashboard/courses/${college.id}`);
+                    }}
+                    onMouseOver={(e) => {
+                      e.target.style.transform = "translateY(-2px)";
+                      e.target.style.boxShadow = "0 6px 20px rgba(102, 126, 234, 0.5)";
+                    }}
+                    onMouseOut={(e) => {
+                      e.target.style.transform = "translateY(0)";
+                      e.target.style.boxShadow = "0 4px 15px rgba(102, 126, 234, 0.4)";
                     }}
                   >
                     View Courses
