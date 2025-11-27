@@ -22,8 +22,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.HashMap;
 import java.util.Map;
 
-@WebMvcTest(StudentController.class)
 @AutoConfigureMockMvc(addFilters = false)
+@WebMvcTest(StudentController.class)
 @Disabled("Requires database setup - will be enabled after H2 configuration is added")
 class StudentControllerTest {
 

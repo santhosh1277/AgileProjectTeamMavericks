@@ -19,8 +19,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.List;
 
-@WebMvcTest(CollegeController.class)
 @AutoConfigureMockMvc(addFilters = false)
+@WebMvcTest(CollegeController.class)
 @Disabled("Requires database setup - will be enabled after H2 configuration is added")
 class CollegeControllerTest {
 
