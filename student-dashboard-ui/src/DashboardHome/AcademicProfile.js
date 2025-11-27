@@ -44,9 +44,8 @@ if (consentGiven === false) {
     init();
   }, [email]);
  const handleRedirect = () => {
-    navigate("/dashboard/"); // or "/home" depending on your route
+    navigate("/dashboard/");
   };
-  // Submit academic profile and get new recommendations
   const callRecommendationService = async () => {
     if (!email) {
       Swal.fire("Email not found in localStorage!");
@@ -63,11 +62,11 @@ if (consentGiven === false) {
     setLoading(true);
 
     try {
-      // Capture response from API (newly recommended courses)
       const response = await AcademicProfile(payload);
 
       if (response) {
-        setRecommendations(response); // Immediately display new recommendations
+        setRecommendations(response); 
+        window.location.reload();
       }
     } catch (err) {
       console.error("Error calling service:", err);
