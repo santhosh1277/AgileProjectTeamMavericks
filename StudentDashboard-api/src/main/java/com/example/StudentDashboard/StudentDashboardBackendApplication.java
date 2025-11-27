@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-@EntityScan(basePackages = "com.example.StudentDashboard.entity")
+@EntityScan(basePackages = "com.example.StudentDashboard.Entity")
 @EnableJpaRepositories(basePackages = "com.example.StudentDashboard.repository")
 public class StudentDashboardBackendApplication {
 
