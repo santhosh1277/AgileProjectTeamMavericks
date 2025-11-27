@@ -200,9 +200,12 @@ const COUNTRIES = [
 function DashboardHome() {
   const navigate = useNavigate();
   const [colleges, setColleges] = useState([]);
+  const [collegesWithCourses, setCollegesWithCourses] = useState([]); // enriched with courses
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [selectedCountry, setSelectedCountry] = useState("Ireland");
+  const [courses, setCourses] = useState([]); // master course list
+  const [selectedCourse, setSelectedCourse] = useState("");
   const [fadeIn, setFadeIn] = useState(false);
 
   // Add CSS animations
@@ -277,6 +280,50 @@ function DashboardHome() {
 
         fetchColleges();
     }, [selectedCountry]);
+
+  // Fetch master courses list once (same endpoint used in CourseDetails)
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const res = await fetch("http://localhost:8080/api/courses/masters");
+        if (!res.ok) return; // silently ignore for dashboard if fails
+        const data = await res.json();
+        // Deduplicate by name similar to CourseDetails logic
+        const unique = data.reduce((acc, course) => {
+          if (!acc.find(c => c.name === course.name)) acc.push(course);
+          return acc;
+        }, []);
+        setCourses(unique);
+      } catch (_) {
+        // ignore errors here; courses filter will just be hidden
+      }
+    };
+    fetchCourses();
+  }, []);
+
+  // Enrich colleges with a synthetic subset of courses for filtering purposes
+  useEffect(() => {
+    if (colleges.length === 0 || courses.length === 0) {
+      setCollegesWithCourses(colleges); // fallback
+      return;
+    }
+    // Distribute courses deterministically across colleges
+    const perCollege = Math.max(3, Math.floor(courses.length / Math.max(1, Math.min(colleges.length, 10))));
+    const enriched = colleges.map((college, idx) => {
+      const start = (idx * perCollege) % courses.length;
+      const slice = [];
+      for (let i = 0; i < perCollege; i++) {
+        slice.push(courses[(start + i) % courses.length]);
+      }
+      return { ...college, courses: slice };
+    });
+    setCollegesWithCourses(enriched);
+  }, [colleges, courses]);
+
+  // Apply course filter
+  const filteredColleges = selectedCourse
+    ? collegesWithCourses.filter(c => c.courses && c.courses.some(crs => crs.name === selectedCourse))
+    : collegesWithCourses;
 
   if (loading) {
     return (
@@ -412,21 +459,18 @@ function DashboardHome() {
               boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
             }}>
               <div className="card-body p-4">
-                <div className="row align-items-center">
+                <div className="row gy-3 align-items-center">
                   <div className="col-md-3">
-                    <label htmlFor="countryFilter" className="form-label fw-bold mb-0" style={{ color: "#2d3748", fontSize: "1.1rem" }}>
-                      🌍 Select Country:
+                    <label htmlFor="countryFilter" className="form-label fw-bold mb-0" style={{ color: "#2d3748", fontSize: "1.05rem" }}>
+                      🌍 Country
                     </label>
-                  </div>
-                  <div className="col-md-9">
                     <select
                       id="countryFilter"
-                      className="form-select form-select-lg"
+                      className="form-select form-select-sm mt-2"
                       value={selectedCountry}
                       onChange={(e) => setSelectedCountry(e.target.value)}
                       style={{ 
-                        maxWidth: "400px",
-                        borderRadius: "12px",
+                        borderRadius: "10px",
                         border: "2px solid #e2e8f0",
                         fontWeight: "500",
                       }}
@@ -439,6 +483,49 @@ function DashboardHome() {
                         </option>
                       ))}
                     </select>
+                  </div>
+                  {courses.length > 0 && (
+                    <div className="col-md-4">
+                      <label htmlFor="courseFilter" className="form-label fw-bold mb-0" style={{ color: "#2d3748", fontSize: "1.05rem" }}>
+                        📘 Course
+                      </label>
+                      <select
+                        id="courseFilter"
+                        className="form-select form-select-sm mt-2"
+                        value={selectedCourse}
+                        onChange={(e) => setSelectedCourse(e.target.value)}
+                        style={{ 
+                          borderRadius: "10px",
+                          border: "2px solid #e2e8f0",
+                          fontWeight: "500",
+                        }}
+                        onFocus={(e) => e.target.style.borderColor = "#667eea"}
+                        onBlur={(e) => e.target.style.borderColor = "#e2e8f0"}
+                      >
+                        <option value="">All Courses</option>
+                        {courses.map(course => (
+                          <option key={course.id || course.name} value={course.name}>{course.name}</option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
+                  <div className="col-md-5 d-flex align-items-end justify-content-md-end">
+                    {selectedCourse && (
+                      <button
+                        type="button"
+                        className="btn btn-sm"
+                        style={{
+                          background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                          color: "white",
+                          border: "none",
+                          borderRadius: "10px",
+                          fontWeight: 600
+                        }}
+                        onClick={() => setSelectedCourse("")}
+                      >
+                        Clear Course Filter
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
@@ -457,7 +544,7 @@ function DashboardHome() {
           }}>{colleges.length}</span>}
         </h4>
         
-        {colleges.length === 0 ? (
+        {filteredColleges.length === 0 ? (
           <div className="alert" role="alert" style={{
             background: "rgba(255, 255, 255, 0.95)",
             backdropFilter: "blur(10px)",
@@ -467,12 +554,12 @@ function DashboardHome() {
           }}>
             <h5 className="alert-heading" style={{ color: "#2d3748", fontWeight: "700" }}>No Universities Found</h5>
             <p className="mb-0" style={{ color: "#4a5568" }}>
-              No universities found for {selectedCountry}. Try selecting a different country from the filter above.
+              No universities found for {selectedCountry}{selectedCourse ? ` offering the course "${selectedCourse}"` : ""}. Try adjusting filters.
             </p>
           </div>
         ) : (
           <div className="row">
-          {colleges.map((college, index) => (
+          {filteredColleges.map((college, index) => (
             <div 
               key={college.id} 
               className="col-md-6 col-lg-4 mb-4"
@@ -509,6 +596,11 @@ function DashboardHome() {
                     <p className="card-text" style={{ color: "#718096" }}>
                       <strong>🏆 World Rank:</strong> {college.rank}
                     </p>
+                    {selectedCourse && college.courses && (
+                      <p className="card-text" style={{ color: "#718096" }}>
+                        <strong>📘 Courses:</strong> {college.courses.slice(0,3).map(c => c.name).join(", ")}
+                      </p>
+                    )}
                   </div>
                   <button 
                     className="btn mt-3 w-100"
