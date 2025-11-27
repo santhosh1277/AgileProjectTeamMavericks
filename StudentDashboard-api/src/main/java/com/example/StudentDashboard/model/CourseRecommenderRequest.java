@@ -1,6 +1,6 @@
 package com.example.StudentDashboard.model;
 
-import com.example.StudentDashboard.entity.CourseRecommender;
+import com.example.StudentDashboard.Entity.CourseRecommender;
 import java.util.List;
 
 public class CourseRecommenderRequest {

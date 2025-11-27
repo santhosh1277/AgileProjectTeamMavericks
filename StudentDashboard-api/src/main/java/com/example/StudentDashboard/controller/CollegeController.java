@@ -1,7 +1,7 @@
 package com.example.StudentDashboard.controller;
 
-import com.example.StudentDashboard.entity.College;
 import com.example.StudentDashboard.service.CollegeService;
+import com.example.StudentDashboard.Entity.College;
 
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +19,7 @@ public class CollegeController {
         this.collegeService = collegeService;
     }
 
+    // ✅ Step 3: Use it
     @GetMapping
     public List<College> getAllColleges() {
     	
@@ -29,5 +30,5 @@ public class CollegeController {
     public void UpdateCollegesList() {
         collegeService.UpdateCollegesList();
     }
-   
+    
 }

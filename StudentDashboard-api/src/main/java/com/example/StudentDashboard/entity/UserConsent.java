@@ -1,4 +1,4 @@
-package com.example.StudentDashboard.entity;
+package com.example.StudentDashboard.Entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

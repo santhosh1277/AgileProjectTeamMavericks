@@ -9,10 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.StudentDashboard.entity.AcademicProfile;
-import com.example.StudentDashboard.entity.CourseRecommender;
-import com.example.StudentDashboard.entity.Student;
-import com.example.StudentDashboard.entity.UserConsent;
+import com.example.StudentDashboard.Entity.AcademicProfile;
+import com.example.StudentDashboard.Entity.CourseRecommender;
+import com.example.StudentDashboard.Entity.Student;
+import com.example.StudentDashboard.Entity.UserConsent;
 import com.example.StudentDashboard.service.StudentService;
 
 @RestController

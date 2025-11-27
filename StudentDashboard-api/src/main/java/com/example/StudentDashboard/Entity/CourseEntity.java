@@ -1,4 +1,4 @@
-package com.example.StudentDashboard.entity;
+package com.example.StudentDashboard.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;

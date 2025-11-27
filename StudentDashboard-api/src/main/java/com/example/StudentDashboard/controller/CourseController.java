@@ -1,6 +1,6 @@
 package com.example.StudentDashboard.controller;
 
-import com.example.StudentDashboard.entity.CourseEntity;
+import com.example.StudentDashboard.Entity.CourseEntity;
 import com.example.StudentDashboard.repository.CourseRepository;
 import org.springframework.web.bind.annotation.*;
 
