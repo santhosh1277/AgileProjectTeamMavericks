@@ -4,7 +4,7 @@ import com.example.StudentDashboard.entity.AcademicProfile;
 import com.example.StudentDashboard.entity.CourseRecommender;
 import com.example.StudentDashboard.entity.Student;
 import com.example.StudentDashboard.entity.UserConsent;
-import com.example.StudentDashboard.model.CourseRecommendationRequest;
+import com.example.StudentDashboard.model.CourseRecommenderRequest;
 import com.example.StudentDashboard.repository.AcademicProfileRepository;
 import com.example.StudentDashboard.repository.CourseRecommenderRepository;
 import com.example.StudentDashboard.repository.StudentRepository;
@@ -20,14 +20,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Map;
 import java.util.Optional;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
+
 
 @Service
 public class StudentService {
@@ -37,15 +36,17 @@ public class StudentService {
     private AcademicProfileRepository academicProfileRepository;
     private CourseRecommenderRepository recommendedCourseRepository;
     private UserConsentRepository _userConsentRepository;
+       private RestTemplate restTemplate;
     private Student _student;
     private final String AI_RECOMMEND_URL = "http://127.0.0.1:5000/recommend";
 
     public StudentService(StudentRepository studentRepository, AcademicProfileRepository academicProfileRepository,
-            CourseRecommenderRepository recommendedCourseRepository,UserConsentRepository userConsentRepository) {
+            CourseRecommenderRepository recommendedCourseRepository,UserConsentRepository userConsentRepository, RestTemplate restTemplate) {
         this.studentRepository = studentRepository;
         this.academicProfileRepository = academicProfileRepository;
         this.recommendedCourseRepository = recommendedCourseRepository;
         _userConsentRepository = userConsentRepository;
+        this.restTemplate = restTemplate;
     }
 
     public Student registerStudent(Student student) {
@@ -117,7 +118,7 @@ public class StudentService {
 
         if (existing != null) {
             // Update parent
-            existing.setHighestDegree(profile.getHighestDegree());
+            existing.setDegree(profile.getDegree());
             existing.setCertifications(profile.getCertifications());
             existing.setInterests(profile.getInterests());
 
@@ -134,50 +135,34 @@ public class StudentService {
         return "Academic Profile added successfully";
     }
 
-   public CourseRecommender AddCourseRecommendation(AcademicProfile profile) {
+   public List<CourseRecommender> addCourseRecommendations(AcademicProfile profile) {
     try {
-        if (profile == null) {
-            throw new RuntimeException("AcademicProfile not found for email.");
-        }
+        ResponseEntity<String> response = restTemplate.postForEntity(AI_RECOMMEND_URL, profile, String.class);
 
-        // 1️⃣ Call AI recommendation service
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        // Send minimal payload (or empty JSON)
-        HttpEntity<String> request = new HttpEntity<>("{}", headers);
-
-        ResponseEntity<String> response = restTemplate.exchange(
-                AI_RECOMMEND_URL,
-                HttpMethod.POST,
-                request,
-                String.class // raw JSON
-        );
-
-        if (!response.getStatusCode().is2xxSuccessful() || response.getBody() == null) {
-            throw new RuntimeException(
-                    "Failed to get recommendation from AI. Status: " + response.getStatusCode());
-        }
-
+        // Map JSON response to CourseRecommenderRequest
         ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); // ignore extra fields
-        JsonNode root = mapper.readTree(response.getBody());
+        CourseRecommenderRequest courseResponse = mapper.readValue(response.getBody(), CourseRecommenderRequest.class);
 
-        if (root.has("email")) {
-            ((ObjectNode) root).remove("email");
+        // Get the list of recommendations
+        List<CourseRecommender> courses = courseResponse.getRecommendations();
+
+        // Set email for each recommendation
+        for (CourseRecommender course : courses) {
+            course.setEmail(profile.getEmail());
         }
 
-        CourseRecommender recommendedCourse = mapper.treeToValue(root, CourseRecommender.class);
+        // Save all recommendations to DB
+        return recommendedCourseRepository.saveAll(courses);
 
-        recommendedCourse.setEmail(profile.getEmail());
-
-        return recommendedCourseRepository.save(recommendedCourse);
-
+    } catch (HttpClientErrorException e) {
+        System.out.println("AI Service Error: " + e.getResponseBodyAsString());
+        throw new RuntimeException("Error adding course recommendation: " + e.getMessage());
     } catch (Exception e) {
-        throw new RuntimeException("Error adding course recommendation: " + e.getMessage(), e);
+        throw new RuntimeException("Error parsing AI response: " + e.getMessage());
     }
 }
+
+
 
    public boolean UpdateUserConsent(UserConsent consent) {
     if(consent.getEmail()!=null)

@@ -11,8 +11,8 @@ public class AcademicProfile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "highest_degree", nullable = false)
-    private String highestDegree;
+    @Column(name = "degree", nullable = false, columnDefinition = "varchar(255) default 'Unknown'")
+    private String degree;
 
     @Column(name = "email", nullable = false, unique = true)
     private String email;
@@ -34,15 +34,11 @@ public class AcademicProfile {
     @Column(name = "interest")
     private List<String> interests;
 
-    // -------------------------
-    // Constructors
-    // -------------------------
-
     public AcademicProfile() {}
 
-    public AcademicProfile(String highestDegree, String email,
+    public AcademicProfile(String degree, String email,
                            List<String> certifications, List<String> interests) {
-        this.highestDegree = highestDegree;
+        this.degree = degree;
         this.email = email;
         this.certifications = certifications;
         this.interests = interests;
@@ -53,13 +49,14 @@ public class AcademicProfile {
         return id;
     }
 
-    public String getHighestDegree() {
-        return highestDegree;
-    }
+ public String getDegree() {
+    return degree;
+}
 
-    public void setHighestDegree(String highestDegree) {
-        this.highestDegree = highestDegree;
-    }
+public void setDegree(String degree) {
+    this.degree = degree;
+}
+
 
     public String getEmail() {
         return email;

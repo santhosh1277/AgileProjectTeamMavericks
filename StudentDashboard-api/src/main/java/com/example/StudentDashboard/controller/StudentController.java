@@ -1,5 +1,6 @@
 package com.example.StudentDashboard.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.StudentDashboard.entity.AcademicProfile;
+import com.example.StudentDashboard.entity.CourseRecommender;
 import com.example.StudentDashboard.entity.Student;
 import com.example.StudentDashboard.entity.UserConsent;
 import com.example.StudentDashboard.service.StudentService;
@@ -127,18 +129,21 @@ public class StudentController {
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email is required");
     }
-    @PostMapping("/course-recommendations")
-    public ResponseEntity<?> getCourseRecommendations(@RequestBody AcademicProfile request) {
-        
-        if (request != null) {
-            return ResponseEntity.ok(studentService.AddCourseRecommendation(request));
-        }
+   /**
+ * @param profile
+ * @return
+ */
+@PostMapping("/course-recommendations")
+public ResponseEntity<List<CourseRecommender>> getCourseRecommendations(@RequestBody AcademicProfile profile) {
+    List<CourseRecommender> recommendations = studentService.addCourseRecommendations(profile);
+    return ResponseEntity.ok(recommendations);
+}
 
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email is required");
-    }
+
     @PostMapping("/consent")
     public boolean getUserConsenttoCall(@RequestBody UserConsent consent)
     {
-            return studentService.UpdateUserConsent(consent);
+          return  studentService.UpdateUserConsent(consent);
+
     }
 }
