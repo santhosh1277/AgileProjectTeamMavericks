@@ -156,7 +156,9 @@ public class StudentService {
             }
 
             // Save all recommendations to DB
-            return recommendedCourseRepository.saveAll(courses);
+            
+             recommendedCourseRepository.saveAll(courses);
+             return getRecommendedCourses(profile.getEmail());
 
         } catch (HttpClientErrorException e) {
             System.out.println("AI Service Error: " + e.getResponseBodyAsString());

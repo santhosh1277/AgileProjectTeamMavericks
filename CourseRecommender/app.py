@@ -10,7 +10,6 @@ def format_recommendations(recs):
             "course_name": course["course_name"],
             "domains": course.get("domains", []),
             "skills": course.get("skills", []),
-            "score": round(score, 3),
             "description": course.get("description", "")
         })
     return formatted

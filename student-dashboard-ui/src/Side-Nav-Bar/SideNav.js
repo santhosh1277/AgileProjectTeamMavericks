@@ -192,52 +192,153 @@ function SideNav() {
       )}
       
     <nav className="d-flex flex-column p-3" style={{ minHeight: "100vh", ...navContainerStyle }}>
-      <h4 className="text-center mb-3 border-bottom pb-2" style={{ color: "#fff", fontWeight: "bold" }}>Dashboard</h4>
+      <h4 className="text-center mb-4 pb-3" style={{ 
+        color: "#fff", 
+        fontWeight: "800",
+        fontSize: "1.5rem",
+        borderBottom: "3px solid rgba(255, 255, 255, 0.3)",
+        textShadow: "0 2px 10px rgba(0, 0, 0, 0.2)",
+      }}>
+        🎓 Dashboard
+      </h4>
       {userName && (
         <div 
           className="text-center mb-4" 
           style={{ 
-            backgroundColor: "rgba(0, 191, 255, 0.2)",
-            border: "2px solid #00BFFF",
-            borderRadius: "10px",
-            padding: "12px 16px",
+            background: "rgba(255, 255, 255, 0.2)",
+            backdropFilter: "blur(10px)",
+            border: "2px solid rgba(255, 255, 255, 0.3)",
+            borderRadius: "16px",
+            padding: "16px",
             marginTop: "0.5rem",
-            boxShadow: "0 2px 8px rgba(0, 191, 255, 0.3)"
+            boxShadow: "0 4px 15px rgba(0, 0, 0, 0.1)"
           }}
         >
           <p 
             className="mb-0" 
             style={{ 
               fontSize: "1.1rem", 
-              color: "#00BFFF",
+              color: "#fff",
               fontWeight: "600",
               margin: 0
             }}
           >
-             Hi <span style={{ color: "#fff", fontWeight: "bold" }}>{userName}</span>
+            👋 Hi <span style={{ fontWeight: "800", fontSize: "1.2rem" }}>{userName}</span>
           </p>
         </div>
       )}
       <ul className="nav flex-column">
-          <li className="nav-item">
-          <Link className="nav-link text-light" to="/dashboard/home">Home</Link>
-        </li>
-        <li className="nav-item mb-2">
-          <Link className="nav-link text-light" to="/dashboard/profile">Profile</Link>
-        </li>
-        <li className="nav-item mb-2">
-          <Link className="nav-link text-light" to="/dashboard/academicprofile">Academic Profile</Link>
-        </li>
-        <li className="nav-item mb-2">
-          <Link className="nav-link text-light" to="/dashboard/settings">Settings</Link>
-        </li>
-        <li className="nav-item">
-          <button 
-            className="nav-link text-light btn btn-link w-100 text-start p-0 ps-3" 
-            onClick={handleLogoutClick}
-            style={{ textDecoration: 'none' }}
+          <li className="nav-item mb-2">
+          <Link 
+            className="nav-link" 
+            to="/dashboard"
+            style={{
+              color: "#fff",
+              padding: "12px 16px",
+              borderRadius: "12px",
+              transition: "all 0.3s ease",
+              fontWeight: "500",
+              fontSize: "1.05rem",
+              textDecoration: "none",
+            }}
+            onMouseOver={(e) => {
+              e.target.style.background = "rgba(255, 255, 255, 0.2)";
+              e.target.style.paddingLeft = "24px";
+              e.target.style.boxShadow = "0 4px 15px rgba(0, 0, 0, 0.1)";
+            }}
+            onMouseOut={(e) => {
+              e.target.style.background = "transparent";
+              e.target.style.paddingLeft = "16px";
+              e.target.style.boxShadow = "none";
+            }}
           >
-            Logout
+            🏠 Home
+          </Link>
+        </li>
+        <li className="nav-item mb-2">
+          <Link 
+            className="nav-link" 
+            to="/dashboard/profile"
+            style={{
+              color: "#fff",
+              padding: "12px 16px",
+              borderRadius: "12px",
+              transition: "all 0.3s ease",
+              fontWeight: "500",
+              fontSize: "1.05rem",
+              textDecoration: "none",
+            }}
+            onMouseOver={(e) => {
+              e.target.style.background = "rgba(255, 255, 255, 0.2)";
+              e.target.style.paddingLeft = "24px";
+              e.target.style.boxShadow = "0 4px 15px rgba(0, 0, 0, 0.1)";
+            }}
+            onMouseOut={(e) => {
+              e.target.style.background = "transparent";
+              e.target.style.paddingLeft = "16px";
+              e.target.style.boxShadow = "none";
+            }}
+          >
+            👤 Profile
+          </Link>
+        </li>
+        <li className="nav-item mb-2">
+          <Link 
+            className="nav-link" 
+            to="/dashboard/academicprofile"
+            style={{
+              color: "#fff",
+              padding: "12px 16px",
+              borderRadius: "12px",
+              transition: "all 0.3s ease",
+              fontWeight: "500",
+              fontSize: "1.05rem",
+              textDecoration: "none",
+            }}
+            onMouseOver={(e) => {
+              e.target.style.background = "rgba(255, 255, 255, 0.2)";
+              e.target.style.paddingLeft = "24px";
+              e.target.style.boxShadow = "0 4px 15px rgba(0, 0, 0, 0.1)";
+            }}
+            onMouseOut={(e) => {
+              e.target.style.background = "transparent";
+              e.target.style.paddingLeft = "16px";
+              e.target.style.boxShadow = "none";
+            }}
+          >
+            📚 AI Course Recommender
+          </Link>
+        </li>
+        
+        <li className="nav-item mt-4">
+          <button 
+            className="nav-link btn btn-link w-100 text-start" 
+            onClick={handleLogoutClick}
+            style={{ 
+              color: "#fff",
+              padding: "12px 16px",
+              borderRadius: "12px",
+              transition: "all 0.3s ease",
+              fontWeight: "500",
+              fontSize: "1.05rem",
+              textDecoration: "none",
+              border: "2px solid rgba(255, 255, 255, 0.3)",
+              background: "rgba(255, 255, 255, 0.1)",
+            }}
+            onMouseOver={(e) => {
+              e.target.style.background = "rgba(255, 87, 87, 0.3)";
+              e.target.style.borderColor = "rgba(255, 87, 87, 0.5)";
+              e.target.style.paddingLeft = "24px";
+              e.target.style.boxShadow = "0 4px 15px rgba(255, 87, 87, 0.2)";
+            }}
+            onMouseOut={(e) => {
+              e.target.style.background = "rgba(255, 255, 255, 0.1)";
+              e.target.style.borderColor = "rgba(255, 255, 255, 0.3)";
+              e.target.style.paddingLeft = "16px";
+              e.target.style.boxShadow = "none";
+            }}
+          >
+            🚪 Logout
           </button>
         </li>
       </ul>
