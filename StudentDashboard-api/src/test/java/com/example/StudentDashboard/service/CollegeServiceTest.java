@@ -1,7 +1,7 @@
 package com.example.StudentDashboard.service;
 
-import com.example.StudentDashboard.Entity.College;
-import com.example.StudentDashboard.Entity.CourseEntity;
+import com.example.StudentDashboard.entity.College;
+import com.example.StudentDashboard.entity.CourseEntity;
 import com.example.StudentDashboard.model.UniversityApiResponse;
 import com.example.StudentDashboard.repository.CollegeRepository;
 import org.junit.jupiter.api.BeforeEach;

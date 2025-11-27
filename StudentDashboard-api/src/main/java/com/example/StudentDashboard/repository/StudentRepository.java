@@ -1,7 +1,8 @@
 package com.example.StudentDashboard.repository;
-import com.example.StudentDashboard.Entity.Student;
-
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.StudentDashboard.entity.Student;
+
 import java.util.Optional;
 
 public interface StudentRepository extends JpaRepository<Student, Long> {

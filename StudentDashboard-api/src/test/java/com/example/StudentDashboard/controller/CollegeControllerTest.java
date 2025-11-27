@@ -1,6 +1,6 @@
 package com.example.StudentDashboard.controller;
 
-import com.example.StudentDashboard.Entity.College;
+import com.example.StudentDashboard.entity.College;
 import com.example.StudentDashboard.service.CollegeService;
 
 import org.junit.jupiter.api.Test;

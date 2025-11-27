@@ -1,6 +1,7 @@
 package com.example.StudentDashboard.service;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import com.example.StudentDashboard.Entity.Student;
+
+import com.example.StudentDashboard.entity.Student;
 import com.example.StudentDashboard.repository.StudentRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

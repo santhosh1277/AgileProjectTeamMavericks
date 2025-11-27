@@ -1,8 +1,7 @@
 package com.example.StudentDashboard.service;
 import org.springframework.stereotype.Service;
 import com.example.StudentDashboard.repository.CollegeRepository;
-import com.example.StudentDashboard.Entity.College;
-import com.example.StudentDashboard.Entity.CourseEntity;
+import com.example.StudentDashboard.entity.College;
 import com.example.StudentDashboard.model.UniversityApiResponse;
 import org.springframework.web.client.RestTemplate;
 
@@ -19,7 +18,7 @@ public class CollegeService {
 		_collegeRepository = collegeRepository;
 		_restTemplate = restTemplate;
 	}
-	    public List<com.example.StudentDashboard.Entity.College> getAllColleges() {
+	    public List<College> getAllColleges() {
 	    	        return _collegeRepository.findAll();
 	    	    }
 	    public College AddPreferenceCollege()

@@ -1,4 +1,4 @@
-package com.example.StudentDashboard.Entity;
+package com.example.StudentDashboard.entity;
 
 import jakarta.persistence.*;
 import java.util.List;
@@ -26,9 +26,6 @@ public class AcademicProfile {
     @Column(name = "certification")
     private List<String> certifications;
 
-    // -------------------------
-    // Interests
-    // -------------------------
     @ElementCollection
     @CollectionTable(
             name = "academic_profile_interests",

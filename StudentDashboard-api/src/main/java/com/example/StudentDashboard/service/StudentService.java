@@ -1,8 +1,8 @@
 package com.example.StudentDashboard.service;
 
-import com.example.StudentDashboard.Entity.AcademicProfile;
-import com.example.StudentDashboard.Entity.CourseRecommender;
-import com.example.StudentDashboard.Entity.Student;
+import com.example.StudentDashboard.entity.AcademicProfile;
+import com.example.StudentDashboard.entity.CourseRecommender;
+import com.example.StudentDashboard.entity.Student;
 import com.example.StudentDashboard.repository.AcademicProfileRepository;
 import com.example.StudentDashboard.repository.CourseRecommenderRepository;
 import com.example.StudentDashboard.repository.StudentRepository;

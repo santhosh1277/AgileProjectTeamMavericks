@@ -1,6 +1,9 @@
-package com.example.StudentDashboard.Entity;
+package com.example.StudentDashboard.entity;
 
 import org.junit.jupiter.api.Test;
+
+import com.example.StudentDashboard.entity.College;
+import com.example.StudentDashboard.entity.CourseEntity;
 
 import java.util.List;
 

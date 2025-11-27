@@ -5,7 +5,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import com.example.StudentDashboard.Entity.Student;
+import com.example.StudentDashboard.entity.Student;
 import com.example.StudentDashboard.service.StudentService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
