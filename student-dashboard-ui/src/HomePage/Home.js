@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Footer from "../components/Footer";  
+import Footer from "../components/Footer";
 
 function Home() {
   const [universities, setUniversities] = useState([]);
@@ -73,18 +73,21 @@ function Home() {
               </div>
             </div>
             <div className="col-6 d-flex justify-content-center align-items-center gap-2">
-              <h2 className="mb-0">Universities in</h2>
-              <select
-                className="form-select"
-                style={{ maxWidth: "240px" }}
-                value={selectedCountry}
-                onChange={(e) => setSelectedCountry(e.target.value)}
-                aria-label="Select country"
-              >
-                {countries.map((c) => (
-                  <option key={c} value={c}>{c}</option>
-                ))}
-              </select>
+                <label className="me-2 mb-0 fw-bold" style={{ fontSize: "1.25rem" }}>
+                 <h3>Universities in</h3> 
+                </label>
+                <select
+                  className="form-select"
+                  style={{ maxWidth: "240px", height: "38px" }} // match Bootstrap input height
+                  value={selectedCountry}
+                  onChange={(e) => setSelectedCountry(e.target.value)}
+                  aria-label="Select country"
+                >
+                  {countries.map((c) => (
+                    <option key={c} value={c}>{c}</option>
+                  ))}
+                </select>
+
             </div>
             <div className="col-3 d-flex justify-content-end">
               <button
@@ -100,7 +103,7 @@ function Home() {
 
       {/* Main content */}
       <main className="container py-4" style={{ flex: 1 }}>
-        
+
         <div className="row justify-content-center mb-4">
           <div className="col-lg-6 col-md-8 col-sm-10">
             <input
@@ -136,66 +139,66 @@ function Home() {
                     .includes(query.toLowerCase())
                 )
                 .map((u, index) => (
-                <div
-                  key={u.name + index}
-                  className="d-flex p-3"
-                  style={{
-                    backgroundColor: "#f8f9fa",
-                    borderRadius: "16px",
-                    border: "1px solid #dee2e6",
-                    boxShadow: "0 2px 10px rgba(0, 0, 0, 0.05)",
-                    cursor: u.web_pages && u.web_pages.length > 0 ? "pointer" : "default",
-                  }}
-                  onClick={() => {
-                    if (u.web_pages && u.web_pages.length > 0) {
-                      window.open(u.web_pages[0], "_blank", "noopener,noreferrer");
-                    }
-                  }}
-                >
-                  {/* Left: Banner */}
                   <div
+                    key={u.name + index}
+                    className="d-flex p-3"
                     style={{
-                      width: "140px",
-                      height: "100px",
-                      borderRadius: "12px",
-                      background:
-                        "linear-gradient(135deg, #f97316, #facc15)",
-                      marginRight: "20px",
+                      backgroundColor: "#f8f9fa",
+                      borderRadius: "16px",
+                      border: "1px solid #dee2e6",
+                      boxShadow: "0 2px 10px rgba(0, 0, 0, 0.05)",
+                      cursor: u.web_pages && u.web_pages.length > 0 ? "pointer" : "default",
                     }}
-                  />
-
-                  {/* Right: Info */}
-                  <div className="flex-grow-1">
+                    onClick={() => {
+                      if (u.web_pages && u.web_pages.length > 0) {
+                        window.open(u.web_pages[0], "_blank", "noopener,noreferrer");
+                      }
+                    }}
+                  >
+                    {/* Left: Banner */}
                     <div
-                      className="small"
-                      style={{ color: "#9ca3af", marginBottom: "4px" }}
-                    >
-                      {u.name}
-                    </div>
-
-                    <h5
                       style={{
-                        color: "#000000",
-                        marginBottom: "6px",
-                        fontWeight: "600",
+                        width: "140px",
+                        height: "100px",
+                        borderRadius: "12px",
+                        background:
+                          "linear-gradient(135deg, #f97316, #facc15)",
+                        marginRight: "20px",
                       }}
-                    >
-                      {u.name} – Programs & Info
-                    </h5>
+                    />
 
-                    <div
-                      className="small mb-2"
-                      style={{ color: "#6c757d", lineHeight: 1.4 }}
-                    >
-                      {u.country || "Ireland"}
-                      {u["state-province"] && ` • ${u["state-province"]}`}
-                      {u.domains && u.domains.length > 0 && ` • ${u.domains[0]}`}
+                    {/* Right: Info */}
+                    <div className="flex-grow-1">
+                      <div
+                        className="small"
+                        style={{ color: "#9ca3af", marginBottom: "4px" }}
+                      >
+                        {u.name}
+                      </div>
+
+                      <h5
+                        style={{
+                          color: "#000000",
+                          marginBottom: "6px",
+                          fontWeight: "600",
+                        }}
+                      >
+                        {u.name} – Programs & Info
+                      </h5>
+
+                      <div
+                        className="small mb-2"
+                        style={{ color: "#6c757d", lineHeight: 1.4 }}
+                      >
+                        {u.country || "Ireland"}
+                        {u["state-province"] && ` • ${u["state-province"]}`}
+                        {u.domains && u.domains.length > 0 && ` • ${u.domains[0]}`}
+                      </div>
+
+                      {/* Card is clickable for redirect; link removed */}
                     </div>
-
-                    {/* Card is clickable for redirect; link removed */}
                   </div>
-                </div>
-              ))}
+                ))}
 
               {universities.length === 0 && (
                 <p className="text-center mt-4">
