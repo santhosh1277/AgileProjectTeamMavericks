@@ -23,6 +23,7 @@ def recommend_endpoint():
         degree = data.get("degree")
         certs = data.get("certifications", [])
         interests = data.get("interests", [])
+        email = data.get("email")
 
         # Validate inputs
         if not degree or not certs or not interests:
