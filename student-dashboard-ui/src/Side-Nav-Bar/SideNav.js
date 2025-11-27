@@ -228,9 +228,6 @@ function SideNav() {
         <li className="nav-item mb-2">
           <Link className="nav-link text-light" to="/dashboard/academicprofile">Academic Profile</Link>
         </li>
-        <li className="nav-item mb-2">
-          <Link className="nav-link text-light" to="/dashboard/settings">Settings</Link>
-        </li>
         <li className="nav-item">
           <button 
             className="nav-link text-light btn btn-link w-100 text-start p-0 ps-3" 
