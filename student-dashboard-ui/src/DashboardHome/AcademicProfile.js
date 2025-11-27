@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { AcademicProfile, getRecommendationsByEmail, getUserConsent } from "../Service/StudentService";
 import ContactDialog from "./UserConsentDailog";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const CourseRecommendationForm = () => {
   const navigate = useNavigate();
@@ -48,7 +49,7 @@ if (consentGiven === false) {
   // Submit academic profile and get new recommendations
   const callRecommendationService = async () => {
     if (!email) {
-      alert("Email not found in localStorage!");
+      Swal.fire("Email not found in localStorage!");
       return;
     }
 
@@ -70,7 +71,7 @@ if (consentGiven === false) {
       }
     } catch (err) {
       console.error("Error calling service:", err);
-      alert("Failed to get recommendation.");
+      Swal.fire("Failed to get recommendation.");
     } finally {
       setLoading(false);
     }
