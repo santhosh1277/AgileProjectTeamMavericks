@@ -49,7 +49,7 @@ export const AcademicProfile = async (courseData) => {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(courseData), // courseData should include degree, interests, certifications, email
+            body: JSON.stringify(courseData),
         });
 
         if (!response.ok) {

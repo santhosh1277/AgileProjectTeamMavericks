@@ -3,17 +3,19 @@ import axios from "axios";
 import { AcademicProfile } from "../Service/StudentService";
 
 const CourseRecommendationForm = () => {
-  const [degree, setDegree] = useState("");
+  const [highestDegree, setDegree] = useState("");
   const [interests, setInterests] = useState("");
   const [certifications, setCertifications] = useState("");
   const [recommendation, setRecommendation] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const email = localStorage.getItem("user"); // get email from localStorage
+  const email = JSON.parse(localStorage.getItem("user")); 
+// "sample@gmail.com"
+localStorage.getItem("user"); 
 
   const payload = () => ({
-    degree,
-    interests: interests.split(",").map((i) => i.trim()), // comma separated
+    highestDegree,
+    interests: interests.split(",").map((i) => i.trim()),
     certifications: certifications.split(",").map((c) => c.trim()),
     email, // add email manually
   });
@@ -46,7 +48,7 @@ const CourseRecommendationForm = () => {
         <input
           type="text"
           className="form-control"
-          value={degree}
+          value={highestDegree}
           onChange={(e) => setDegree(e.target.value)}
         />
       </div>
