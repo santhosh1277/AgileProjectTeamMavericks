@@ -3,10 +3,12 @@ package com.example.StudentDashboard.service;
 import com.example.StudentDashboard.entity.AcademicProfile;
 import com.example.StudentDashboard.entity.CourseRecommender;
 import com.example.StudentDashboard.entity.Student;
+import com.example.StudentDashboard.entity.UserConsent;
 import com.example.StudentDashboard.model.CourseRecommendationRequest;
 import com.example.StudentDashboard.repository.AcademicProfileRepository;
 import com.example.StudentDashboard.repository.CourseRecommenderRepository;
 import com.example.StudentDashboard.repository.StudentRepository;
+import com.example.StudentDashboard.repository.UserConsentRepository;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -34,14 +36,16 @@ public class StudentService {
     private StudentRepository studentRepository;
     private AcademicProfileRepository academicProfileRepository;
     private CourseRecommenderRepository recommendedCourseRepository;
+    private UserConsentRepository _userConsentRepository;
     private Student _student;
     private final String AI_RECOMMEND_URL = "http://127.0.0.1:5000/recommend";
 
     public StudentService(StudentRepository studentRepository, AcademicProfileRepository academicProfileRepository,
-            CourseRecommenderRepository recommendedCourseRepository) {
+            CourseRecommenderRepository recommendedCourseRepository,UserConsentRepository userConsentRepository) {
         this.studentRepository = studentRepository;
         this.academicProfileRepository = academicProfileRepository;
         this.recommendedCourseRepository = recommendedCourseRepository;
+        _userConsentRepository = userConsentRepository;
     }
 
     public Student registerStudent(Student student) {
@@ -156,27 +160,32 @@ public class StudentService {
                     "Failed to get recommendation from AI. Status: " + response.getStatusCode());
         }
 
-        // 2️⃣ Map AI JSON to CourseRecommender, but ignore email
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); // ignore extra fields
         JsonNode root = mapper.readTree(response.getBody());
 
-        // Remove email field from JSON if present
         if (root.has("email")) {
             ((ObjectNode) root).remove("email");
         }
 
-        // Convert JSON to CourseRecommender
         CourseRecommender recommendedCourse = mapper.treeToValue(root, CourseRecommender.class);
 
-        // 3️⃣ Set email manually from profile
         recommendedCourse.setEmail(profile.getEmail());
 
-        // 4️⃣ Save to repository
         return recommendedCourseRepository.save(recommendedCourse);
 
     } catch (Exception e) {
         throw new RuntimeException("Error adding course recommendation: " + e.getMessage(), e);
     }
 }
+
+   public boolean UpdateUserConsent(UserConsent consent) {
+    if(consent.getEmail()!=null)
+    {
+        if(consent.isConsentGiven())
+        _userConsentRepository.save(consent);
+        return true;
+    }
+    return false;
+   }
 }

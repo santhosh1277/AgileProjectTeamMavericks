@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.example.StudentDashboard.entity.AcademicProfile;
 import com.example.StudentDashboard.entity.Student;
+import com.example.StudentDashboard.entity.UserConsent;
 import com.example.StudentDashboard.service.StudentService;
 
 @RestController
@@ -134,5 +135,10 @@ public class StudentController {
         }
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email is required");
+    }
+    @PostMapping("/consent")
+    public boolean getUserConsenttoCall(@RequestBody UserConsent consent)
+    {
+            return studentService.UpdateUserConsent(consent);
     }
 }

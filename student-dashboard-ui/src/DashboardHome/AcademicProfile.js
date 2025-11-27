@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { AcademicProfile } from "../Service/StudentService";
+import ContactDialog from "./UserConsentDailog";   // <-- import dialog
 
 const CourseRecommendationForm = () => {
   const [highestDegree, setDegree] = useState("");
@@ -9,16 +9,16 @@ const CourseRecommendationForm = () => {
   const [recommendation, setRecommendation] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const email = JSON.parse(localStorage.getItem("user")); 
-// "sample@gmail.com"
-localStorage.getItem("user"); 
+  const [showDialog, setShowDialog] = useState(false); // <-- dialog state
 
-  const payload = () => ({
-    highestDegree,
-    interests: interests.split(",").map((i) => i.trim()),
-    certifications: certifications.split(",").map((c) => c.trim()),
-    email, // add email manually
-  });
+  // FIX: Correctly read email (remove extra quotes)
+  const rawUser = localStorage.getItem("user"); // "\"sample@gmail.com\""
+  const email = rawUser ? rawUser.replace(/"/g, "") : null;
+
+  useEffect(() => {
+    // Show the dialog immediately when page opens
+    setShowDialog(true);
+  }, []);
 
   const callRecommendationService = async () => {
     if (!email) {
@@ -26,9 +26,18 @@ localStorage.getItem("user");
       return;
     }
 
+    const payload = {
+      highestDegree,
+      interests: interests.split(",").map((i) => i.trim()).filter(Boolean),
+      certifications: certifications.split(",").map((c) => c.trim()).filter(Boolean),
+      email,
+    };
+
     setLoading(true);
+
     try {
-      AcademicProfile(payload());
+      const response = await AcademicProfile(payload);
+      setRecommendation(response.data);
     } catch (err) {
       console.error("Error calling service:", err);
       alert("Failed to get recommendation.");
@@ -36,13 +45,16 @@ localStorage.getItem("user");
       setLoading(false);
     }
   };
-  useEffect(() => {
-    callRecommendationService();
-  }, []);
 
   return (
     <div className="container mt-4">
+      <ContactDialog
+        show={showDialog}
+        onClose={() => setShowDialog(false)}
+      />
+
       <h3>Course Recommendation</h3>
+
       <div className="mb-3">
         <label className="form-label">Highest Degree</label>
         <input
@@ -52,6 +64,7 @@ localStorage.getItem("user");
           onChange={(e) => setDegree(e.target.value)}
         />
       </div>
+
       <div className="mb-3">
         <label className="form-label">Interests (comma separated)</label>
         <input
@@ -61,6 +74,7 @@ localStorage.getItem("user");
           onChange={(e) => setInterests(e.target.value)}
         />
       </div>
+
       <div className="mb-3">
         <label className="form-label">Certifications (comma separated)</label>
         <input
@@ -70,6 +84,7 @@ localStorage.getItem("user");
           onChange={(e) => setCertifications(e.target.value)}
         />
       </div>
+
       <button
         className="btn btn-primary"
         onClick={callRecommendationService}
