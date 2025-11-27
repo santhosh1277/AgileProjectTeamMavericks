@@ -3,9 +3,13 @@ package com.example.StudentDashboard.service;
 import com.example.StudentDashboard.entity.AcademicProfile;
 import com.example.StudentDashboard.entity.CourseRecommender;
 import com.example.StudentDashboard.entity.Student;
+import com.example.StudentDashboard.model.CourseRecommendationRequest;
 import com.example.StudentDashboard.repository.AcademicProfileRepository;
 import com.example.StudentDashboard.repository.CourseRecommenderRepository;
 import com.example.StudentDashboard.repository.StudentRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import jakarta.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
@@ -15,7 +19,10 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Map;
 import java.util.Optional;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
 @Service
 public class StudentService {
@@ -92,60 +99,95 @@ public class StudentService {
                 .orElse(new Student());
     }
 
-    public AcademicProfile AddAcademicProfile(AcademicProfile profile) {
+    @Transactional
+    public String AddAcademicProfile(AcademicProfile profile) {
+        if (profile.getCertifications() == null)
+            profile.setCertifications(new ArrayList<>());
+        if (profile.getInterests() == null)
+            profile.setInterests(new ArrayList<>());
+
         AcademicProfile existing = academicProfileRepository.findByEmail(profile.getEmail());
 
         if (existing != null) {
-
+            // Update parent
             existing.setHighestDegree(profile.getHighestDegree());
             existing.setCertifications(profile.getCertifications());
             existing.setInterests(profile.getInterests());
 
-            return academicProfileRepository.save(existing);
+            // Save parent first
+            AcademicProfile saved = academicProfileRepository.save(existing);
+
+            return "Academic Profile updated successfully";
         }
 
-        return academicProfileRepository.save(profile);
+        // For new profile: save parent first to generate ID
+        AcademicProfile savedProfile = academicProfileRepository.save(profile);
+
+        // Now collections will have profile_id assigned
+        return "Academic Profile added successfully";
     }
 
     public CourseRecommender AddCourseRecommendation(String email) {
+        try {
+            // 1️⃣ Fetch AcademicProfile from DB
+            AcademicProfile profile = academicProfileRepository.findByEmail(email);
+            if (profile == null) {
+                throw new RuntimeException("AcademicProfile not found for email: " + email);
+            }
 
-        // 1️⃣ Fetch AcademicProfile from DB
-        AcademicProfile profile = academicProfileRepository.findByEmail(email);
-        if (profile == null) {
-            throw new RuntimeException("AcademicProfile not found for email: " + email);
+            // 2️⃣ Clean certifications and interests
+            List<String> certifications = profile.getCertifications() != null
+                    ? profile.getCertifications().stream()
+                            .map(s -> s.replaceAll("[\\n\\r\\t]", " "))
+                            .toList()
+                    : List.of();
+
+            List<String> interests = profile.getInterests() != null
+                    ? profile.getInterests().stream()
+                            .map(s -> s.replaceAll("[\\n\\r\\t]", " "))
+                            .toList()
+                    : List.of();
+
+            // 3️⃣ Prepare payload DTO
+            CourseRecommendationRequest payload = new CourseRecommendationRequest();
+            payload.setHighestDegree(
+                    profile.getHighestDegree() != null
+                            ? profile.getHighestDegree().replaceAll("[\\n\\r\\t]", " ")
+                            : "");
+            payload.setCertifications(certifications);
+            payload.setInterests(interests);
+
+            // 4️⃣ Serialize DTO to JSON
+            ObjectMapper mapper = new ObjectMapper();
+            String jsonPayload = mapper.writeValueAsString(payload);
+
+            // 5️⃣ Prepare HTTP headers
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            HttpEntity<String> request = new HttpEntity<>(jsonPayload, headers);
+
+            // 6️⃣ Call AI recommendation service
+            RestTemplate restTemplate = new RestTemplate();
+            ResponseEntity<CourseRecommender> response = restTemplate.exchange(
+                    AI_RECOMMEND_URL,
+                    HttpMethod.POST,
+                    request,
+                    CourseRecommender.class);
+
+            // 7️⃣ Validate response
+            if (!response.getStatusCode().is2xxSuccessful() || response.getBody() == null) {
+                throw new RuntimeException(
+                        "Failed to get recommendation from AI. Status: " + response.getStatusCode());
+            }
+
+            // 8️⃣ Set email and save recommendation
+            CourseRecommender recommendedCourse = response.getBody();
+            recommendedCourse.setEmail(email);
+
+            return recommendedCourseRepository.save(recommendedCourse);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Error adding course recommendation: " + e.getMessage(), e);
         }
-
-        Map<String, Object> payload = new HashMap<>();
-        payload.put("highestDegree", profile.getHighestDegree());
-        payload.put("certifications", profile.getCertifications());
-        payload.put("interests", profile.getInterests());
-        payload.put("email", profile.getEmail());
-
-        // 3️⃣ Prepare headers
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        // Explicit generic type to avoid errors
-        HttpEntity<Map<String, Object>> request = new HttpEntity<Map<String, Object>>(payload, headers);
-
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<CourseRecommender> response = restTemplate.exchange(
-                AI_RECOMMEND_URL,
-                HttpMethod.POST,
-                request,
-                CourseRecommender.class);
-
-        if (!response.getStatusCode().is2xxSuccessful() || response.getBody() == null) {
-            throw new RuntimeException(
-                    "Failed to get recommendation from AI. Status: " + response.getStatusCode());
-        }
-
-        // 5️⃣ Add email to the received RecommendedCourse
-        CourseRecommender recommendedCourse = response.getBody();
-        recommendedCourse.setEmail(email); 
-
-        CourseRecommender saved = recommendedCourseRepository.save(recommendedCourse);
-
-        return saved;
     }
 }

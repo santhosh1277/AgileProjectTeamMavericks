@@ -126,4 +126,14 @@ public class StudentController {
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email is required");
     }
+    @PostMapping("/course-recommendations")
+    public ResponseEntity<?> getCourseRecommendations(@RequestBody Map<String, String> request) {
+    String email = request.get("email");
+        
+        if (email != null) {
+            return ResponseEntity.ok(studentService.AddCourseRecommendation(email));
+        }
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email is required");
+    }
 }
