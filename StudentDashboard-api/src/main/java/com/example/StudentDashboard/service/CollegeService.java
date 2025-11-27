@@ -2,6 +2,7 @@ package com.example.StudentDashboard.service;
 import org.springframework.stereotype.Service;
 import com.example.StudentDashboard.repository.CollegeRepository;
 import com.example.StudentDashboard.entity.College;
+import com.example.StudentDashboard.entity.CourseEntity;
 import com.example.StudentDashboard.model.UniversityApiResponse;
 import org.springframework.web.client.RestTemplate;
 
