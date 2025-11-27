@@ -17,7 +17,7 @@ public class Student {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Column(name = "dob", nullable = false)
+    @Column(name = "date_of_birth", nullable = false)
     private LocalDate dob;
 
     @Column(name = "email", nullable = false)
