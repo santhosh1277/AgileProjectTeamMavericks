@@ -21,7 +21,7 @@ import java.util.List;
 
 @AutoConfigureMockMvc(addFilters = false)
 @WebMvcTest(CollegeController.class)
-@Disabled("Requires database setup - will be enabled after H2 configuration is added")
+@Disabled("Spring context loading issues - controller tests deferred")
 class CollegeControllerTest {
 
     @Autowired
