@@ -1,12 +1,25 @@
 package com.example.StudentDashboard.service;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.client.RestTemplate;
+
+import com.example.StudentDashboard.Entity.AcademicProfile;
+import com.example.StudentDashboard.Entity.CourseRecommender;
 import com.example.StudentDashboard.Entity.Student;
+import com.example.StudentDashboard.Entity.UserConsent;
+import com.example.StudentDashboard.model.CourseRecommenderRequest;
+import com.example.StudentDashboard.repository.AcademicProfileRepository;
+import com.example.StudentDashboard.repository.CourseRecommenderRepository;
 import com.example.StudentDashboard.repository.StudentRepository;
+import com.example.StudentDashboard.repository.UserConsentRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -19,6 +32,18 @@ class StudentServiceTest {
 
     @Mock
     private StudentRepository studentRepository;
+    
+    @Mock
+    private AcademicProfileRepository academicProfileRepository;
+    
+    @Mock
+    private CourseRecommenderRepository courseRecommenderRepository;
+    
+    @Mock
+    private UserConsentRepository userConsentRepository;
+    
+    @Mock
+    private RestTemplate restTemplate;
 
     private Student testStudent;
 
@@ -39,12 +64,32 @@ class StudentServiceTest {
         assertEquals("test@test.com", saved.getEmail());
     }
 
-  
+    @Test
+    void registerStudentDuplicateEmail() {
+        when(studentRepository.existsByEmail(testStudent.getEmail())).thenReturn(true);
+
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
+            studentService.registerStudent(testStudent);
+        });
+
+        assertEquals("Email already registered!", exception.getMessage());
+        verify(studentRepository, never()).save(any());
+    }
+
     @Test
     void getStudentDetailsFound() {
         when(studentRepository.findByEmail("test@test.com")).thenReturn(Optional.of(testStudent));
         Student student = studentService.getStudentDetails("test@test.com");
         assertEquals("test@test.com", student.getEmail());
+    }
+
+    @Test
+    void getStudentDetailsNotFound() {
+        when(studentRepository.findByEmail("notfound@test.com")).thenReturn(Optional.empty());
+        Student student = studentService.getStudentDetails("notfound@test.com");
+        assertNotNull(student);
+        // Returns new Student() when not found
+        assertNull(student.getEmail());
     }
 
     @Test
@@ -54,10 +99,31 @@ class StudentServiceTest {
         boolean updated = studentService.updateStudentDetails(testStudent);
         assertTrue(updated);
     }
+
+    @Test
+    void updateStudentDetailsNull() {
+        boolean updated = studentService.updateStudentDetails(null);
+        assertFalse(updated);
+    }
+
+    @Test
+    void updateStudentDetailsNullEmail() {
+        Student studentNoEmail = new Student();
+        studentNoEmail.setEmail(null);
+        boolean updated = studentService.updateStudentDetails(studentNoEmail);
+        assertFalse(updated);
+    }
+
+    @Test
+    void updateStudentDetailsNotFound() {
+        when(studentRepository.findByEmail(testStudent.getEmail())).thenReturn(Optional.empty());
+        boolean updated = studentService.updateStudentDetails(testStudent);
+        assertFalse(updated);
+    }
+
     @Test
     void testLoginSuccess() {
-        // Setup
-    	  BCryptPasswordEncoder  encoder = new BCryptPasswordEncoder();
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String rawPassword = "password123";
         String email = "john@example.com";
 
@@ -67,10 +133,8 @@ class StudentServiceTest {
 
         when(studentRepository.findByEmail(email)).thenReturn(Optional.of(student));
 
-        // Execute
         Student result = studentService.login(email, rawPassword);
 
-        // Verify
         assertNotNull(result);
         assertEquals(email, result.getEmail());
     }
@@ -91,7 +155,7 @@ class StudentServiceTest {
     @Test
     void testLoginInvalidPassword() {
         String email = "john@example.com";
-        BCryptPasswordEncoder  encoder = new BCryptPasswordEncoder();
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         Student student = new Student();
         student.setEmail(email);
         student.setPassword(encoder.encode("correctPassword"));
@@ -103,5 +167,169 @@ class StudentServiceTest {
         });
 
         assertEquals("Invalid email or password", exception.getMessage());
+    }
+
+    @Test
+    void testAddAcademicProfileNew() {
+        AcademicProfile profile = new AcademicProfile();
+        profile.setEmail("student@test.com");
+        profile.setDegree("BTech");
+        profile.setCertifications(new ArrayList<>());
+        profile.setInterests(new ArrayList<>());
+
+        when(academicProfileRepository.findByEmail("student@test.com")).thenReturn(null);
+        when(academicProfileRepository.save(any(AcademicProfile.class))).thenReturn(profile);
+
+        List<CourseRecommender> recommendations = new ArrayList<>();
+        CourseRecommender course = new CourseRecommender();
+        course.setCourseName("MSc Data Science");
+        recommendations.add(course);
+
+        CourseRecommenderRequest mockResponse = new CourseRecommenderRequest();
+        mockResponse.setRecommendations(recommendations);
+
+        when(restTemplate.postForEntity(eq("http://127.0.0.1:5000/recommend"), any(AcademicProfile.class), eq(String.class)))
+                .thenReturn(new ResponseEntity<>("{\"recommendations\": [{\"course_name\": \"MSc Data Science\", \"email\": \"student@test.com\"}]}", HttpStatus.OK));
+
+        when(courseRecommenderRepository.saveAll(any())).thenReturn(recommendations);
+
+        List<CourseRecommender> result = studentService.AddAcademicProfile(profile);
+
+        assertNotNull(result);
+        verify(academicProfileRepository).save(any(AcademicProfile.class));
+        verify(courseRecommenderRepository).saveAll(any());
+    }
+
+    @Test
+    void testAddAcademicProfileExisting() {
+        AcademicProfile existingProfile = new AcademicProfile();
+        existingProfile.setEmail("student@test.com");
+        existingProfile.setDegree("BTech");
+
+        AcademicProfile newProfile = new AcademicProfile();
+        newProfile.setEmail("student@test.com");
+        newProfile.setDegree("MTech");
+        newProfile.setCertifications(new ArrayList<>());
+        newProfile.setInterests(new ArrayList<>());
+
+        when(academicProfileRepository.findByEmail("student@test.com")).thenReturn(existingProfile);
+        when(academicProfileRepository.save(any(AcademicProfile.class))).thenReturn(existingProfile);
+
+        List<CourseRecommender> recommendations = new ArrayList<>();
+        when(courseRecommenderRepository.saveAll(any())).thenReturn(recommendations);
+
+        when(restTemplate.postForEntity(eq("http://127.0.0.1:5000/recommend"), any(AcademicProfile.class), eq(String.class)))
+                .thenReturn(new ResponseEntity<>("{\"recommendations\": []}", HttpStatus.OK));
+
+        List<CourseRecommender> result = studentService.AddAcademicProfile(newProfile);
+
+        assertNotNull(result);
+        verify(academicProfileRepository, times(2)).save(any(AcademicProfile.class));
+    }
+
+    @Test
+    void testUpdateUserConsentTrue() {
+        UserConsent consent = new UserConsent();
+        consent.setEmail("student@test.com");
+        consent.setConsentGiven(true);
+
+        boolean result = studentService.UpdateUserConsent(consent);
+
+        assertTrue(result);
+        verify(userConsentRepository).save(any(UserConsent.class));
+    }
+
+    @Test
+    void testUpdateUserConsentFalse() {
+        UserConsent consent = new UserConsent();
+        consent.setEmail("student@test.com");
+        consent.setConsentGiven(false);
+
+        boolean result = studentService.UpdateUserConsent(consent);
+
+        assertTrue(result);
+        verify(userConsentRepository, never()).save(any());
+    }
+
+    @Test
+    void testUpdateUserConsentNullEmail() {
+        UserConsent consent = new UserConsent();
+        consent.setEmail(null);
+        consent.setConsentGiven(true);
+
+        boolean result = studentService.UpdateUserConsent(consent);
+
+        assertFalse(result);
+    }
+
+    @Test
+    void testGetRecommendedCoursesUnique() {
+        List<CourseRecommender> allCourses = new ArrayList<>();
+        
+        CourseRecommender course1 = new CourseRecommender();
+        course1.setCourseName("MSc Data Science");
+        course1.setEmail("student@test.com");
+        
+        CourseRecommender course2 = new CourseRecommender();
+        course2.setCourseName("MSc Data Science");
+        course2.setEmail("student@test.com");
+        
+        CourseRecommender course3 = new CourseRecommender();
+        course3.setCourseName("MSc AI");
+        course3.setEmail("student@test.com");
+        
+        allCourses.add(course1);
+        allCourses.add(course2);
+        allCourses.add(course3);
+
+        when(courseRecommenderRepository.findByEmail("student@test.com")).thenReturn(allCourses);
+
+        List<CourseRecommender> result = studentService.getRecommendedCourses("student@test.com");
+
+        assertEquals(2, result.size());
+    }
+
+    @Test
+    void testGetRecommendedCoursesEmpty() {
+        when(courseRecommenderRepository.findByEmail("student@test.com")).thenReturn(new ArrayList<>());
+
+        List<CourseRecommender> result = studentService.getRecommendedCourses("student@test.com");
+
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    void testUserConsentTrue() {
+        UserConsent consent = new UserConsent();
+        consent.setEmail("student@test.com");
+        consent.setConsentGiven(true);
+
+        when(userConsentRepository.findByEmailIgnoreCase("student@test.com")).thenReturn(Optional.of(consent));
+
+        boolean result = studentService.userConsent("student@test.com");
+
+        assertTrue(result);
+    }
+
+    @Test
+    void testUserConsentFalse() {
+        UserConsent consent = new UserConsent();
+        consent.setEmail("student@test.com");
+        consent.setConsentGiven(false);
+
+        when(userConsentRepository.findByEmailIgnoreCase("student@test.com")).thenReturn(Optional.of(consent));
+
+        boolean result = studentService.userConsent("student@test.com");
+
+        assertFalse(result);
+    }
+
+    @Test
+    void testUserConsentNotFound() {
+        when(userConsentRepository.findByEmailIgnoreCase("notfound@test.com")).thenReturn(Optional.empty());
+
+        boolean result = studentService.userConsent("notfound@test.com");
+
+        assertFalse(result);
     }
 }

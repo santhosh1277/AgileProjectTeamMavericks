@@ -19,7 +19,7 @@ public class CollegeService {
 		_collegeRepository = collegeRepository;
 		_restTemplate = restTemplate;
 	}
-	    public List<com.example.StudentDashboard.Entity.College> getAllColleges() {
+	    public List<College> getAllColleges() {
 	    	        return _collegeRepository.findAll();
 	    	    }
 	    public College AddPreferenceCollege()

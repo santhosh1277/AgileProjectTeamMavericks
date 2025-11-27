@@ -8,6 +8,7 @@ import Login from './LoginPage/Login';
 import Profile from './DashboardHome/UserProfile';
 import CourseDetails from './DashboardHome/CourseDetails';
 import ProtectedRoute from './components/ProtectedRoute';
+import AcademicProfile from './DashboardHome/AcademicProfile';
 
 function AppWrapper() {
   const location = useLocation();
@@ -34,9 +35,10 @@ function AppWrapper() {
                   </div>
                   <div className="col-10 bg-light p-4">
                     <Routes>
-                      <Route path="home" element={<DashboardHome />} />
+                      <Route path="/" element={<DashboardHome />} />
                       <Route path="profile" element={<Profile />} />
                       <Route path="courses/:collegeId" element={<CourseDetails />} />
+                      <Route path="academicprofile" element={<AcademicProfile />} />
                     </Routes>
                   </div>
                 </div>

@@ -1,13 +1,18 @@
 package com.example.StudentDashboard.controller;
 
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.StudentDashboard.Entity.AcademicProfile;
+import com.example.StudentDashboard.Entity.CourseRecommender;
 import com.example.StudentDashboard.Entity.Student;
+import com.example.StudentDashboard.Entity.UserConsent;
 import com.example.StudentDashboard.service.StudentService;
 
 @RestController
@@ -114,4 +119,43 @@ public class StudentController {
 
         return new Student();
     }
+    @PostMapping("/academic-profile")
+    public ResponseEntity<?> AddAcademicProfile(@RequestBody AcademicProfile request) {
+        
+        
+        if (request.getEmail() != null) {
+            return ResponseEntity.ok(studentService.AddAcademicProfile(request));
+        }
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email is required");
+    }
+   /**
+ * @param profile
+ * @return
+ */
+@PostMapping("/course-recommendations")
+public ResponseEntity<List<CourseRecommender>> getCourseRecommendations(@RequestBody AcademicProfile profile) {
+    List<CourseRecommender> recommendations = studentService.addCourseRecommendations(profile);
+    return ResponseEntity.ok(recommendations);
+}
+@PostMapping("/recommended_courses")
+public List<CourseRecommender> getRecommendedCourses(@RequestBody  Map<String, String> request) {
+        String email = request.get("email");
+        return studentService.getRecommendedCourses(email);
+
+}
+
+
+    @PostMapping("/consent")
+    public boolean getUserConsenttoCall(@RequestBody UserConsent consent)
+    {
+          return  studentService.UpdateUserConsent(consent);
+
+    }
+   @PostMapping("/userconsent")
+public boolean getUserConsentDetails(@RequestBody Map<String, String> request) {
+    String email = request.get("email");
+    return studentService.userConsent(email);
+}
+
 }

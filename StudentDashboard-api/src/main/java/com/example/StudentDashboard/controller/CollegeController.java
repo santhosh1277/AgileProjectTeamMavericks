@@ -1,7 +1,7 @@
 package com.example.StudentDashboard.controller;
 
-import com.example.StudentDashboard.Entity.College;
 import com.example.StudentDashboard.service.CollegeService;
+import com.example.StudentDashboard.Entity.College;
 
 import org.springframework.web.bind.annotation.*;
 
