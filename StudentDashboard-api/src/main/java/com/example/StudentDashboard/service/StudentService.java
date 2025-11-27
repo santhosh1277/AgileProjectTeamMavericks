@@ -9,10 +9,7 @@ import com.example.StudentDashboard.repository.AcademicProfileRepository;
 import com.example.StudentDashboard.repository.CourseRecommenderRepository;
 import com.example.StudentDashboard.repository.StudentRepository;
 import com.example.StudentDashboard.repository.UserConsentRepository;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import jakarta.transaction.Transactional;
 
@@ -25,8 +22,9 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Optional;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
-
+import java.util.Map;
 
 @Service
 public class StudentService {
@@ -36,12 +34,13 @@ public class StudentService {
     private AcademicProfileRepository academicProfileRepository;
     private CourseRecommenderRepository recommendedCourseRepository;
     private UserConsentRepository _userConsentRepository;
-       private RestTemplate restTemplate;
+    private RestTemplate restTemplate;
     private Student _student;
     private final String AI_RECOMMEND_URL = "http://127.0.0.1:5000/recommend";
 
     public StudentService(StudentRepository studentRepository, AcademicProfileRepository academicProfileRepository,
-            CourseRecommenderRepository recommendedCourseRepository,UserConsentRepository userConsentRepository, RestTemplate restTemplate) {
+            CourseRecommenderRepository recommendedCourseRepository, UserConsentRepository userConsentRepository,
+            RestTemplate restTemplate) {
         this.studentRepository = studentRepository;
         this.academicProfileRepository = academicProfileRepository;
         this.recommendedCourseRepository = recommendedCourseRepository;
@@ -108,7 +107,7 @@ public class StudentService {
     }
 
     @Transactional
-    public String AddAcademicProfile(AcademicProfile profile) {
+    public List<CourseRecommender> AddAcademicProfile(AcademicProfile profile) {
         if (profile.getCertifications() == null)
             profile.setCertifications(new ArrayList<>());
         if (profile.getInterests() == null)
@@ -124,53 +123,65 @@ public class StudentService {
 
             // Save parent first
             AcademicProfile saved = academicProfileRepository.save(existing);
-
-            return "Academic Profile updated successfully";
         }
 
         // For new profile: save parent first to generate ID
         AcademicProfile savedProfile = academicProfileRepository.save(profile);
 
-        // Now collections will have profile_id assigned
-        return "Academic Profile added successfully";
+        return addCourseRecommendations(profile);
     }
 
-   public List<CourseRecommender> addCourseRecommendations(AcademicProfile profile) {
-    try {
-        ResponseEntity<String> response = restTemplate.postForEntity(AI_RECOMMEND_URL, profile, String.class);
+    public List<CourseRecommender> addCourseRecommendations(AcademicProfile profile) {
+        try {
+            ResponseEntity<String> response = restTemplate.postForEntity(AI_RECOMMEND_URL, profile, String.class);
 
-        // Map JSON response to CourseRecommenderRequest
-        ObjectMapper mapper = new ObjectMapper();
-        CourseRecommenderRequest courseResponse = mapper.readValue(response.getBody(), CourseRecommenderRequest.class);
+            // Map JSON response to CourseRecommenderRequest
+            ObjectMapper mapper = new ObjectMapper();
+            CourseRecommenderRequest courseResponse = mapper.readValue(response.getBody(),
+                    CourseRecommenderRequest.class);
 
-        // Get the list of recommendations
-        List<CourseRecommender> courses = courseResponse.getRecommendations();
+            // Get the list of recommendations
+            List<CourseRecommender> courses = courseResponse.getRecommendations();
 
-        // Set email for each recommendation
-        for (CourseRecommender course : courses) {
-            course.setEmail(profile.getEmail());
+            // Set email for each recommendation
+            for (CourseRecommender course : courses) {
+                course.setEmail(profile.getEmail());
+            }
+
+            // Save all recommendations to DB
+            return recommendedCourseRepository.saveAll(courses);
+
+        } catch (HttpClientErrorException e) {
+            System.out.println("AI Service Error: " + e.getResponseBodyAsString());
+            throw new RuntimeException("Error adding course recommendation: " + e.getMessage());
+        } catch (Exception e) {
+            throw new RuntimeException("Error parsing AI response: " + e.getMessage());
         }
-
-        // Save all recommendations to DB
-        return recommendedCourseRepository.saveAll(courses);
-
-    } catch (HttpClientErrorException e) {
-        System.out.println("AI Service Error: " + e.getResponseBodyAsString());
-        throw new RuntimeException("Error adding course recommendation: " + e.getMessage());
-    } catch (Exception e) {
-        throw new RuntimeException("Error parsing AI response: " + e.getMessage());
     }
+
+    public boolean UpdateUserConsent(UserConsent consent) {
+        if (consent.getEmail() != null) {
+            if (consent.isConsentGiven())
+                _userConsentRepository.save(consent);
+            return true;
+        }
+        return false;
+    }
+
+   public List<CourseRecommender> getRecommendedCourses(String email) {
+    List<CourseRecommender> allCourses = recommendedCourseRepository.findByEmail(email);
+    
+    Map<String, CourseRecommender> uniqueCourses = new LinkedHashMap<>();
+    for (CourseRecommender course : allCourses) {
+        uniqueCourses.putIfAbsent(course.getCourseName(), course);
+    }
+    
+    return new ArrayList<>(uniqueCourses.values());
 }
 
-
-
-   public boolean UpdateUserConsent(UserConsent consent) {
-    if(consent.getEmail()!=null)
-    {
-        if(consent.isConsentGiven())
-        _userConsentRepository.save(consent);
-        return true;
-    }
-    return false;
-   }
+   public boolean userConsent(String email) {
+    return _userConsentRepository.findByEmailIgnoreCase(email)
+                                 .map(UserConsent::isConsentGiven)
+                                 .orElse(false);
+}
 }

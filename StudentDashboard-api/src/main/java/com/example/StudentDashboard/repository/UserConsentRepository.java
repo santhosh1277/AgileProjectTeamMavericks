@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.StudentDashboard.entity.UserConsent;
 @Repository
-public interface UserConsentRepository extends JpaRepository<UserConsent, Long> {
-    Optional<UserConsent> findByEmail(String email);
+public interface UserConsentRepository extends JpaRepository<UserConsent, String> {
+    Optional<UserConsent> findByEmailIgnoreCase(String email);
 }
+

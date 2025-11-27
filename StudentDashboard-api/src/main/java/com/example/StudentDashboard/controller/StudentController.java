@@ -2,6 +2,7 @@ package com.example.StudentDashboard.controller;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -138,6 +139,12 @@ public ResponseEntity<List<CourseRecommender>> getCourseRecommendations(@Request
     List<CourseRecommender> recommendations = studentService.addCourseRecommendations(profile);
     return ResponseEntity.ok(recommendations);
 }
+@PostMapping("/recommended_courses")
+public List<CourseRecommender> getRecommendedCourses(@RequestBody  Map<String, String> request) {
+        String email = request.get("email");
+        return studentService.getRecommendedCourses(email);
+
+}
 
 
     @PostMapping("/consent")
@@ -146,4 +153,10 @@ public ResponseEntity<List<CourseRecommender>> getCourseRecommendations(@Request
           return  studentService.UpdateUserConsent(consent);
 
     }
+   @PostMapping("/userconsent")
+public boolean getUserConsentDetails(@RequestBody Map<String, String> request) {
+    String email = request.get("email");
+    return studentService.userConsent(email);
+}
+
 }
