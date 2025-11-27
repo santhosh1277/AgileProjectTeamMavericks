@@ -306,36 +306,10 @@ function SideNav() {
               e.target.style.boxShadow = "none";
             }}
           >
-            📚 Academic Profile
+            📚 AI Course Recommender
           </Link>
         </li>
-        <li className="nav-item mb-2">
-          <Link 
-            className="nav-link" 
-            to="/dashboard/settings"
-            style={{
-              color: "#fff",
-              padding: "12px 16px",
-              borderRadius: "12px",
-              transition: "all 0.3s ease",
-              fontWeight: "500",
-              fontSize: "1.05rem",
-              textDecoration: "none",
-            }}
-            onMouseOver={(e) => {
-              e.target.style.background = "rgba(255, 255, 255, 0.2)";
-              e.target.style.paddingLeft = "24px";
-              e.target.style.boxShadow = "0 4px 15px rgba(0, 0, 0, 0.1)";
-            }}
-            onMouseOut={(e) => {
-              e.target.style.background = "transparent";
-              e.target.style.paddingLeft = "16px";
-              e.target.style.boxShadow = "none";
-            }}
-          >
-            ⚙️ Settings
-          </Link>
-        </li>
+        
         <li className="nav-item mt-4">
           <button 
             className="nav-link btn btn-link w-100 text-start" 
