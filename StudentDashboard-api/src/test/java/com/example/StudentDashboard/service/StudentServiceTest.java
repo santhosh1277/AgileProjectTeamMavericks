@@ -51,7 +51,7 @@ class StudentServiceTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
       
-        testStudent = new Student("Santhosh", "Reddy", LocalDate.of(2000,1,1), "test@test.com", "password123");
+        testStudent = new Student("Santhosh", "Reddy", LocalDate.of(2000,1,1), "test@test.com", "9876543210", "password123");
     }
 
     @Test

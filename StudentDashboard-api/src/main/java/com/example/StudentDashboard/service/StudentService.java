@@ -101,7 +101,14 @@ public class StudentService {
         Student existingStudent = existingStudentOpt.get();
         existingStudent.setFirstName(updatedStudent.getFirstName());
         existingStudent.setLastName(updatedStudent.getLastName());
-        existingStudent.setPassword(updatedStudent.getPassword());
+        existingStudent.setPhoneNumber(updatedStudent.getPhoneNumber());
+        
+        // Only update password if a new one is provided (not null/empty)
+        if (updatedStudent.getPassword() != null && !updatedStudent.getPassword().isEmpty()) {
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            existingStudent.setPassword(encoder.encode(updatedStudent.getPassword()));
+        }
+        
         studentRepository.save(existingStudent);
 
         return true;

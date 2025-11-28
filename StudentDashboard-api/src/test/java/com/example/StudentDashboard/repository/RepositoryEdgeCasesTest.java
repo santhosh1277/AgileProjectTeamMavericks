@@ -66,8 +66,8 @@ class RepositoryEdgeCasesTest {
 
     @Test
     void testMultipleStudentsWithDifferentDates() {
-        Student student1 = new Student("Alice", "Smith", LocalDate.of(1999, 1, 1), "alice@example.com", "pass1");
-        Student student2 = new Student("Bob", "Jones", LocalDate.of(2000, 2, 2), "bob@example.com", "pass2");
+        Student student1 = new Student("Alice", "Smith", LocalDate.of(1999, 1, 1), "alice@example.com", "1234567890", "pass1");
+        Student student2 = new Student("Bob", "Jones", LocalDate.of(2000, 2, 2), "bob@example.com", "0987654321", "pass2");
         
         studentRepository.save(student1);
         studentRepository.save(student2);
