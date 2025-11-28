@@ -44,8 +44,8 @@ const Profile = () => {
         lastName: data.lastName || "",
         dob: data.dob || "",
         email: data.email || "",
-        phone: data.phone || "",
-        password: data.password || "",
+        phone: data.phoneNumber || "",
+        password: "••••••••", // Don't show the encrypted password
       });
     } catch (error) {
       setUser(emptyUser);
@@ -74,8 +74,25 @@ const Profile = () => {
 
   const UpdateDetails = async () => {
     try {
-      const updated = await UpdateStudentDetails(user);
-      setUser(updated);
+      const updatedUser = {
+        ...user,
+        phoneNumber: user.phone,
+      };
+      
+      // Only update password if it was actually changed (not the placeholder)
+      if (user.password === "••••••••") {
+        delete updatedUser.password;
+      }
+      
+      const updated = await UpdateStudentDetails(updatedUser);
+      setUser({
+        firstName: updated.firstName || "",
+        lastName: updated.lastName || "",
+        dob: updated.dob || "",
+        email: updated.email || "",
+        phone: updated.phoneNumber || "",
+        password: "••••••••", // Keep showing placeholder
+      });
       setIsEditable(defaultEditable);
     } catch {
       // Keep existing state on error - user can retry by editing again
