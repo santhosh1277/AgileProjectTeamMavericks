@@ -6,7 +6,6 @@ const defaultEditable = {
   firstName: false,
   lastName: false,
   dob: false,
-  email: false,
   phone: false,
   password: false,
 };
@@ -15,7 +14,6 @@ const emptyUser = {
   firstName: "",
   lastName: "",
   dob: "",
-  email: "",
   phone: "",
   password: "",
 };
@@ -24,7 +22,6 @@ const fields = [
   { label: "First Name", name: "firstName", type: "text" },
   { label: "Last Name", name: "lastName", type: "text" },
   { label: "Date of Birth", name: "dob", type: "date" },
-  { label: "Email", name: "email", type: "email" },
   { label: "Phone Number", name: "phone", type: "tel" },
   { label: "Password", name: "password", type: "password" },
 ];
