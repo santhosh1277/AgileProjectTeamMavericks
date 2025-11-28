@@ -73,7 +73,7 @@ class EntityMappingTest {
 
     @Test
     void studentConstructorMapping() {
-        Student student = new Student("Jane", "Smith", LocalDate.of(2001, 3, 20), "jane@example.com", "pass123");
+        Student student = new Student("Jane", "Smith", LocalDate.of(2001, 3, 20), "jane@example.com", "5551234567", "pass123");
 
         assertEquals("Jane", student.getFirstName());
         assertEquals("Smith", student.getLastName());
